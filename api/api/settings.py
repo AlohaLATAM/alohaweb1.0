@@ -40,9 +40,18 @@ INSTALLED_APPS = [
 
     'rest_framework',
 
+    'core',
+
     'accounts',
+    'districts',
+    'drivers',
     'leads',
-    'trucks'
+    'quotations',
+    'truck_size_types',
+    'trucks',
+    'zones',
+
+    'preferences'
 ]
 
 MIDDLEWARE = [

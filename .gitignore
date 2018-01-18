@@ -7,3 +7,5 @@ front/.tmp
 front/.sass-cache
 front/bower_components
 front/test
+.vscode
+*.sqlite3

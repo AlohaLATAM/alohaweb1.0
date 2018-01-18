@@ -1,5 +1,5 @@
 from django.db import models
-from api.core.models import Person
+from core.models import Person
 
-class Leads(Person):
-    created = models.DateTimeField(auto_now_add= True)
+class Lead(Person):
+    email = models.CharField(max_length= 100)
