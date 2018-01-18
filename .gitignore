@@ -1,2 +1,9 @@
 venv
 *.pyc
+.idea
+front/node_modules
+front/dist
+front/.tmp
+front/.sass-cache
+front/bower_components
+front/test

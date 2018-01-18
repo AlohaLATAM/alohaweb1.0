@@ -1,0 +1,25 @@
+{
+  "name": "front",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular": "^1.4.0",
+    "angular-ui-router": "^1.0.13",
+    "components-font-awesome": "^4.7.0",
+    "moment": "^2.20.1",
+    "bootstrap-sass": "bootstrap-sass-official#^3.3.7"
+  },
+  "devDependencies": {
+    "angular-mocks": "^1.4.0"
+  },
+  "appPath": "app",
+  "moduleName": "frontApp",
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "less/bootstrap.less",
+        "dist/css/bootstrap.css",
+        "dist/js/bootstrap.js"
+      ]
+    }
+  }
+}
