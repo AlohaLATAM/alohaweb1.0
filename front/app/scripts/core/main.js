@@ -12,8 +12,65 @@
     angular.module('Core')
         .factory('Main', Main);
 
-    function Main($q, Api) {
+    function Main($q, Api, Utils, Persist, Message) {
+        return {
+            signIn: signIn,
+            createLead: createLead
+        };
 
+        function signIn(email, password) {
+            if (!email || !password) {
+                return $q.reject(Message.all_required);
+            }
+
+            if (!Utils.validateEmail(email)) {
+                return $q.reject(Message.invalid_email_format);
+            }
+
+            var params = {
+                email: email,
+                password: password
+            };
+            var p = Api.signIn(params);
+
+            p = p.then(
+                function (response) {
+                    if (response.token) {
+                        Persist.set('token', response.token);
+                    }
+
+                    return response;
+                }
+            );
+
+            return p;
+        }
+
+        function createLead(first_name, last_name, email, dni) {
+            if (!first_name || !last_name || !email || !dni) {
+                return $q.reject(Message.all_required);
+            }
+
+            if (!Utils.validateEmail(email)) {
+                return $q.reject(Message.invalid_email_format);
+            }
+
+            var params = {
+                first_name: first_name,
+                last_name: last_name,
+                email: email,
+                dni: dni
+            };
+            var p = Api.createLead(params);
+
+            p = p.then(
+                function (response) {
+                    return response.data;
+                }
+            );
+
+            return p;
+        }
     }
 
 }());

@@ -1,0 +1,30 @@
+.leads-container {
+    max-width: 800px;
+    margin: auto;
+
+    form {
+        label {
+            color: #677F94;
+            font-size: 24px;
+            font-weight: 300;
+        }
+
+        input {
+            text-transform: uppercase;
+        }
+
+        input,
+        textarea {
+            color: #58C3D1;
+            outline: none;
+            -moz-box-sizing: border-box;
+            font-size: 30px;
+            line-height: 40px;
+            border: 0;
+            height: inherit;
+            box-shadow: none!important;
+            border-bottom: 1px solid rgba(88,195,209,0.4);
+            border-radius: 0;
+        }
+    }
+}

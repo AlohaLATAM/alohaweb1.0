@@ -9,11 +9,6 @@
 
     'use strict';
 
-    var Config = {
-        API_ROOT: window.__env__.API_ROOT || ''
-    };
-
-    angular.module('Core')
-        .constant('Config', Config);
+    angular.module('Auth', []);
 
 }());

@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="card card-container">
+        <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
+        <form ng-submit="vm.signIn()" class="form-signin">
+            <input ng-model="vm.user.email" type="email" class="form-control" placeholder="Correo" required autofocus>
+            <input ng-model="vm.user.password" type="password" class="form-control" placeholder="Contraseña" required>
+            <div ng-if="vm.error" class="alert alert-danger small">{{ vm.error }}</div>
+            <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+    </div>
+</div>

@@ -9,7 +9,7 @@
 
     'use strict';
 
-    angular.module('Views')
+    angular.module('Auth')
         .controller('DashboardCtrl', DashboardCtrl);
 
     function DashboardCtrl() {

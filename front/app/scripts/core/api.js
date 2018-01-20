@@ -13,6 +13,34 @@
         .factory('Api', Api);
 
     function Api($http, Config) {
+        return {
+            signIn: signIn,
+            createLead: createLead,
+            listDistricts: listDistricts,
+            listTrucks: listTrucks,
+            listTruckSizeTypes: listTruckSizeTypes
+        };
+        
+        function signIn(params) {
+            return __post('auth', params);
+        }
+
+        function createLead(params) {
+            return __post('leads', params)
+        }
+
+        function listDistricts(token) {
+            return __get('districts', token);
+        }
+
+        function listTrucks(token) {
+            return __get('trucks', token)
+        }
+
+        function listTruckSizeTypes(token) {
+            return __get('truck_size_types', token);
+        }
+        
         function __post(endpoint, params, token) {
             endpoint = __generateEndpointAndHeaders(endpoint, token);
 
@@ -74,7 +102,7 @@
                 $http.defaults.headers.common['Authorization'] = 'Token ' + token;
             }
 
-            return Config.API_ROOT + '/' + endpoint;
+            return Config.API_ROOT + '/api/' + endpoint;
         }
     }
 

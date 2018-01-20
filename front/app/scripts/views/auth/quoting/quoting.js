@@ -9,11 +9,12 @@
 
     'use strict';
 
-    var Config = {
-        API_ROOT: window.__env__.API_ROOT || ''
-    };
+    angular.module('Auth')
+        .controller('QuotingCtrl', QuotingCtrl);
 
-    angular.module('Core')
-        .constant('Config', Config);
+    function QuotingCtrl() {
+        var vm = this;
+        vm.lead = {};
+    }
 
 }());

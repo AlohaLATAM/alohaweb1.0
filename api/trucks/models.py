@@ -7,3 +7,6 @@ class Truck(models.Model):
     registration_number = models.CharField(max_length= 15)
     truck_size_type = models.ForeignKey(TruckSizeType, on_delete= models.CASCADE)
     created = models.DateTimeField(auto_now_add= True)
+
+    def __str__(self):
+        return 'chofer: %s %s, placa: %s' % (self.driver.first_name, self.driver.last_name, self.registration_number)

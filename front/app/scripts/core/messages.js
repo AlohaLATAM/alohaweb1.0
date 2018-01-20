@@ -9,11 +9,12 @@
 
     'use strict';
 
-    var Config = {
-        API_ROOT: window.__env__.API_ROOT || ''
+    var Message = {
+        all_required: 'Todos los campos son requeridos.',
+        invalid_email_format: 'Ingrese un correo válido.'
     };
 
     angular.module('Core')
-        .constant('Config', Config);
+        .constant('Message', Message);
 
 }());

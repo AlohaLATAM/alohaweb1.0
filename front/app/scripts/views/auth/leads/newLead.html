@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="leads leads-container">
+        <div class="page-header">
+            <h1 class="text-center text-muted">Nuevo Lead</h1>
+        </div>
+        <form ng-submit="vm.createLead()">
+            <div class="form-group">
+                <label>Nombres</label>
+                <input ng-model="vm.lead.first_name" type="text" class="form-control" autofocus>
+            </div>
+            <div class="form-group">
+                <label>Apellidos</label>
+                <input ng-model="vm.lead.last_name" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Correo</label>
+                <input ng-model="vm.lead.email" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>DNI</label>
+                <input ng-model="vm.lead.dni" type="text" class="form-control">
+            </div>
+            <button class="btn btn-lg btn-primary btn-block">COTIZAR</button>
+        </form>
+    </div>
+</div>

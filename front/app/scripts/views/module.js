@@ -9,6 +9,10 @@
 
     'use strict';
 
-    angular.module('Views', []);
+    angular.module('Views', [
+        'Public',
+        'Auth'
+    ]);
+
 
 }());
