@@ -102,7 +102,7 @@
                 $http.defaults.headers.common['Authorization'] = 'Token ' + token;
             }
 
-            return Config.API_ROOT + '/api/' + endpoint;
+            return Config.API_ROOT + '/api/' + endpoint + '/';
         }
     }
 

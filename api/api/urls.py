@@ -19,10 +19,8 @@ from django.conf.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
-    path('api/drivers/', include('drivers.urls')),
+    
     path('api/districts/', include('districts.urls')),
-    path('api/trucks/', include('trucks.urls')),
     path('api/truck_size_types/', include('truck_size_types.urls')),
     path('api/leads/', include('leads.urls'))
 ]

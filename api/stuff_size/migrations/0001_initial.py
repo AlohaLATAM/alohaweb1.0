@@ -12,11 +12,13 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Zone',
+            name='StuffSize',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=20)),
-                ('in_price', models.IntegerField()),
+                ('time_move', models.IntegerField(default=0)),
+                ('time_instalation', models.IntegerField(default=0)),
+                ('time_packaging', models.IntegerField(default=0)),
             ],
         ),
     ]

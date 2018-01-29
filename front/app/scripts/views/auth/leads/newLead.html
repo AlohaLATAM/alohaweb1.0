@@ -20,6 +20,7 @@
                 <label>DNI</label>
                 <input ng-model="vm.lead.dni" type="text" class="form-control">
             </div>
+            <div class="alert alert-danger" ng-if="vm.error">{{ vm.error }}</div>
             <button class="btn btn-lg btn-primary btn-block">COTIZAR</button>
         </form>
     </div>

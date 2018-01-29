@@ -20,22 +20,12 @@
         });
 
         $stateProvider
-            .state('public', {
-                abstract: true,
-                template: '<ui-view></ui-view>'
-            })
-            .state('public.Signin', {
-                url: '/',
-                templateUrl: 'scripts/views/public/signin/signin.html',
-                controller: 'SigninCtrl',
-                controllerAs: 'vm'
-            })
             .state('auth', {
                 abstract: true,
                 template: '<ui-view></ui-view>'
             })
             .state('auth.Dashboard', {
-                url: '/dashboard',
+                url: '/',
                 templateUrl: 'scripts/views/auth/dashboard/dashboard.html',
                 controller: 'DashboardCtrl',
                 controllerAs: 'vm'
@@ -47,9 +37,15 @@
                 controllerAs: 'vm'
             })
             .state('auth.NewLead', {
-                url: '/leads/new',
+                url: '/leads/nuevo',
                 templateUrl: 'scripts/views/auth/leads/newLead.html',
                 controller: 'NewLeadCtrl',
+                controllerAs: 'vm'
+            })
+            .state('auth.Quotation', {
+                url: '/cotizador/{leadId}',
+                templateUrl: 'scripts/views/auth/quoting/quoting.html',
+                controller: 'QuotingCtrl',
                 controllerAs: 'vm'
             });
     }

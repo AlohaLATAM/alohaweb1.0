@@ -29,9 +29,10 @@
             p.then(
                 function (response) {
                     console.log(response);
-                    $state.go('auth.Quotation', {leadId: response.lead_id});
+                    $state.go('auth.Quotation', {leadId: response.id});
                 },
                 function (error) {
+                    console.log(error);
                     vm.error = error;
                 }
             );

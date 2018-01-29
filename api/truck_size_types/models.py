@@ -1,9 +1,12 @@
 from django.db import models
 
+
 class TruckSizeType(models.Model):
-    description = models.CharField(max_length= 200)
-    length = models.DecimalField(max_digits= 10, decimal_places= 2)
-    width = models.DecimalField(max_digits= 10, decimal_places= 2)
-    height = models.DecimalField(max_digits= 10, decimal_places= 2)
-    total_stevedores = models.IntegerField()
-    base_price = models.IntegerField()
+    name = models.CharField(max_length=50)
+    description = models.CharField(max_length=200)
+    icon = models.CharField(max_length=50)
+    number_stevedores = models.IntegerField(default=1)
+    hour_price = models.IntegerField(blank=True, null=True)
+
+    def __str__(self):
+        return self.name

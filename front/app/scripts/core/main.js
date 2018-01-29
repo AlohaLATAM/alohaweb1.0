@@ -65,7 +65,10 @@
 
             p = p.then(
                 function (response) {
-                    return response.data;
+                    return response;
+                },
+                function (error) {
+                    return $q.reject(error.data);
                 }
             );
 

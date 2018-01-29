@@ -10,7 +10,7 @@
     'use strict';
 
     window.__env__ = {
-        API_ROUTE: 'http://localhost:4200',
+        API_ROOT: 'http://localhost:8000',
         HTML5MODE: false
     };
 

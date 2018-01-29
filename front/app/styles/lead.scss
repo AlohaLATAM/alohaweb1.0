@@ -9,12 +9,14 @@
             font-weight: 300;
         }
 
-        input {
+        input,
+        select {
             text-transform: uppercase;
         }
 
         input,
-        textarea {
+        textarea,
+        select {
             color: #58C3D1;
             outline: none;
             -moz-box-sizing: border-box;
