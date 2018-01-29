@@ -368,6 +368,31 @@ module.exports = function (grunt) {
             }
         },
 
+        'string-replace': {
+            dist: {
+                files: [{
+                    expand: true,
+                    cwd: '<%= yeoman.dist %>/',
+                    src: 'index.html',
+                    dest: '<%= yeoman.dist %>/'
+                }],
+                options: {
+                    replacements: [
+                        {
+                            pattern: /src="scripts/g,
+                            replacement: 'src="/static/scripts'
+                        }, {
+                            pattern: /href="styles/g,
+                            replacement: 'href="/static/styles'
+                        }, {
+                            pattern: /href="images/g,
+                            replacement: 'href="/static/images'
+                        }
+                    ]
+                }
+            }
+        },
+
         ngtemplates: {
             dist: {
                 options: {
@@ -480,20 +505,6 @@ module.exports = function (grunt) {
         ]);
     });
 
-    grunt.registerTask('server', 'DEPRECATED TASK. Use the "serve" task instead', function (target) {
-        grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
-        grunt.task.run(['serve:' + target]);
-    });
-
-    grunt.registerTask('test', [
-        'clean:server',
-        'wiredep',
-        'concurrent:test',
-        'postcss',
-        'connect:test',
-        'karma'
-    ]);
-
     grunt.registerTask('build', [
         'clean:dist',
         'wiredep',
@@ -509,13 +520,7 @@ module.exports = function (grunt) {
         'uglify',
         'filerev',
         'usemin',
+        'string-replace',
         'htmlmin'
-    ]);
-
-    grunt.registerTask('default', [
-        'newer:jshint',
-        'newer:jscs',
-        'test',
-        'build'
     ]);
 };

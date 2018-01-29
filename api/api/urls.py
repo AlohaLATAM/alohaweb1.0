@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
+from . views import index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,4 +24,6 @@ urlpatterns = [
     path('api/districts/', include('districts.urls')),
     path('api/truck_size_types/', include('truck_size_types.urls')),
     path('api/leads/', include('leads.urls'))
+
+    url(r'^.*$', index, name='index')
 ]
