@@ -25,7 +25,7 @@ SECRET_KEY = '0c&=ob)m_gh%$%ok-o03%yg(aelt4#7%e!t8s9ks#1=%b4((li'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '*.aloha.pe']
+ALLOWED_HOSTS = ['localhost', 'panel.aloha.pe']
 
 
 # Application definition
@@ -68,11 +68,11 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = (
    'localhost:9090',
-   '*.aloha.pe'
+   'panel.aloha.pe'
 )
 CORS_ORIGIN_REGEX_WHITELIST = (
    'localhost:9090',
-   '*.aloha.pe'
+   'panel.aloha.pe'
 )
 
 ROOT_URLCONF = 'api.urls'
