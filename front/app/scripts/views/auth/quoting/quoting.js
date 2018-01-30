@@ -21,26 +21,10 @@
             truck_price: 0,
             moving_stuff_time: 0,
             packaging_price: 0,
-            travel_price: 0
+            travel_price: 0,
+            final_price: 0
         };
         vm.search = {};
-
-        vm.truckSizeTypes = [{
-            id: 1,
-            name: 'Camión pequeño',
-            number_stevedores: '2',
-            hour_price: 120
-        }, {
-            id: 2,
-            name: 'Camión mediano',
-            number_stevedores: '2',
-            hour_price: 150
-        }, {
-            id: 3,
-            name: 'Camión grande',
-            number_stevedores: '3',
-            hour_price: 180
-        }];
 
         var directionsService = new google.maps.DirectionsService;
         var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -55,6 +39,8 @@
         function init() {
             getLead();
             generateMap();
+            getTruckTypes();
+            getHomeTypes();
         }
 
         function getLead() {
@@ -79,6 +65,26 @@
             directionsDisplay.setMap(map);
 
             calculateRoute();
+        }
+
+        function getTruckTypes() {
+            var p = Main.listTruckTypes();
+
+            p.then(
+                function (response) {
+                    vm.truckSizeTypes = response;
+                }
+            );
+        }
+
+        function getHomeTypes() {
+            var p = Main.listHomeTypes();
+
+            p.then(
+                function (response) {
+                    vm.homeTypes = response;
+                }
+            );
         }
 
         function calculateRoute() {
@@ -111,11 +117,13 @@
         function calculateTruckPrice() {
             if (vm.time_travel_seconds && vm.quoting.truck_size_type) {
                 var timeAprox = vm.time_travel_seconds / 60;
-                var truckPrice = vm.truckSizeTypes[vm.quoting.truck_size_type].hour_price;
+                var truckPrice = vm.truckSizeTypes[vm.quoting.truck_size_type - 1].hour_price;
 
                 vm.quoting.packaging_price = (vm.quoting.moving_stuff_time * truckPrice) / 60;
                 vm.quoting.travel_price = (timeAprox * truckPrice) / 60;
                 vm.quoting.price = vm.quoting.packaging_price + vm.quoting.travel_price;
+
+                vm.quoting.final_price = vm.quoting.price + 50;
             } else {
                 vm.quoting.truck_price = 0;
             }

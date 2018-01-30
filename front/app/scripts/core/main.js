@@ -17,7 +17,9 @@
             signIn: signIn,
             createLead: createLead,
             listLeads: listLeads,
-            getLead: getLead
+            getLead: getLead,
+            listTruckTypes: listTruckTypes,
+            listHomeTypes: listHomeTypes
         };
 
         function signIn(email, password) {
@@ -99,6 +101,30 @@
             p = p.then(
                 function (response) {
                     return response;
+                }
+            );
+
+            return p;
+        }
+
+        function listTruckTypes() {
+            var p = Api.listTruckTypes();
+
+            p = p.then(
+                function (response) {
+                    return response;
+                }
+            );
+
+            return p;
+        }
+
+        function listHomeTypes() {
+            var p = Api.listHomeTypes()
+
+            p = p.then(
+                function (response) {
+                    return response
                 }
             );
 

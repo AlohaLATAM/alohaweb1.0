@@ -20,7 +20,8 @@
             getLead: getLead,
             listDistricts: listDistricts,
             listTrucks: listTrucks,
-            listTruckSizeTypes: listTruckSizeTypes
+            listTruckTypes: listTruckTypes,
+            listHomeTypes: listHomeTypes
         };
         
         function signIn(params) {
@@ -47,8 +48,12 @@
             return __get('trucks', token)
         }
 
-        function listTruckSizeTypes(token) {
+        function listTruckTypes(token) {
             return __get('truck_size_types', token);
+        }
+
+        function listHomeTypes(token) {
+            return __get('home_types', token);
         }
         
         function __post(endpoint, params, token) {

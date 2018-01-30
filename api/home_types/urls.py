@@ -5,5 +5,5 @@ from . import views
 
 
 router = routers.DefaultRouter()
-router.register(r'', views.LeadViewSet, 'Lead')
+router.register(r'', views.HomeTypeViewSet, 'HomeType')
 urlpatterns = router.urls

@@ -24,6 +24,7 @@ urlpatterns = [
     path('api/districts/', include('districts.urls')),
     path('api/truck_size_types/', include('truck_size_types.urls')),
     path('api/leads/', include('leads.urls')),
+    path('api/home_types/', include('home_types.urls')),
 
     url(r'^.*$', index, name='index')
 ]

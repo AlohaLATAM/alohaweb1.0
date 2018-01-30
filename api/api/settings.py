@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'stuff',
     'stuff_size',
     'truck_size_types',
-    'zones'
+    'zones',
+    'home_types'
 ]
 
 MIDDLEWARE = [
