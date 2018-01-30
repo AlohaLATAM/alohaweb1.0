@@ -1,26 +1,11 @@
 # -*- coding: utf-8 -*-
+from django.shortcuts import get_object_or_404
 from rest_framework import status, viewsets
 from rest_framework.response import Response
 from . models import Lead
 from . serializer import LeadSerializer
 
 class LeadViewSet(viewsets.ViewSet):
-    def retrieve(self, request):
-        try:
-            lead = Lead.objects.get(pk=request.lead_id)
-        except ObjectDoesNotExist:
-            return Response('El lead no existe.', status=status.HTTP_404_NOT_FOUND)
-
-        results = LeadSerializer(lead)
-
-        return Response(results.data)
-
-    def list(self, request):
-        leads = Lead.objects.all()
-        results = LeadSerializer(leads, many= True)
-
-        return Response(results.data)
-
     def create(self, request):
         lead = Lead()
         lead_id, message = lead.register(request.data)
@@ -36,3 +21,16 @@ class LeadViewSet(viewsets.ViewSet):
             return Response(results.data)
         
         return Response(message, status=status.HTTP_400_BAD_REQUEST)
+
+    def retrieve(self, request, pk=None):
+        print('here')
+        lead = get_object_or_404(Lead, pk=pk)
+        result = LeadSerializer(lead)
+
+        return Response(result.data)
+
+    def list(self, request):
+        leads = Lead.objects.all()
+        results = LeadSerializer(leads, many= True)
+
+        return Response(results.data)
