@@ -12,7 +12,7 @@
     angular.module('Auth')
         .controller('QuotingCtrl', QuotingCtrl);
 
-    function QuotingCtrl($scope) {
+    function QuotingCtrl($scope, $stateParams, Main) {
         var vm = this;
         vm.quoting = {
             from_apartment_floor: 1,
@@ -53,6 +53,23 @@
         vm.calculateTruckPrice = calculateTruckPrice;
 
         function init() {
+            getLead();
+            generateMap();
+        }
+
+        function getLead() {
+            var leadId = $stateParams.leadId;
+
+            var p = Main.getLead(leadId);
+
+            p.then(
+                function (response) {
+                    vm.lead = response;
+                }
+            );
+        }
+
+        function generateMap() {
             var mapOptions = {
                 zoom: 7,
                 center: lima

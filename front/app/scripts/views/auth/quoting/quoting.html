@@ -1,4 +1,24 @@
 <div class="container">
+    <div class="list-leads to-uppercase">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Nombre y Apellidos</th>
+                <th>DNI</th>
+                <th>Correo</th>
+            </tr>
+            </thead>
+            <tbody class="text-left">
+            <tr>
+                <td><img src="images/lead.jpg" class="media-photo"></td>
+                <td>{{ vm.lead.first_name }} {{ vm.lead.last_name }}</td>
+                <td>{{ vm.lead.dni }}</td>
+                <td>{{ vm.lead.email }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
     <div class="lead leads-container">
         <div class="page-header">
             <h1 class="text-center text-muted">Cotizador</h1>

@@ -1,5 +1,40 @@
 <div class="container">
     <div class="leads leads-container text-center">
-        <a ui-sref="auth.NewLead()" class="btn btn-success">Nuevo Lead</a>
+        <div class="actions">
+            <ul class="list-inline pull-right">
+                <li>
+                    <a ui-sref="auth.NewLead()" class="btn btn-success">Nuevo Lead</a>
+                </li>
+            </ul>
+        </div>
+        <div class="list-leads to-uppercase">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Nombre y Apellidos</th>
+                    <th>DNI</th>
+                    <th>Correo</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody class="text-left">
+                <tr ng-repeat="item in vm.list">
+                    <td><img src="images/lead.jpg" class="media-photo"></td>
+                    <td>{{ item.first_name }} {{ item.last_name }}</td>
+                    <td>{{ item.dni }}</td>
+                    <td>{{ item.email }}</td>
+                    <td>
+                        <a ui-sref="auth.Quotation({leadId: item.id})">Cotizar</a>
+                        <br>
+                        <a ui-sref="auth.LeadDetails({leadId: item.id})">Detalle</a>
+                    </td>
+                </tr>
+                <tr ng-if="vm.empty_list">
+                    <td colspan="6">No hay leads registrados.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

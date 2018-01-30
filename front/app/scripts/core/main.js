@@ -15,7 +15,9 @@
     function Main($q, Api, Utils, Persist, Message) {
         return {
             signIn: signIn,
-            createLead: createLead
+            createLead: createLead,
+            listLeads: listLeads,
+            getLead: getLead
         };
 
         function signIn(email, password) {
@@ -69,6 +71,34 @@
                 },
                 function (error) {
                     return $q.reject(error.data);
+                }
+            );
+
+            return p;
+        }
+
+        function listLeads() {
+            var p = Api.listLeads();
+
+            p = p.then(
+                function (response) {
+                    return response;
+                }
+            );
+
+            return p;
+        }
+
+        function getLead(id) {
+            if (!id) {
+                return $q.reject('No está permitido.');
+            }
+
+            var p = Api.getLead(id);
+
+            p = p.then(
+                function (response) {
+                    return response;
                 }
             );
 

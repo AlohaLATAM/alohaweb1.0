@@ -6,7 +6,4 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register(r'', views.LeadViewSet, 'Lead')
-
-urlpatterns = [
-    url(r'^', include(router.urls))
-]
+urlpatterns = router.urls

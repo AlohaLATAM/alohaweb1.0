@@ -6,6 +6,10 @@ $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 @import "signin";
 @import "lead";
 
+.container {
+    max-width: 750px;
+}
+
 .fa-heart-o {
     color: red;
 }
@@ -45,4 +49,29 @@ $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
     .form-group {
         border-bottom: 1px dotted #ddd;
     }
+}
+
+.navbar-brand {
+    padding: 0;
+
+    img {
+        max-height: 100%;
+    }
+}
+
+.actions {
+    &:after {
+        clear: both;
+        content: ' ';
+        display: table;
+    }
+}
+
+.media-photo {
+    border-radius: 5px;
+    max-width: 30px;
+}
+
+.to-uppercase {
+    text-transform: uppercase;
 }

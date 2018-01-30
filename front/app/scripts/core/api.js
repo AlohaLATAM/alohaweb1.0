@@ -16,6 +16,8 @@
         return {
             signIn: signIn,
             createLead: createLead,
+            listLeads: listLeads,
+            getLead: getLead,
             listDistricts: listDistricts,
             listTrucks: listTrucks,
             listTruckSizeTypes: listTruckSizeTypes
@@ -27,6 +29,14 @@
 
         function createLead(params) {
             return __post('leads', params)
+        }
+
+        function listLeads(token) {
+            return __get('leads', token);
+        }
+
+        function getLead(leadId, token) {
+            return __get('leads/' + leadId, token);
         }
 
         function listDistricts(token) {

@@ -36,6 +36,12 @@
                 controller: 'ListLeadsCtrl',
                 controllerAs: 'vm'
             })
+            .state('auth.LeadDetails', {
+                url: '/leads/{leadId}',
+                templateUrl: 'scripts/views/auth/leads/lead.html',
+                controller: 'LeadCtrl',
+                controllerAs: 'vm'
+            })
             .state('auth.NewLead', {
                 url: '/leads/nuevo',
                 templateUrl: 'scripts/views/auth/leads/newLead.html',
