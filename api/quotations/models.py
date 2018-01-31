@@ -35,13 +35,9 @@ class Quotation(models.Model):
         address_from = data.get('address_from')
         home_type_from_id = data.get('home_type_from_id')
         floor_from = data.get('floor_from')
-        lat_from = data.get('lat_from')
-        lng_from = data.get('lng_from')
         address_to = data.get('address_to')
         home_type_to_id = data.get('home_type_to_id')
         floor_to = data.get('floor_to')
-        lat_to = data.get('lat_to')
-        lng_to = data.get('lng_to')
         travel_distance_aprox = data.get('travel_distance_aprox')
         travel_time_aprox = data.get('travel_time_aprox')
         truck_size_type_id = data.get('truck_size_type_id')
@@ -52,7 +48,7 @@ class Quotation(models.Model):
         final_price = data.get('final_price')
         profit = data.get('profit')
 
-        if not lead_id or not address_from or not home_type_from_id or not floor_from or not lat_from or not lng_from or not address_to or not home_type_to_id or not floor_to or not lat_to or not lng_to or not travel_distance_aprox or not travel_time_aprox or not truck_size_type_id or not packaging_time_aprox or not packaging_price or not travel_price or not total_price or not final_price or not profit:
+        if not lead_id or not address_from or not home_type_from_id or not floor_from or not address_to or not home_type_to_id or not floor_to or not travel_distance_aprox or not travel_time_aprox or not truck_size_type_id or not packaging_time_aprox or not packaging_price or not travel_price or not total_price or not final_price or not profit:
             return None, 'Revise que todos los campos estén completos.'
 
         try:
@@ -76,13 +72,9 @@ class Quotation(models.Model):
             address_from=address_from,
             home_type_from=home_type_from,
             floor_from=floor_from,
-            lat_from=lat_from,
-            lng_from=lng_from,
             address_to=address_to,
             home_type_to=home_type_to,
             floor_to=floor_to,
-            lat_to=lat_to,
-            lng_to=lng_to,
             travel_distance_aprox=travel_distance_aprox,
             travel_time_aprox=travel_time_aprox,
             truck_size_type=truck_size_type,
