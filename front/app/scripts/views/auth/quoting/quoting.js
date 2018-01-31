@@ -152,7 +152,7 @@
 
             p.then(
                 function () {
-                    $state.go('auth.Lead', {leadId: $stateParams.leadId});
+                    $state.go('auth.LeadDetails', {leadId: $stateParams.leadId});
                 },
                 function (error) {
                     console.log(error);
