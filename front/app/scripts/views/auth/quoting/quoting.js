@@ -12,17 +12,25 @@
     angular.module('Auth')
         .controller('QuotingCtrl', QuotingCtrl);
 
-    function QuotingCtrl($scope, $stateParams, Main) {
+    function QuotingCtrl($scope, $state, $stateParams, Main) {
         var vm = this;
         vm.quoting = {
-            from_apartment_floor: 1,
-            to_apartment_floor: 1,
-            price: 0,
-            truck_price: 0,
-            moving_stuff_time: 0,
+            lead_id: null,
+            address_from: '',
+            house_type_from_id: '',
+            floor_from: 1,
+            address_to: '',
+            house_type_to_id: '',
+            floor_to: 1,
+            travel_distance_aprox: 0,
+            travel_time_aprox: 0,
+            truck_size_type_id: '',
+            packaging_time_aprox: 0,
             packaging_price: 0,
             travel_price: 0,
-            final_price: 0
+            total_price: 0,
+            final_price: 0,
+            profit: 0
         };
         vm.search = {};
 
@@ -35,17 +43,24 @@
 
         vm.calculateRoute = calculateRoute;
         vm.calculateTruckPrice = calculateTruckPrice;
+        vm.registerQuotation = registerQuotation;
 
         function init() {
-            getLead();
+            var leadId = $stateParams.leadId;
+
+            if (!leadId) {
+                return $state.go('auth.Leads');
+            }
+
+            vm.quoting.lead_id = leadId;
+
+            getLead(leadId);
             generateMap();
             getTruckTypes();
             getHomeTypes();
         }
 
-        function getLead() {
-            var leadId = $stateParams.leadId;
-
+        function getLead(leadId) {
             var p = Main.getLead(leadId);
 
             p.then(
@@ -103,9 +118,10 @@
                 if (status === google.maps.DirectionsStatus.OK) {
                     directionsDisplay.setDirections(response);
 
-                    vm.quoting.distance_aprox = response.routes[0].legs[0].distance.text;
-                    vm.quoting.time_travel_aprox = response.routes[0].legs[0].duration.text;
-                    vm.time_travel_seconds = response.routes[0].legs[0].duration.value;
+                    vm.distance_aprox = response.routes[0].legs[0].distance.text;
+                    vm.quoting.travel_distance_aprox = response.routes[0].legs[0].distance.value;
+                    vm.time_travel_aprox = response.routes[0].legs[0].duration.text;
+                    vm.quoting.travel_time_aprox = response.routes[0].legs[0].duration.value;
 
                     calculateTruckPrice();
 
@@ -115,18 +131,33 @@
         }
 
         function calculateTruckPrice() {
-            if (vm.time_travel_seconds && vm.quoting.truck_size_type) {
-                var timeAprox = vm.time_travel_seconds / 60;
-                var truckPrice = vm.truckSizeTypes[vm.quoting.truck_size_type - 1].hour_price;
+            if (vm.quoting.travel_time_aprox && vm.quoting.truck_size_type_id) {
+                var timeAprox = vm.quoting.travel_time_aprox / 60;
+                var truckPrice = vm.truckSizeTypes[vm.quoting.truck_size_type_id - 1].hour_price;
 
-                vm.quoting.packaging_price = (vm.quoting.moving_stuff_time * truckPrice) / 60;
-                vm.quoting.travel_price = (timeAprox * truckPrice) / 60;
-                vm.quoting.price = vm.quoting.packaging_price + vm.quoting.travel_price;
+                vm.quoting.packaging_price = ((vm.quoting.packaging_time_aprox * truckPrice) / 60).toFixed(2);
+                vm.quoting.travel_price = ((timeAprox * truckPrice) / 60).toFixed(2);
+                vm.quoting.total_price = parseFloat(vm.quoting.packaging_price) + parseFloat(vm.quoting.travel_price);
 
-                vm.quoting.final_price = vm.quoting.price + 50;
-            } else {
-                vm.quoting.truck_price = 0;
+                vm.quoting.final_price = (vm.quoting.total_price + 50).toFixed(2);
             }
+        }
+
+        function registerQuotation() {
+            vm.quoting.profit = (vm.quoting.total_price - vm.quoting.final_price).toFixed(2);
+
+            console.log(JSON.stringify(vm.quoting));
+
+            var p = Main.createQuotation(vm.quoting);
+
+            p.then(
+                function () {
+                    $state.go('auth.Lead', {leadId: $stateParams.leadId});
+                },
+                function (error) {
+                    console.log(error);
+                }
+            );
         }
     }
 

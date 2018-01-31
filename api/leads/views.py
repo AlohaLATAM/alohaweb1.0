@@ -16,14 +16,13 @@ class LeadViewSet(viewsets.ViewSet):
             except:
                 return Response('No se pudo encontrar el Lead registrado.', status=status.HTTP_404_NOT_FOUND)
 
-            results = LeadSerializer(lead)
+            result = LeadSerializer(lead)
 
-            return Response(results.data)
+            return Response(result.data)
         
         return Response(message, status=status.HTTP_400_BAD_REQUEST)
 
     def retrieve(self, request, pk=None):
-        print('here')
         lead = get_object_or_404(Lead, pk=pk)
         result = LeadSerializer(lead)
 

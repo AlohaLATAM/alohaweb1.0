@@ -23,21 +23,21 @@
         <div class="page-header">
             <h1 class="text-center text-muted">Cotizador</h1>
         </div>
-        <form ng-submit="vm.register()">
+        <form ng-submit="vm.registerQuotation()">
             <div class="form-group">
                 <label>¿Desde dónde se muda?</label>
                 <input ng-model="vm.quoting.address_from" ng-blur="vm.calculateRoute()" google-place type="text" class="form-control" autofocus>
             </div>
             <div class="form-group">
                 <label>Tipo de vivienda</label>
-                <select ng-model="vm.quoting.house_type_from" class="form-control">
+                <select ng-model="vm.quoting.house_type_from_id" class="form-control">
                     <option value="">-- Elige un tipo de vivienda --</option>
                     <option ng-repeat="type in vm.homeTypes" value="{{ type.id }}">{{ type.name }}</option>
                 </select>
             </div>
             <div class="form-group">
                 <label>Piso</label>
-                <input ng-model="vm.quoting.from_apartment_floor" type="number" class="form-control">
+                <input ng-model="vm.quoting.floor_from" type="number" class="form-control">
             </div>
             <div class="form-group">
                 <label>¿Hasta dónde se muda?</label>
@@ -45,14 +45,14 @@
             </div>
             <div class="form-group">
                 <label>Tipo de vivienda</label>
-                <select ng-model="vm.quoting.house_type_to" class="form-control">
+                <select ng-model="vm.quoting.house_type_to_id" class="form-control">
                     <option value="">-- Elige un tipo de vivienda --</option>
                     <option ng-repeat="type in vm.homeTypes" value="{{ type.id }}">{{ type.name }}</option>
                 </select>
             </div>
             <div class="form-group">
                 <label>Piso</label>
-                <input ng-model="vm.quoting.to_apartment_floor" type="number" class="form-control">
+                <input ng-model="vm.quoting.floor_to" type="number" class="form-control">
             </div>
             <div class="form-group">
                 <div id="map"></div>
@@ -60,23 +60,23 @@
             <div class="form-group">
                 <div class="col-xs-6">
                     <label>Distancia aproximada</label>
-                    <input ng-model="vm.quoting.distance_aprox" type="text" class="form-control" disabled>
+                    <input ng-model="vm.distance_aprox" type="text" class="form-control" disabled>
                 </div>
                 <div class="col-xs-6">
                     <label>Tiempo de viaje</label>
-                    <input ng-model="vm.quoting.time_travel_aprox" type="text" class="form-control" disabled>
+                    <input ng-model="vm.time_travel_aprox" type="text" class="form-control" disabled>
                 </div>
             </div>
             <div class="form-group">
                 <label>Tipo de camión</label>
-                <select ng-model="vm.quoting.truck_size_type" ng-change="vm.calculateTruckPrice()" class="form-control">
+                <select ng-model="vm.quoting.truck_size_type_id" ng-change="vm.calculateTruckPrice()" class="form-control">
                     <option value="">-- Elige el tipo de camión --</option>
                     <option ng-repeat="truck_size_type in vm.truckSizeTypes" value="{{ truck_size_type.id }}">{{ truck_size_type.name }}</option>
                 </select>
             </div>
             <div class="form-group">
                 <label>Tiempo aproximado de la mudanza (Minutos)</label>
-                <input ng-change="vm.calculateTruckPrice()" ng-model="vm.quoting.moving_stuff_time" type="number" class="form-control">
+                <input ng-change="vm.calculateTruckPrice()" ng-model="vm.quoting.packaging_time_aprox" type="number" class="form-control">
             </div>
             <div class="summary">
                 <div class="page-header">
@@ -92,7 +92,7 @@
                 </div>
                 <div class="form-group">
                     <label>Precio por mudanza</label>
-                    <label class="pull-right"><strong>{{ vm.quoting.price }}</strong></label>
+                    <label class="pull-right"><strong>{{ vm.quoting.total_price }}</strong></label>
                 </div>
             </div>
             <div class="summary">
@@ -101,7 +101,7 @@
                 </div>
                 <div class="form-group">
                     <label>Precio acordado con el cliente</label>
-                    <input ng-model="vm.quoting.final_price" type="number" class="form-control">
+                    <input ng-model="vm.quoting.final_price" type="text" class="form-control">
                 </div>
             </div>
             <button class="btn btn-lg btn-primary btn-block">GUARDAR</button>

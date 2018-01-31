@@ -18,10 +18,9 @@
             createLead: createLead,
             listLeads: listLeads,
             getLead: getLead,
-            listDistricts: listDistricts,
-            listTrucks: listTrucks,
             listTruckTypes: listTruckTypes,
-            listHomeTypes: listHomeTypes
+            listHomeTypes: listHomeTypes,
+            createQuotation: createQuotation
         };
         
         function signIn(params) {
@@ -40,14 +39,6 @@
             return __get('leads/' + leadId, token);
         }
 
-        function listDistricts(token) {
-            return __get('districts', token);
-        }
-
-        function listTrucks(token) {
-            return __get('trucks', token)
-        }
-
         function listTruckTypes(token) {
             return __get('truck_size_types', token);
         }
@@ -55,8 +46,18 @@
         function listHomeTypes(token) {
             return __get('home_types', token);
         }
+
+        function createQuotation(params, token) {
+            return __post('quotations', params, token)
+        }
         
         function __post(endpoint, params, token) {
+            var csrftoken = __getCookie('csrftoken');
+
+            if (csrftoken) {
+                $http.defaults.headers.common['X-CSRFToken'] = csrftoken;
+            }
+
             endpoint = __generateEndpointAndHeaders(endpoint, token);
 
             var p = $http.post(endpoint, params);
@@ -118,6 +119,25 @@
             }
 
             return Config.API_ROOT + '/api/' + endpoint + '/';
+        }
+
+        function __getCookie(name) {
+            var cookieValue = null;
+
+            if (document.cookie && document.cookie != '') {
+                var cookies = document.cookie.split(';');
+
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+
+                    if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+
+            return cookieValue;
         }
     }
 
