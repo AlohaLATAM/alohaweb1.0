@@ -17,10 +17,10 @@
         vm.quoting = {
             lead_id: null,
             address_from: '',
-            house_type_from_id: '',
+            home_type_from_id: '',
             floor_from: 1,
             address_to: '',
-            house_type_to_id: '',
+            home_type_to_id: '',
             floor_to: 1,
             travel_distance_aprox: 0,
             travel_time_aprox: 0,
@@ -144,7 +144,7 @@
         }
 
         function registerQuotation() {
-            vm.quoting.profit = (vm.quoting.total_price - vm.quoting.final_price).toFixed(2);
+            vm.quoting.profit = (vm.quoting.final_price - vm.quoting.total_price).toFixed(2);
 
             console.log(JSON.stringify(vm.quoting));
 
