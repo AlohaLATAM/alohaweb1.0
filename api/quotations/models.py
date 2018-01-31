@@ -67,7 +67,7 @@ class Quotation(models.Model):
         except:
             return None, 'El tipo de camión no es válido.'
 
-        quotation = Quotation.objetcs.create(
+        quotation = Quotation.objects.create(
             lead=lead,
             address_from=address_from,
             home_type_from=home_type_from,
