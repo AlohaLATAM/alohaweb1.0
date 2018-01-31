@@ -63,7 +63,7 @@ class Quotation(models.Model):
             return None, 'El tipo de casa no es válido.'
 
         try:
-            truck_type = TruckSizeType.objects.get(id=truck_size_type_id)
+            truck_size_type = TruckSizeType.objects.get(id=truck_size_type_id)
         except:
             return None, 'El tipo de camión no es válido.'
 
