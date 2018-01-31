@@ -133,7 +133,7 @@
         }
         
         function createQuotation(quotation) {
-            if (!quotation.lead_id || !quotation.address_from || !quotation.house_type_from_id || !quotation.floor_from || !quotation.address_to || !quotation.house_type_to_id || !quotation.floor_to || !quotation.travel_distance_aprox || !quotation.travel_time_aprox || !quotation.truck_size_type_id || !quotation.packaging_time_aprox || !quotation.packaging_price || !quotation.travel_price || !quotation.total_price || !quotation.final_price || !quotation.profit) {
+            if (!quotation.lead_id || !quotation.address_from || !quotation.home_type_from_id || !quotation.floor_from || !quotation.address_to || !quotation.home_type_to_id || !quotation.floor_to || !quotation.travel_distance_aprox || !quotation.travel_time_aprox || !quotation.truck_size_type_id || !quotation.packaging_time_aprox || !quotation.packaging_price || !quotation.travel_price || !quotation.total_price || !quotation.final_price || !quotation.profit) {
                 return $.reject('Revise que todos los campos estén completos.');
             }
 
