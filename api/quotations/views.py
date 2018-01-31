@@ -12,7 +12,7 @@ class QuotationViewSet(viewsets.ViewSet):
 
         if quotation_id:
             try:
-                quotation = Quotation.objects.get(ok=quotation_id)
+                quotation = Quotation.objects.get(pk=quotation_id)
             except:
                 return Response('No se pudo encontrar la cotización registrada.', status=status.HTTP_404_NOT_FOUND)
 
