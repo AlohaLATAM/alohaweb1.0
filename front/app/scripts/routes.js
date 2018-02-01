@@ -68,7 +68,7 @@
             })
             .state('auth.NewDriver', {
                 url: '/choferes/nuevo',
-                templateUrl: 'scripts/views/auth/drivers/NewDriver.html',
+                templateUrl: 'scripts/views/auth/drivers/newDriver.html',
                 controller: 'NewDriverCtrl',
                 controllerAs: 'vm'
             });
