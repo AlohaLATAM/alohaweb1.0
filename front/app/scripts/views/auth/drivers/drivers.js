@@ -10,21 +10,23 @@
     'use strict';
 
     angular.module('Auth')
-        .controller('ListLeadsCtrl', ListLeadsCtrl);
+        .controller('DriversCtrl', DriversCtrl);
 
-    function ListLeadsCtrl(Main) {
+    function DriversCtrl(Main) {
         var vm = this;
+        vm.loading = false;
 
         init();
 
         function init() {
-            getLeads();
+            getDrivers();
         }
 
-        function getLeads() {
-            var p = Main.listLeads();
-
+        function getDrivers() {
+            vm.loading = true;
             vm.empty_list = false;
+
+            var p = Main.listDrivers();
 
             p.then(
                 function (response) {
@@ -33,6 +35,10 @@
                     if (!vm.list.length) {
                         vm.empty_list = true;
                     }
+                }
+            ).finally(
+                function () {
+                    vm.loading = false;
                 }
             );
         }

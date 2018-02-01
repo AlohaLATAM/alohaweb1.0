@@ -6,7 +6,8 @@
     "angular-ui-router": "^1.0.13",
     "components-font-awesome": "^4.7.0",
     "moment": "^2.20.1",
-    "bootstrap-sass": "bootstrap-sass-official#^3.3.7"
+    "bootstrap-sass": "bootstrap-sass-official#^3.3.7",
+    "angular-ladda": "^0.4.3"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"

@@ -30,7 +30,13 @@ class QuotationViewSet(viewsets.ViewSet):
         return Response(result.data)
 
     def list(self, request):
-        quotations = Quotation.objects.all()
+        lead_id = request.query_params.get('lead_id')
+
+        if lead_id:
+            quotations = Quotation.objects.filter(lead=lead_id)
+        else:
+            quotations = Quotation.objects.all()
+        
         results = QuotationSerializer(quotations, many=True)
 
         return Response(results.data)

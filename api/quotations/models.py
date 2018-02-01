@@ -17,7 +17,9 @@ class Quotation(models.Model):
     lat_to = models.CharField(max_length=20, null=True)
     lng_to = models.CharField(max_length=20, null=True)
     travel_distance_aprox = models.IntegerField(default=0)
+    travel_distance_aprox_label = models.CharField(max_length=20, default='')
     travel_time_aprox = models.IntegerField(default=0)
+    travel_time_aprox_label = models.CharField(max_length=20, default='')
     truck_size_type = models.ForeignKey(TruckSizeType, on_delete=models.CASCADE)
     packaging_time_aprox = models.IntegerField(default=0)
     packaging_price = models.DecimalField(default=0, max_digits=10, decimal_places=2)
@@ -26,6 +28,7 @@ class Quotation(models.Model):
     final_price = models.DecimalField(default=0, max_digits=10, decimal_places=2)
     profit = models.DecimalField(default=0, max_digits=10, decimal_places=2)
     created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    state = models.BooleanField(default=False)
 
     def __str__(self):
         return self.lead.first_name

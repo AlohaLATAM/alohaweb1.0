@@ -4,6 +4,7 @@
 
     angular.module('frontApp', [
             'ui.router',
+            'angular-ladda',
             'Core',
             'Views',
             'Shared'

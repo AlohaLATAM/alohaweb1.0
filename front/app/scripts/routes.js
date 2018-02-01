@@ -30,10 +30,10 @@
                 controller: 'DashboardCtrl',
                 controllerAs: 'vm'
             })
-            .state('auth.ListLeads', {
+            .state('auth.Leads', {
                 url: '/leads',
-                templateUrl: 'scripts/views/auth/leads/listLeads.html',
-                controller: 'ListLeadsCtrl',
+                templateUrl: 'scripts/views/auth/leads/leads.html',
+                controller: 'LeadsCtrl',
                 controllerAs: 'vm'
             })
             .state('auth.LeadDetails', {
@@ -52,6 +52,24 @@
                 url: '/cotizador/{leadId}',
                 templateUrl: 'scripts/views/auth/quoting/quoting.html',
                 controller: 'QuotingCtrl',
+                controllerAs: 'vm'
+            })
+            .state('auth.QuotationDetails', {
+                url: '/cotizacion/{quotationId}',
+                templateUrl: 'scripts/views/auth/quoting/quotation.html',
+                controller: 'QuotationCtrl',
+                controllerAs: 'vm'
+            })
+            .state('auth.Drivers', {
+                url: '/choferes',
+                templateUrl: 'scripts/views/auth/drivers/drivers.html',
+                controller: 'DriversCtrl',
+                controllerAs: 'vm'
+            })
+            .state('auth.NewDriver', {
+                url: '/choferes/nuevo',
+                templateUrl: 'scripts/views/auth/drivers/NewDriver.html',
+                controller: 'NewDriverCtrl',
                 controllerAs: 'vm'
             });
     }

@@ -12,12 +12,13 @@
             <tbody class="text-left">
             <tr>
                 <td><img src="//panel.aloha.pe/static/images/lead.jpg" class="media-photo"></td>
-                <td>{{ vm.lead.first_name }} {{ vm.lead.last_name }}</td>
+                <td><a ui-sref="auth.LeadDetails({leadId: vm.lead.id})">{{ vm.lead.first_name }} {{ vm.lead.last_name }}</a></td>
                 <td>{{ vm.lead.dni }}</td>
                 <td>{{ vm.lead.email }}</td>
             </tr>
             </tbody>
         </table>
+        <app-loader ng-if="vm.loading"></app-loader>
     </div>
     <div class="lead leads-container">
         <div class="page-header">
@@ -104,7 +105,7 @@
                     <input ng-model="vm.quoting.final_price" type="text" class="form-control">
                 </div>
             </div>
-            <button class="btn btn-lg btn-primary btn-block">GUARDAR</button>
+            <button ladda="vm.saving" class="btn btn-lg btn-primary btn-block">GUARDAR</button>
         </form>
     </div>
 </div>

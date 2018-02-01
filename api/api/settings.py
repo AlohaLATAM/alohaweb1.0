@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'core',
     
     'districts',
+    'drivers',
     'inventory_stuff',
     'leads',
     'quotations',

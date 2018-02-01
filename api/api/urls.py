@@ -26,6 +26,7 @@ urlpatterns = [
     path('api/leads/', include('leads.urls')),
     path('api/home_types/', include('home_types.urls')),
     path('api/quotations/', include('quotations.urls')),
+    path('api/drivers/', include('drivers.urls')),
 
     url(r'^.*$', index, name='index')
 ]

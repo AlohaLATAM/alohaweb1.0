@@ -3,7 +3,7 @@
         <div class="actions">
             <ul class="list-inline pull-right">
                 <li>
-                    <a ui-sref="auth.NewLead()" class="btn btn-success">Nuevo Lead</a>
+                    <a ui-sref="auth.NewDriver()" class="btn btn-success">Registrar Chofer</a>
                 </li>
             </ul>
         </div>
@@ -12,29 +12,28 @@
                 <thead>
                 <tr>
                     <th></th>
-                    <th>Nombre y Apellidos</th>
-                    <th>DNI</th>
-                    <th>Correo</th>
+                    <th>Nombres</th>
+                    <th>Ubicación</th>
+                    <th>Teléfono</th>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody class="text-left">
                 <tr ng-repeat="item in vm.list">
-                    <td><img src="//panel.aloha.pe/static/images/lead.jpg" class="media-photo"></td>
+                    <td><img src="/images/driver.jpg" class="media-photo"></td>
                     <td>{{ item.first_name }} {{ item.last_name }}</td>
-                    <td>{{ item.dni }}</td>
-                    <td>{{ item.email }}</td>
+                    <td>{{ item.work_district.name }}</td>
+                    <td>{{ item.phone_number }}</td>
                     <td>
-                        <a ui-sref="auth.Quotation({leadId: item.id})">Cotizar</a>
-                        <br>
-                        <a ui-sref="auth.LeadDetails({leadId: item.id})">Detalle</a>
+                        <a ui-sref="auth.NewTruck()">Registrar camión</a>
                     </td>
                 </tr>
                 <tr ng-if="vm.empty_list">
-                    <td colspan="6">No hay leads registrados.</td>
+                    <td colspan="6">No hay choferes registrados.</td>
                 </tr>
                 </tbody>
             </table>
+            <app-loader ng-if="vm.loading"></app-loader>
         </div>
     </div>
 </div>

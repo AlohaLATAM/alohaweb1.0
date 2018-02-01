@@ -20,7 +20,12 @@
             getLead: getLead,
             listTruckTypes: listTruckTypes,
             listHomeTypes: listHomeTypes,
-            createQuotation: createQuotation
+            createQuotation: createQuotation,
+            listQuotations: listQuotations,
+            listDrivers: listDrivers,
+            listDistricts: listDistricts,
+            createDriver: createDriver,
+            getQuotation: getQuotation
         };
 
         function signIn(email, password) {
@@ -134,7 +139,7 @@
         
         function createQuotation(quotation) {
             if (!quotation.lead_id || !quotation.address_from || !quotation.home_type_from_id || !quotation.floor_from || !quotation.address_to || !quotation.home_type_to_id || !quotation.floor_to || !quotation.travel_distance_aprox || !quotation.travel_time_aprox || !quotation.truck_size_type_id || !quotation.packaging_time_aprox || !quotation.packaging_price || !quotation.travel_price || !quotation.total_price || !quotation.final_price || !quotation.profit) {
-                return $.reject('Revise que todos los campos estén completos.');
+                return $.reject('Verifique que todos los campos estén completos.');
             }
 
             var p = Api.createQuotation(quotation);
@@ -145,6 +150,82 @@
                 },
                 function (error) {
                     return $q.reject(error.data);
+                }
+            );
+
+            return p;
+        }
+
+        function listQuotations(leadId) {
+            if (!leadId) {
+                return $q.reject('El lead no existe.');
+            }
+
+            var params = {lead_id: leadId};
+            var p = Api.listQuotations(params);
+
+            p = p.then(
+                function (response) {
+                    return response;
+                }
+            );
+
+            return p;
+        }
+
+        function listDrivers() {
+            var p = Api.listDrivers();
+
+            p = p.then(
+                function (response) {
+                    return response;
+                }
+            );
+
+            return p;
+        }
+
+        function listDistricts() {
+            var p = Api.listDistricts();
+
+            p = p.then(
+                function (response) {
+                    return response;
+                }
+            );
+
+            return p;
+        }
+
+        function createDriver(driver) {
+            if (!driver.first_name || !driver.last_name || !driver.phone_number || !driver.dni || !driver.license_number || !driver.district_id) {
+                return $.reject('Verifique que todos los campos estén completos.');
+            }
+
+            var p = Api.createDriver(driver);
+
+            p = p.then(
+                function (response) {
+                    return response;
+                },
+                function (error) {
+                    return $q.reject(error.data);
+                }
+            );
+
+            return p;
+        }
+
+        function getQuotation(quotationId) {
+            if (!quotationId) {
+                return $q.reject('No se pudo encontrar la cotización.');
+            }
+
+            var p = Api.getQuotation(quotationId);
+
+            p = p.then(
+                function (response) {
+                    return response;
                 }
             );
 

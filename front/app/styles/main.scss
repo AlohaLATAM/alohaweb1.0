@@ -5,6 +5,7 @@ $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 
 @import "signin";
 @import "lead";
+@import "loader";
 
 .container {
     max-width: 750px;
@@ -74,4 +75,31 @@ $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 
 .to-uppercase {
     text-transform: uppercase;
+}
+
+.earn {
+    color: red;
+    font-weight: bold;
+
+    &:before {
+        font-family: FontAwesome;
+    }
+
+    &:before {
+        content: '\f0d7';
+    }
+
+    &.win {
+        color: #5ec55e;
+
+        &:before {
+            content: '\f0d8';
+        }
+    }
+}
+
+.table {
+    td {
+        font-size: 12px;
+    }
 }

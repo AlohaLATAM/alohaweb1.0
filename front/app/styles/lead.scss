@@ -10,13 +10,15 @@
         }
 
         input,
-        select {
+        select,
+        .entry-value {
             text-transform: uppercase;
         }
 
         input,
         textarea,
-        select {
+        select,
+        .entry-value {
             color: #58C3D1;
             outline: none;
             -moz-box-sizing: border-box;

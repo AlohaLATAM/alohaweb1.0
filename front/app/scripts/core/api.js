@@ -20,7 +20,12 @@
             getLead: getLead,
             listTruckTypes: listTruckTypes,
             listHomeTypes: listHomeTypes,
-            createQuotation: createQuotation
+            createQuotation: createQuotation,
+            listQuotations: listQuotations,
+            listDrivers: listDrivers,
+            listDistricts: listDistricts,
+            createDriver: createDriver,
+            getQuotation: getQuotation
         };
         
         function signIn(params) {
@@ -49,6 +54,26 @@
 
         function createQuotation(params, token) {
             return __post('quotations', params, token)
+        }
+
+        function listQuotations(params, token) {
+            return __get('quotations', params, token);
+        }
+
+        function listDrivers(token) {
+            return __get('drivers', token);
+        }
+
+        function listDistricts(token) {
+            return __get('districts', token);
+        }
+
+        function createDriver(params, token) {
+            return __post('drivers', params, token);
+        }
+
+        function getQuotation(quotationId, token) {
+            return __get('quotations/' + quotationId, token);
         }
         
         function __post(endpoint, params, token) {

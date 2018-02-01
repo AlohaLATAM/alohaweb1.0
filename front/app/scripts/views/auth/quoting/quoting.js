@@ -33,6 +33,8 @@
             profit: 0
         };
         vm.search = {};
+        vm.loading = false;
+        vm.saving = false;
 
         var directionsService = new google.maps.DirectionsService;
         var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -61,11 +63,17 @@
         }
 
         function getLead(leadId) {
+            vm.loading = true;
+
             var p = Main.getLead(leadId);
 
             p.then(
                 function (response) {
                     vm.lead = response;
+                }
+            ).finally(
+                function () {
+                    vm.loading = false;
                 }
             );
         }
@@ -144,6 +152,7 @@
         }
 
         function registerQuotation() {
+            vm.saving = true;
             vm.quoting.profit = (vm.quoting.final_price - vm.quoting.total_price).toFixed(2);
 
             console.log(JSON.stringify(vm.quoting));
@@ -156,6 +165,10 @@
                 },
                 function (error) {
                     console.log(error);
+                }
+            ).finally(
+                function () {
+                    vm.saving = false;
                 }
             );
         }
