@@ -129,7 +129,7 @@
                     vm.distance_aprox = response.routes[0].legs[0].distance.text;
                     vm.quoting.travel_distance_aprox = response.routes[0].legs[0].distance.value;
                     vm.time_travel_aprox = response.routes[0].legs[0].duration.text;
-                    vm.quoting.travel_time_aprox = response.routes[0].legs[0].duration.value;
+                    vm.quoting.travel_time_aprox = 2 * response.routes[0].legs[0].duration.value;
 
                     calculateTruckPrice();
 

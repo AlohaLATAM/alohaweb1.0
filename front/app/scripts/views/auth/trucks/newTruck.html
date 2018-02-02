@@ -1,12 +1,5 @@
 <div class="container">
     <div class="leads leads-container text-center">
-        <div class="actions">
-            <ul class="list-inline pull-right">
-                <li>
-                    <a ui-sref="auth.NewDriver()" class="btn btn-success">Registrar Chofer</a>
-                </li>
-            </ul>
-        </div>
         <div class="list-leads to-uppercase">
             <table class="table table-striped">
                 <thead>
@@ -21,7 +14,7 @@
                 <tbody class="text-left">
                 <tr ng-repeat="item in vm.list">
                     <td><img src="/images/driver.jpg" class="media-photo"></td>
-                    <td><a ui-sref="auth.DriverTruck({driverId: item.id})">{{ item.first_name }} {{ item.last_name }}</a></td>
+                    <td>{{ item.first_name }} {{ item.last_name }}</td>
                     <td>{{ item.work_district.name }}</td>
                     <td>{{ item.phone_number }}</td>
                     <td>
@@ -34,6 +27,11 @@
                 </tbody>
             </table>
             <app-loader ng-if="vm.loading"></app-loader>
+        </div>
+    </div>
+    <div class="lead leads-container">
+        <div class="page-header">
+            <h1 class="text-center text-muted">Camiones</h1>
         </div>
     </div>
 </div>

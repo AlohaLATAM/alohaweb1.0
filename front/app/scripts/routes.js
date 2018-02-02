@@ -66,10 +66,22 @@
                 controller: 'DriversCtrl',
                 controllerAs: 'vm'
             })
+            .state('auth.DriversDetails', {
+                url: '/choferes/{driverId}',
+                templateUrl: 'scripts/views/auth/drivers/driver.html',
+                controller: 'DriverCtrl',
+                controllerAs: 'vm'
+            })
             .state('auth.NewDriver', {
                 url: '/choferes/nuevo',
                 templateUrl: 'scripts/views/auth/drivers/newDriver.html',
                 controller: 'NewDriverCtrl',
+                controllerAs: 'vm'
+            })
+            .state('auth.DriverTruck', {
+                url: '/choferes/{driverId}/camiones',
+                templateUrl: 'scripts/views/auth/trucks/newTruck.html',
+                controller: 'NewTruckCtrl',
                 controllerAs: 'vm'
             });
     }

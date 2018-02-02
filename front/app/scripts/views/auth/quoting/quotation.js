@@ -24,6 +24,8 @@
 
         init();
 
+        vm.calculateRoute = calculateRoute;
+
         function init() {
             if (!vm.quotationId) {
                 return $state.go('auth.Leads');
