@@ -46,6 +46,7 @@
         vm.calculateRoute = calculateRoute;
         vm.calculateTruckPrice = calculateTruckPrice;
         vm.registerQuotation = registerQuotation;
+        vm.changeServiceTime = changeServiceTime;
 
         function init() {
             var leadId = $stateParams.leadId;
@@ -126,9 +127,9 @@
                 if (status === google.maps.DirectionsStatus.OK) {
                     directionsDisplay.setDirections(response);
 
-                    vm.distance_aprox = response.routes[0].legs[0].distance.text;
+                    vm.quoting.travel_distance_aprox_label = vm.distance_aprox = response.routes[0].legs[0].distance.text;
                     vm.quoting.travel_distance_aprox = response.routes[0].legs[0].distance.value;
-                    vm.time_travel_aprox = response.routes[0].legs[0].duration.text;
+                    vm.quoting.travel_time_aprox_label = vm.time_travel_aprox = response.routes[0].legs[0].duration.text;
                     vm.quoting.travel_time_aprox = 2 * response.routes[0].legs[0].duration.value;
 
                     calculateTruckPrice();
@@ -155,22 +156,25 @@
             vm.saving = true;
             vm.quoting.profit = (vm.quoting.final_price - vm.quoting.total_price).toFixed(2);
 
-            console.log(JSON.stringify(vm.quoting));
-
             var p = Main.createQuotation(vm.quoting);
 
             p.then(
-                function () {
-                    $state.go('auth.LeadDetails', {leadId: $stateParams.leadId});
+                function (response) {
+                    $state.go('auth.QuotationDetails', {quotationId: response.id});
                 },
                 function (error) {
-                    console.log(error);
+                    vm.error = error;
                 }
             ).finally(
                 function () {
                     vm.saving = false;
                 }
             );
+        }
+
+        function changeServiceTime() {
+            vm.quoting.packaging_time_aprox = vm.truckSizeTypes[vm.quoting.truck_size_type_id - 1].time_per_service;
+            calculateTruckPrice();
         }
     }
 

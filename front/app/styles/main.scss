@@ -9,6 +9,7 @@ $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 
 .container {
     max-width: 750px;
+    width: 100%;
 }
 
 .fa-heart-o {
@@ -102,4 +103,8 @@ $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
     td {
         font-size: 12px;
     }
+}
+
+.fa-long-arrow-right {
+    margin-left: 10px;
 }

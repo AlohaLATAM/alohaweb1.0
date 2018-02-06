@@ -1,0 +1,20 @@
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th></th>
+        <th>Nombre y Apellidos</th>
+        <th>Teléfono</th>
+        <th>Correo</th>
+        <th>DNI</th>
+    </tr>
+    </thead>
+    <tbody class="text-left">
+    <tr>
+        <td><img src="//panel.aloha.pe/static/images/lead.jpg" class="media-photo"></td>
+        <td><a ui-sref="auth.LeadDetails({leadId: lead.id})">{{ lead.first_name }} {{ lead.last_name }}</a></td>
+        <td>{{ lead.phone_number }}</td>
+        <td>{{ lead.email }}</td>
+        <td>{{ lead.dni }}</td>
+    </tr>
+    </tbody>
+</table>

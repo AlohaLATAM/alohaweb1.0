@@ -48,8 +48,6 @@ INSTALLED_APPS = [
     'inventory_stuff',
     'leads',
     'quotations',
-    'stuff',
-    'stuff_size',
     'truck_size_types',
     'zones',
     'home_types'

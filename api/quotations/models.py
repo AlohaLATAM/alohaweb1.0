@@ -50,6 +50,8 @@ class Quotation(models.Model):
         total_price = data.get('total_price')
         final_price = data.get('final_price')
         profit = data.get('profit')
+        travel_distance_aprox_label = data.get('travel_distance_aprox_label')
+        travel_time_aprox_label = data.get('travel_time_aprox_label')
 
         if not lead_id or not address_from or not home_type_from_id or not floor_from or not address_to or not home_type_to_id or not floor_to or not travel_distance_aprox or not travel_time_aprox or not truck_size_type_id or not packaging_time_aprox or not packaging_price or not travel_price or not total_price or not final_price or not profit:
             return None, 'Revise que todos los campos estén completos.'
@@ -86,7 +88,9 @@ class Quotation(models.Model):
             travel_price=travel_price,
             total_price=total_price,
             final_price=final_price,
-            profit=profit
+            profit=profit,
+            travel_distance_aprox_label=travel_distance_aprox_label,
+            travel_time_aprox_label=travel_time_aprox_label
         )
 
         quotation.save()

@@ -60,6 +60,12 @@
                 controller: 'QuotationCtrl',
                 controllerAs: 'vm'
             })
+            .state('auth.Inventory', {
+                url: '/cotizacion/{quotationId}/inventario',
+                templateUrl: 'scripts/views/auth/inventory/inventory.html',
+                controller: 'InventoryCtrl',
+                controllerAs: 'vm'
+            })
             .state('auth.Drivers', {
                 url: '/choferes',
                 templateUrl: 'scripts/views/auth/drivers/drivers.html',

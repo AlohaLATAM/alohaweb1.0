@@ -25,7 +25,10 @@
             listDrivers: listDrivers,
             listDistricts: listDistricts,
             createDriver: createDriver,
-            getQuotation: getQuotation
+            getQuotation: getQuotation,
+            getInventory: getInventory,
+            createInventoryItem: createInventoryItem,
+            destroyInventoryItem: destroyInventoryItem
         };
         
         function signIn(params) {
@@ -74,6 +77,18 @@
 
         function getQuotation(quotationId, token) {
             return __get('quotations/' + quotationId, token);
+        }
+
+        function getInventory(params, token) {
+            return __get('inventory', params, token);
+        }
+
+        function createInventoryItem(params, token) {
+            return __post('inventory', params, token);
+        }
+
+        function destroyInventoryItem(itemId, params, token) {
+            return __delete('inventory/' + itemId, params, token);
         }
         
         function __post(endpoint, params, token) {

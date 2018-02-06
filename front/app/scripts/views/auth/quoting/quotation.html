@@ -1,101 +1,129 @@
 <div class="container">
     <div class="list-leads to-uppercase">
-        <table class="table table-striped hidden-xs">
-            <thead>
-            <tr>
-                <th></th>
-                <th>Nombres</th>
-                <th>DNI</th>
-                <th>Correo</th>
-            </tr>
-            </thead>
-            <tbody class="text-left">
-            <tr>
-                <td><img src="//panel.aloha.pe/static/images/lead.jpg" class="media-photo"></td>
-                <td><a ui-sref="auth.LeadDetails({leadId: vm.quotation.lead.id})">{{ vm.quotation.lead.first_name }} {{ vm.quotation.lead.last_name }}</a></td>
-                <td>{{ vm.quotation.lead.dni }}</td>
-                <td>{{ vm.quotation.lead.email }}</td>
-            </tr>
-            </tbody>
-        </table>
+        <app-lead lead="vm.lead"></app-lead>
         <app-loader ng-if="vm.loading"></app-loader>
     </div>
     <div class="lead leads-container">
         <div class="page-header">
-            <h1 class="text-center text-muted">Cotización [{{ vm.quotation.created | date}}]</h1>
+            <h1 class="text-center text-muted">Cotización</h1>
         </div>
-        <div class="form-group">
-            <label>¿Desde dónde se muda?</label>
-            <div class="entry-value">{{ vm.quotation.address_from }}</div>
-        </div>
-        <div class="form-group">
-            <label>Tipo de vivienda</label>
-            <div class="entry-value">{{ vm.quotation.home_type_from.name }}</div>
-        </div>
-        <div class="form-group">
-            <label>Piso</label>
-            <div class="entry-value">{{ vm.quotation.floor_from }}</div>
-        </div>
-        <div class="form-group">
-            <label>¿Hasta dónde se muda?</label>
-            <div class="entry-value">{{ vm.quotation.address_to }}</div>
-        </div>
-        <div class="form-group">
-            <label>Tipo de vivienda</label>
-            <div class="entry-value">{{ vm.quotation.home_type_to.name }}</div>
-        </div>
-        <div class="form-group">
-            <label>Piso</label>
-            <div class="entry-value">{{ vm.quotation.floor_to }}</div>
-        </div>
-        <div class="form-group">
-            <div id="map"></div>
-        </div>
-        <div class="form-group">
-            <div class="col-xs-6">
-                <label>Distancia aproximada</label>
-                <div class="entry-value">{{ vm.quotation.travel_distance_aprox_label }}</div>
-            </div>
-            <div class="col-xs-6">
-                <label>Tiempo de viaje</label>
-                <div class="entry-value">{{ vm.quotation.travel_time_aprox_label }}</div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label>Tipo de camión</label>
-            <div class="entry-value">
-                {{ vm.quotation.truck_size_type.name }}
-            </div>
-        </div>
-        <div class="form-group">
-            <label>Tiempo aproximado de la mudanza (Minutos)</label>
-            <div class="entry-value">{{ vm.quotation.packaging_time_aprox }}</div>
-        </div>
-        <div class="summary">
-            <div class="page-header">
-                <h1 class="text-muted">Resumen</h1>
+        <form ng-submit="vm.updateQuotation()" class="form">
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <label>¿Desde dónde se muda?</label>
+                    <input ng-disabled="!vm.editable" ng-model="vm.quotation.address_from" ng-blur="vm.calculateRoute()" google-place type="text" class="form-control" autofocus>
+                </div>
             </div>
             <div class="form-group">
-                <label>Precio por cargar cosas</label>
-                <label class="pull-right"><strong>{{ vm.quotation.packaging_price }}</strong></label>
+                <div class="col-md-6">
+                    <label>Tipo de vivienda</label>
+                    <select ng-disabled="!vm.editable" ng-model="vm.quotation.home_type_from_id" class="form-control">
+                        <option value="">-- Elige un tipo de vivienda --</option>
+                        <option ng-repeat="type in vm.homeTypes" value="{{ type.id }}">{{ type.name }}</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label>Piso</label>
+                    <input ng-disabled="!vm.editable" ng-model="vm.quotation.floor_from" type="number" class="form-control">
+                </div>
             </div>
             <div class="form-group">
-                <label>Precio transporte al nuevo punto</label>
-                <label class="pull-right"><strong>{{ vm.quotation.travel_price }}</strong></label>
+                <div class="col-xs-12">
+                    <label>¿Hasta dónde se muda?</label>
+                    <input ng-disabled="!vm.editable" ng-model="vm.quotation.address_to" ng-blur="vm.calculateRoute()" google-place type="text" class="form-control">
+                </div>
             </div>
             <div class="form-group">
-                <label>Precio por mudanza</label>
-                <label class="pull-right"><strong>{{ vm.quotation.total_price }}</strong></label>
-            </div>
-        </div>
-        <div class="summary">
-            <div class="page-header">
-                <h1 class="text-muted">Total</h1>
+                <div class="col-md-6">
+                    <label>Tipo de vivienda</label>
+                    <select ng-disabled="!vm.editable" ng-model="vm.quotation.home_type_to_id" class="form-control">
+                        <option value="">-- Elige un tipo de vivienda --</option>
+                        <option ng-repeat="type in vm.homeTypes" value="{{ type.id }}">{{ type.name }}</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label>Piso</label>
+                    <input ng-disabled="!vm.editable" ng-model="vm.quotation.floor_to" type="number" class="form-control">
+                </div>
             </div>
             <div class="form-group">
-                <label>Precio acordado con el cliente</label>
-                <label class="pull-right"><strong>{{ vm.quotation.final_price }}</strong></label>
+                <div ng-if="vm.editable" class="text-right">
+                    <button type="button" ng-click="vm.calculateRoute()" class="btn btn-info">Refrescar Mapa</button>
+                </div>
+                <div id="map"></div>
             </div>
-        </div>
+            <div class="form-group">
+                <div class="col-xs-6">
+                    <label>Distancia aproximada</label>
+                    <input ng-model="vm.distance_aprox" type="text" class="form-control" disabled>
+                </div>
+                <div class="col-xs-6">
+                    <label>Tiempo de viaje</label>
+                    <input ng-model="vm.time_travel_aprox" type="text" class="form-control" disabled>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6">
+                    <label>Tipo de camión</label>
+                    <select ng-disabled="!vm.editable" ng-model="vm.quotation.truck_size_type_id" ng-change="vm.calculateTruckPrice(); vm.changeServiceTime()" class="form-control">
+                        <option value="">-- Elige el tipo de camión --</option>
+                        <option ng-repeat="truck_size_type in vm.truckSizeTypes" value="{{ truck_size_type.id }}">{{ truck_size_type.name }}</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label>Tiempo carga y descarga (min)</label>
+                    <input ng-disabled="!vm.editable" ng-change="vm.calculateTruckPrice()" ng-model="vm.quotation.packaging_time_aprox" type="number" class="form-control">
+                </div>
+            </div>
+            <div class="summary">
+                <div class="page-header">
+                    <h1 class="text-muted">Resumen</h1>
+                </div>
+                <div class="form-group">
+                    <label>Precio por cargar cosas</label>
+                    <label ng-disabled="!vm.editable" class="pull-right"><strong>{{ vm.quotation.packaging_price }}</strong></label>
+                </div>
+                <div class="form-group">
+                    <label>Precio transporte al nuevo punto</label>
+                    <label ng-disabled="!vm.editable" class="pull-right"><strong>{{ vm.quotation.travel_price }}</strong></label>
+                </div>
+                <div class="form-group">
+                    <label>Precio por mudanza</label>
+                    <label ng-disabled="!vm.editable" class="pull-right"><strong>{{ vm.quotation.total_price }}</strong></label>
+                </div>
+            </div>
+            <div class="summary">
+                <div class="page-header">
+                    <h1 class="text-muted">Total</h1>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <label>Precio recomendado</label>
+                        <input ng-disabled="!vm.editable" value="{{ vm.quotation.total_price + 50 }}" type="text" class="form-control" disabled>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Precio final</label>
+                        <input ng-disabled="!vm.editable" ng-model="vm.quotation.final_price" type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="alert alert-danger small" ng-if="vm.error">{{ vm.error }}</div>
+            <div ng-if="!vm.editable" class="form-group">
+                <div class="col-md-8 pull-right">
+                    <a ng-click="vm.openInventory()" ladda="vm.saving" class="btn btn-lg btn-primary btn-block">VER INVENTARIO <i class="fa fa-long-arrow-right"></i></a>
+                </div>
+                <div class="col-md-4">
+                    <a ng-click="vm.editable = !vm.editable" class="btn btn-lg btn-default btn-block" type="button">EDITAR</a>
+                </div>
+            </div>
+            <div ng-if="vm.editable" class="form-group">
+                <div class="col-md-8 pull-right">
+                    <button ladda="vm.saving" class="btn btn-lg btn-primary btn-block">GUARDAR <i class="fa fa-long-arrow-right"></i></button>
+                </div>
+                <div class="col-md-4">
+                    <a ng-click="vm.init()" class="btn btn-lg btn-default btn-block" type="button">CANCELAR</a>
+                </div>
+            </div>
+        </form>
     </div>
 </div>

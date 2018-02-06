@@ -17,12 +17,13 @@
         vm.lead = {};
 
         vm.createLead = createLead;
+        vm.clearForm = clearForm;
 
         function createLead() {
             var p = Main.createLead(
                 vm.lead.first_name,
                 vm.lead.last_name,
-                vm.lead.email,
+                vm.lead.phone_number,
                 vm.lead.dni
             );
 
@@ -36,6 +37,15 @@
                     vm.error = error;
                 }
             );
+        }
+
+        function clearForm() {
+            vm.lead = {
+                first_name: '',
+                last_name: '',
+                phone_number: '',
+                dni: ''
+            };
         }
     }
 

@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="leads leads-container">
+        <div class="form">
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <label>Correo electrónico</label>
+                    <input ng-model="vm.lead.email" type="text" class="form-control" autofocus>
+                </div>
+            </div>
+            <div class="page-header">
+                <h1 class="text-center text-muted">Inventario</h1>
+            </div>
+            <form ng-submit="vm.addItem()">
+                <div class="form-group">
+                    <div class="col-xs-4">
+                        <input ng-focus="vm.startNewItem" ng-model="vm.newItem.quantity" min="1" type="number" placeholder="Cantidad" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <input ng-model="vm.newItem.item_name" type="text" placeholder="Nombre" class="form-control">
+                    </div>
+                    <div class="col-xs-2">
+                        <button ladda="vm.addingItem" class="btn btn-success btn-block"><i class="fa fa-plus"></i></button>
+                    </div>
+                </div>
+            </form>
+            <table class="table">
+                <tr ng-repeat="item in vm.inventoryList">
+                    <td>
+                        <label>{{ item.quantity }}</label>
+                    </td>
+                    <td>
+                        <label>{{ item.item_name }}</label>
+                    </td>
+                    <td>
+                        <label><a ng-click="vm.deleteItem(item.id)"><i class="fa fa-trash"></i></a></label>
+                    </td>
+                </tr>
+            </table>
+            <div class="alert alert-danger small" ng-if="vm.error">{{ vm.error }}</div>
+            <hr>
+            <div class="form-group">
+                <div class="col-md-8 pull-right">
+                    <button class="btn btn-lg btn-primary btn-block">GUARDAR Y ENVIAR <i class="fa fa-long-arrow-right"></i></button>
+                </div>
+                <div class="col-md-4">
+                    <button ng-click="vm.clearForm()" class="btn btn-lg btn-default btn-block" type="button">CERRAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

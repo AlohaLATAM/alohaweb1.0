@@ -5,7 +5,6 @@ from districts.models import District
 class Driver(Person):
     license_number = models.CharField(unique=True, max_length=20, null=True)
     work_district = models.ForeignKey(District, on_delete=models.CASCADE)
-    phone_number = models.CharField(max_length=11, null=False, default='')
     score = models.IntegerField(default=0)
     verified = models.BooleanField(default=False)
 
@@ -20,7 +19,7 @@ class Driver(Person):
         license_number = data.get('license_number')
         district_id = data.get('district_id')
 
-        if not first_name or not last_name or not phone_number or not phone_number or not dni or not license_number or not district_id:
+        if not first_name or not last_name or not phone_number or not dni or not license_number or not district_id:
             return None, 'Todos los campos son requeridos.'
 
         district = District.objects.get(pk=district_id)

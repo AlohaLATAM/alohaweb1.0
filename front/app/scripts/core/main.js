@@ -26,7 +26,10 @@
             listDistricts: listDistricts,
             createDriver: createDriver,
             getQuotation: getQuotation,
-            getDriver: getDriver
+            getDriver: getDriver,
+            getInventory: getInventory,
+            createInventoryItem: createInventoryItem,
+            destroyInventoryItem: destroyInventoryItem
         };
 
         function signIn(email, password) {
@@ -57,19 +60,15 @@
             return p;
         }
 
-        function createLead(first_name, last_name, email, dni) {
-            if (!first_name || !last_name || !email || !dni) {
+        function createLead(first_name, last_name, phone_number, dni) {
+            if (!first_name || !last_name || !phone_number) {
                 return $q.reject(Message.all_required);
-            }
-
-            if (!Utils.validateEmail(email)) {
-                return $q.reject(Message.invalid_email_format);
             }
 
             var params = {
                 first_name: first_name,
                 last_name: last_name,
-                email: email,
+                phone_number: phone_number,
                 dni: dni
             };
             var p = Api.createLead(params);
@@ -237,6 +236,75 @@
             if (!driverId) {
                 return $q.rejec('El chofer no existe.');
             }
+        }
+
+        function getInventory(quotationId) {
+            if (!quotationId) {
+                return $q.reject('No se pudo encontrar la cotización.');
+            }
+
+            var params = {quotation_id: quotationId};
+            var p = Api.getInventory(params);
+
+            p = p.then(
+                function (response) {
+                    return response;
+                }
+            );
+
+            return p;
+        }
+
+        function createInventoryItem(quotationId, quantity, item_name) {
+            if (!quotationId) {
+                return $q.reject('No se pudo encontrar la cotización.');
+            }
+
+            if (!quantity || !item_name) {
+                return $q.reject('Todos los campos son obligatorios.');
+            }
+
+            var params = {
+                quotation_id: quotationId,
+                quantity: quantity,
+                item_name: item_name
+            };
+            var p = Api.createInventoryItem(params);
+
+            p = p.then(
+                function (response) {
+                    return response;
+                },
+                function (error) {
+                    return $q.reject(error.data);
+                }
+            );
+
+            return p;
+        }
+
+        function destroyInventoryItem(quotationId, itemId) {
+            if (!quotationId) {
+                return $q.reject('No se pudo encontrar la cotización.');
+            }
+
+            if (!itemId) {
+                return $q.reject('No se pudo encontrar la item.');
+            }
+
+            var params = {quotation_id: quotationId};
+            var p = Api.destroyInventoryItem(itemId, params);
+
+            p = p.then(
+                function (response) {
+                    return response;
+                },
+                function (error) {
+                    return $q.reject(error);
+                }
+            );
+
+            return p;
         }
     }
 

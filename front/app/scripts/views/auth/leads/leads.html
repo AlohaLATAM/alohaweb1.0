@@ -13,17 +13,17 @@
                 <tr>
                     <th class="hidden-xs"></th>
                     <th>Nombres</th>
-                    <th class="hidden-xs">DNI</th>
-                    <th>Correo</th>
+                    <th>Teléfono</th>
+                    <th class="hidden-xs">Correo</th>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody class="text-left">
                 <tr ng-repeat="item in vm.list">
                     <td class="hidden-xs"><img src="//panel.aloha.pe/static/images/lead.jpg" class="media-photo"></td>
-                    <td>{{ item.first_name }} {{ item.last_name }}</td>
-                    <td class="hidden-xs">{{ item.dni }}</td>
-                    <td>{{ item.email }}</td>
+                    <td><a ui-sref="auth.LeadDetails({leadId: item.id})">{{ item.first_name }} {{ item.last_name }}</a></td>
+                    <td>{{ item.phone_number }}</td>
+                    <td class="hidden-xs">{{ item.email }}</td>
                     <td>
                         <a ui-sref="auth.Quotation({leadId: item.id})">Cotizar</a>
                         <br>
