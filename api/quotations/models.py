@@ -2,6 +2,7 @@ from django.db import models
 from leads.models import Lead
 from home_types.models import HomeType
 from truck_size_types.models import TruckSizeType
+from trucks.models import Truck
 
 
 class Quotation(models.Model):
@@ -29,6 +30,9 @@ class Quotation(models.Model):
     profit = models.DecimalField(default=0, max_digits=10, decimal_places=2)
     created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     state = models.BooleanField(default=False)
+    datetime_of_service = models.DateTimeField(null=True, blank=True)
+    assigned_truck = models.ForeignKey(Truck, on_delete=models.CASCADE, null=True, blank=True)
+    driver_price = models.IntegerField(default=0, null=True)
 
     def __str__(self):
         return self.lead.first_name
@@ -52,6 +56,7 @@ class Quotation(models.Model):
         profit = data.get('profit')
         travel_distance_aprox_label = data.get('travel_distance_aprox_label')
         travel_time_aprox_label = data.get('travel_time_aprox_label')
+        datetime_of_service = data.get('datetime_of_service')
 
         if not lead_id or not address_from or not home_type_from_id or not floor_from or not address_to or not home_type_to_id or not floor_to or not travel_distance_aprox or not travel_time_aprox or not truck_size_type_id or not packaging_time_aprox or not packaging_price or not travel_price or not total_price or not final_price or not profit:
             return None, 'Revise que todos los campos estén completos.'
@@ -90,8 +95,30 @@ class Quotation(models.Model):
             final_price=final_price,
             profit=profit,
             travel_distance_aprox_label=travel_distance_aprox_label,
-            travel_time_aprox_label=travel_time_aprox_label
+            travel_time_aprox_label=travel_time_aprox_label,
+            datetime_of_service=datetime_of_service
         )
+
+        quotation.save()
+
+        return quotation.id, 'ok'
+
+    def assign_driver(self, pk, data):
+        try:
+            quotation = Quotation.objects.get(pk=pk)
+        except:
+            return None, 'No pudimos encontrar la cotización.'
+
+        truck_id = data.get('truck_id')
+        driver_price = data.get('driver_price')
+
+        try:
+            assigned_truck = Truck.objects.get(pk=truck_id)
+        except:
+            return None, 'No se encontró el camión.'
+        
+        quotation.assigned_truck = assigned_truck
+        quotation.driver_price = driver_price
 
         quotation.save()
 

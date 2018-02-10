@@ -83,12 +83,6 @@
                 templateUrl: 'scripts/views/auth/drivers/newDriver.html',
                 controller: 'NewDriverCtrl',
                 controllerAs: 'vm'
-            })
-            .state('auth.DriverTruck', {
-                url: '/choferes/{driverId}/camiones',
-                templateUrl: 'scripts/views/auth/trucks/newTruck.html',
-                controller: 'NewTruckCtrl',
-                controllerAs: 'vm'
             });
     }
 

@@ -9,6 +9,15 @@
         </div>
         <form ng-submit="vm.registerQuotation()" class="form">
             <div class="form-group">
+                <div class="col-md-6">
+                    <label>Hora del servicio</label>
+                </div>
+                <div class="col-md-6">
+                    {{ vm.showServiceDate() }}
+                </div>
+                <datetimepicker data-ng-model="vm.quoting.datetime_of_service" data-datetimepicker-config="{ startView:'day', minView:'hour' }"></datetimepicker>
+            </div>
+            <div class="form-group">
                 <div class="col-xs-12">
                     <label>¿Desde dónde se muda?</label>
                     <input ng-model="vm.quoting.address_from" ng-blur="vm.calculateRoute()" google-place type="text" class="form-control" autofocus>

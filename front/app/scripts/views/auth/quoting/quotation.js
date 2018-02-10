@@ -16,6 +16,7 @@
         var vm = this;
         vm.quotationId = $stateParams.quotationId;
         vm.quotation = {};
+        vm.assignedTruck = {};
 
         var directionsService = new google.maps.DirectionsService;
         var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -24,9 +25,15 @@
 
         init();
 
+        vm.showServiceDate = showServiceDate;
         vm.calculateRoute = calculateRoute;
         vm.init = init;
         vm.openInventory = openInventory;
+        vm.assignTruck = assignTruck;
+
+        function showServiceDate(datetime) {
+            return window.moment(datetime).format('LLLL')
+        }
 
         function init() {
             vm.editable = false;
@@ -56,8 +63,13 @@
                     vm.quotation.truck_size_type_id = vm.quotation.truck_size_type.id.toString();
                     vm.distance_aprox = vm.quotation.travel_distance_aprox_label;
                     vm.time_travel_aprox = vm.quotation.travel_time_aprox_label;
+                    vm.service_datetime = showServiceDate(vm.quotation.datetime_of_service);
 
                     generateMap();
+                    
+                    if (!vm.quotation.assigned_truck) {
+                        getTrucks();
+                    }
                 }
             );
         }
@@ -110,7 +122,7 @@
         }
 
         function openInventory() {
-            var modalInstance = $uibModal.open({
+            $uibModal.open({
                 templateUrl: 'scripts/views/auth/inventory/inventory.html',
                 controller: 'InventoryCtrl',
                 controllerAs: 'vm',
@@ -123,6 +135,31 @@
                     }
                 }
             });
+        }
+
+        function assignTruck() {
+            vm.assignation_error = false;
+
+            var p = Main.updateQuotation(vm.quotationId, vm.assignedTruck.truck_id, vm.assignedTruck.driver_price);
+
+            p.then(
+                function () {
+                    getQuotation();
+                },
+                function (error) {
+                    vm.assignation_error = error;
+                }
+            );
+        }
+        
+        function getTrucks() {
+            var p = Main.listTrucks({truck_size_type_id: vm.quotation.truck_size_type.id});
+
+            p.then(
+                function (response) {
+                    vm.trucks = response;
+                }
+            );
         }
     }
 

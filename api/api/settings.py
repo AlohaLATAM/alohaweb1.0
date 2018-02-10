@@ -40,17 +40,19 @@ INSTALLED_APPS = [
     
     'corsheaders',
     'rest_framework',
+    'rest_framework.authtoken',
 
     'core',
     
     'districts',
     'drivers',
+    'home_types',
     'inventory_stuff',
     'leads',
     'quotations',
     'truck_size_types',
-    'zones',
-    'home_types'
+    'trucks',
+    'zones'
 ]
 
 MIDDLEWARE = [
@@ -113,6 +115,13 @@ DATABASES = {
         'POST': ''
     }
 }
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
+
 
 
 # Password validation

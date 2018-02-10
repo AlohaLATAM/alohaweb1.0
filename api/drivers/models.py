@@ -22,17 +22,10 @@ class Driver(Person):
         if not first_name or not last_name or not phone_number or not dni or not license_number or not district_id:
             return None, 'Todos los campos son requeridos.'
 
-        district = District.objects.get(pk=district_id)
-
-        if not district:
-            return None, 'El distrito ingresado no es válido.'
-
         try:
-            registeredDni = Driver.objects.get(dni=dni)
-            
-            return None, 'El DNI ya está siendo usado por otro chofer.'
+            district = District.objects.get(pk=district_id)
         except:
-            pass
+            return None, 'El distrito ingresado no es válido.'
 
         try:
             registeredLicense = Driver.objects.get(license_number=license_number)

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.shortcuts import get_object_or_404
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from . models import Driver
@@ -6,12 +7,6 @@ from . serializer import DriverSerializer, DriverRegisteredSerializer
 
 
 class DriverViewSet(viewsets.ViewSet):
-    def list(self, request):
-        drivers = Driver.objects.all()
-        results = DriverSerializer(drivers, many=True)
-
-        return Response(results.data)
-    
     def create(self, request):
         driver = Driver()
         driver_id, message = driver.register(request.data)
@@ -27,3 +22,15 @@ class DriverViewSet(viewsets.ViewSet):
             return Response(results.data)
         else:
             return Response(message, status=status.HTTP_400_BAD_REQUEST)
+
+    def retrieve(self, request, pk=None):
+        driver = get_object_or_404(Driver, pk=pk)
+        result = DriverSerializer(driver)
+
+        return Response(result.data)
+
+    def list(self, request):
+        drivers = Driver.objects.all()
+        results = DriverSerializer(drivers, many=True)
+
+        return Response(results.data)

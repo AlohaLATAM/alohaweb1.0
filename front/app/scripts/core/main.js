@@ -29,7 +29,10 @@
             getDriver: getDriver,
             getInventory: getInventory,
             createInventoryItem: createInventoryItem,
-            destroyInventoryItem: destroyInventoryItem
+            destroyInventoryItem: destroyInventoryItem,
+            createTruck: createTruck,
+            listTrucks: listTrucks,
+            updateQuotation: updateQuotation
         };
 
         function signIn(email, password) {
@@ -198,7 +201,7 @@
         }
 
         function createDriver(driver) {
-            if (!driver.first_name || !driver.last_name || !driver.phone_number || !driver.dni || !driver.license_number || !driver.district_id) {
+            if (!driver.first_name || !driver.last_name || !driver.phone_number || !driver.license_number || !driver.district_id) {
                 return $.reject('Verifique que todos los campos estén completos.');
             }
 
@@ -234,8 +237,18 @@
 
         function getDriver(driverId) {
             if (!driverId) {
-                return $q.rejec('El chofer no existe.');
+                return $q.reject('El chofer no existe.');
             }
+
+            var p = Api.getDriver(driverId);
+
+            p = p.then(
+                function (response) {
+                    return response;
+                }
+            );
+
+            return p;
         }
 
         function getInventory(quotationId) {
@@ -300,7 +313,75 @@
                     return response;
                 },
                 function (error) {
-                    return $q.reject(error);
+                    return $q.reject(error.data);
+                }
+            );
+
+            return p;
+        }
+
+        function createTruck(driverId, truck_type_size_id, registration_number, its_furgon) {
+            if (!driverId) {
+                return $q.reject('No se pudo encontrar el chofer.');
+            }
+
+            if (!truck_type_size_id || !registration_number) {
+                return $q.reject('Todos los campos son obligatorios.');
+            }
+
+            var params = {
+                driver_id: driverId,
+                truck_size_type_id: truck_type_size_id,
+                registration_number: registration_number,
+                its_furgon: its_furgon
+            };
+            var p = Api.createTruck(params);
+
+            p = p.then(
+                function (response) {
+                    return response;
+                },
+                function (error) {
+                    return $q.reject(error.data);
+                }
+            );
+
+            return p;
+        }
+
+        function listTrucks(params) {
+            var p = Api.listTrucks(params);
+
+            p = p.then(
+                function (response) {
+                    return response;
+                }
+            );
+
+            return p;
+        }
+
+        function updateQuotation(quotationId, truckId, driverPrice) {
+            if (!quotationId) {
+                return $q.reject('No se pudo encontrar la cotización.');
+            }
+
+            if (!truckId || !driverPrice) {
+                return $q.reject('Todos los campos son obligatorios.');
+            }
+
+            var params = {
+                truck_id: truckId,
+                driver_price: driverPrice
+            };
+            var p = Api.updateQuotation(quotationId, params);
+
+            p = p.then(
+                function (response) {
+                    return response;
+                },
+                function (error) {
+                    return $q.reject(error.data);
                 }
             );
 

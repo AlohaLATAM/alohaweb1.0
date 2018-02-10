@@ -30,7 +30,8 @@
             travel_price: 0,
             total_price: 0,
             final_price: 0,
-            profit: 0
+            profit: 0,
+            datetime_of_service: new Date()
         };
         vm.search = {};
         vm.loading = false;
@@ -43,10 +44,15 @@
 
         init();
 
+        vm.showServiceDate = showServiceDate;
         vm.calculateRoute = calculateRoute;
         vm.calculateTruckPrice = calculateTruckPrice;
         vm.registerQuotation = registerQuotation;
         vm.changeServiceTime = changeServiceTime;
+
+        function showServiceDate() {
+            return window.moment(vm.quoting.datetime_of_service).format('LLLL')
+        }
 
         function init() {
             var leadId = $stateParams.leadId;

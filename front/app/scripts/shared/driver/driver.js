@@ -10,16 +10,17 @@
     'use strict';
 
     angular.module('Shared')
-        .directive('appLead', appLead);
+        .directive('appDriver', appDriver);
 
-    function appLead() {
+    function appDriver() {
         return {
             replace: true,
             restrict: 'E',
             scope: {
-                lead: '='
+                driver: '=',
+                price: '='
             },
-            templateUrl: 'scripts/shared/lead/lead.html'
+            templateUrl: 'scripts/shared/driver/driver.html'
         };
     }
 

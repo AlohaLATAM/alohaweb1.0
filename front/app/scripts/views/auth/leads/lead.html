@@ -19,7 +19,7 @@
                 </thead>
                 <tbody class="text-left">
                 <tr ng-repeat="quotation in vm.quotations">
-                    <td>{{ quotation.created | date:'dd/MMM' }}</td>
+                    <td>{{ quotation.datetime_of_service | date:'dd/MMM' }}</td>
                     <td>{{ quotation.address_from }}</td>
                     <td>{{ quotation.address_to }}</td>
                     <td>{{ quotation.final_price }}</td>
