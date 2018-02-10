@@ -108,3 +108,42 @@ $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 .fa-long-arrow-right {
     margin-left: 10px;
 }
+
+.service {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    clear: both;
+
+    p {
+        margin: 0;
+    }
+
+    .service-icon {
+        max-width: 80px;
+        float: left;
+
+        img {
+            max-width: 100%;
+        }
+    }
+
+    .service-description {
+        margin-left: 100px;
+    }
+
+    &.fullcontent {
+        .service-icon {
+            display: none;
+        }
+
+        .service-description {
+            margin: 0;
+        }
+    }
+}
+
+.form-group {
+    display: inline-block;
+    width: 100%;
+}

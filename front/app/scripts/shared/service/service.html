@@ -1,0 +1,36 @@
+<div ng-class="{'fullcontent': fullcontent}" class="service">
+    <div class="service-icon">
+        <img src="https://cdn2.iconfinder.com/data/icons/logistics-delivery-1-4/64/35-256.png" class="full-width">
+    </div>
+    <div class="service-description">
+        <div class="service-content">
+            <div ng-if="vm.service_date" class="form-group">
+                <label><strong>Fecha:</strong></label>
+                <p>{{ vm.service_date }}</p>
+            </div>
+            <div class="form-group">
+                <label><strong>Desde:</strong></label>
+                <p>{{ service.address_from }}</p>
+            </div>
+            <div ng-if="fullcontent" class="form-group">
+                <label><strong>Tipo de vivienda:</strong></label>
+                <p>{{ service.home_type_from.name }} - piso {{ service.floor_from }}</p>
+            </div>
+            <div class="form-group">
+                <label><strong>Hasta:</strong></label>
+                <p>{{ service.address_to }}</p>
+            </div>
+            <div ng-if="fullcontent" class="form-group">
+                <label><strong>Tipo de vivienda:</strong></label>
+                <p>{{ service.home_type_to.name }} - piso {{ service.floor_to }}</p>
+            </div>
+            <div class="form-group">
+                <label><strong>Precio:</strong></label>
+                <p ng-if="!fullcontent">S/ {{ service.final_price }}</p>
+                <div ng-if="fullcontent" class="text-center">
+                    <span class="btn btn-info btn-lg">S/ {{ service.final_price }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

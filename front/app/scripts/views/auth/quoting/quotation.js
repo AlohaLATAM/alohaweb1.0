@@ -13,15 +13,14 @@
         .controller('QuotationCtrl', QuotationCtrl);
 
     function QuotationCtrl($timeout, $state, $stateParams, $uibModal, Main) {
-        var vm = this;
-        vm.quotationId = $stateParams.quotationId;
-        vm.quotation = {};
-        vm.assignedTruck = {};
-
         var directionsService = new google.maps.DirectionsService;
         var directionsDisplay = new google.maps.DirectionsRenderer;
         var map;
         var lima = new google.maps.LatLng(-12.0266032,-77.1282069);
+        var vm = this;
+        vm.quotationId = $stateParams.quotationId;
+        vm.quotation = {};
+        vm.assignedTruck = {};
 
         init();
 
@@ -66,7 +65,7 @@
                     vm.service_datetime = showServiceDate(vm.quotation.datetime_of_service);
 
                     generateMap();
-                    
+
                     if (!vm.quotation.assigned_truck) {
                         getTrucks();
                     }
@@ -151,7 +150,7 @@
                 }
             );
         }
-        
+
         function getTrucks() {
             var p = Main.listTrucks({truck_size_type_id: vm.quotation.truck_size_type.id});
 

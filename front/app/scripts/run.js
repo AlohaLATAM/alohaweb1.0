@@ -11,4 +11,13 @@
 
     window.__env__ = (window.__env__) ? window.__env__ : {};
 
+    angular.module('frontApp')
+        .run(appRun);
+
+    function appRun($transitions) {
+        $transitions.onBefore({}, function() {
+            angular.element("html, body").animate({ scrollTop: 0 }, 200);
+        });
+    }
+
 }());

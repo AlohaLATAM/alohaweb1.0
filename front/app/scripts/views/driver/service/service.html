@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="list-leads to-uppercase">
+        <div class="page-header">
+            <h1 class="text-muted">Detalle</h1>
+        </div>
+        <app-loader ng-if="vm.loading"></app-loader>
+        <app-service ng-if="vm.service" service="vm.service" fullcontent="true"></app-service>
+        <div class="page-header">
+            <h1 class="text-muted">Inventorio</h1>
+        </div>
+        <div class="list-quotings">
+            <table class="table table-condensed">
+                <tr>
+                    <th>Cantidad</th>
+                    <th>Item</th>
+                </tr>
+                <tr ng-repeat="inventory in vm.inventory">
+                    <td width="20" class="text-center">{{ inventory.quantity }}</td>
+                    <td>{{ inventory.item_name }}</td>
+                </tr>
+                <tr>
+                    <td ng-if="vm.empty_list" colspan="2">Este servicio no tiene un inventario disponible.</td>
+                </tr>
+            </table>
+        </div>
+        <div class="page-header">
+            <h1 class="text-muted">Mapa</h1>
+        </div>
+        <div id="map"></div>
+        <hr>
+        <button ng-click="vm.assignService()" class="btn btn-block btn-primary">TOMAR SERVICIO</button>
+    </div>
+</div>

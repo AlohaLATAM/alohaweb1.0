@@ -24,35 +24,6 @@
 <![endif]-->
 
 <!-- Add your site or application content here -->
-<div class="header">
-    <div class="navbar navbar-default" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" ui-sref="auth.Dashboard()">
-                    <img src="//panel.aloha.pe/static/images/logo.png" alt="Aloha">
-                </a>
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a ui-sref="auth.Leads()">Leads</a>
-                    </li>
-                    <li>
-                        <a ui-sref="auth.Drivers()">Choferes</a>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-    </div>
-</div>
-
 <ui-view></ui-view>
 
 <div class="footer">
@@ -128,11 +99,16 @@
 <script src="scripts/views/auth/trucks/newTruck.js"></script>
 <script src="scripts/views/auth/inventory/inventory.js"></script>
 
+<script src="scripts/views/driver/module.js"></script>
+<script src="scripts/views/driver/dashboard/dashboard.js"></script>
+<script src="scripts/views/driver/service/service.js"></script>
+
 <script src="scripts/shared/module.js"></script>
 <script src="scripts/shared/googlePlace/googlePlace.js"></script>
 <script src="scripts/shared/loader/loader.js"></script>
 <script src="scripts/shared/lead/lead.js"></script>
 <script src="scripts/shared/driver/driver.js"></script>
+<script src="scripts/shared/service/service.js"></script>
 <!-- endbuild -->
 </body>
 </html>

@@ -139,7 +139,7 @@
 
             return p;
         }
-        
+
         function createQuotation(quotation) {
             if (!quotation.lead_id || !quotation.address_from || !quotation.home_type_from_id || !quotation.floor_from || !quotation.address_to || !quotation.home_type_to_id || !quotation.floor_to || !quotation.travel_distance_aprox || !quotation.travel_time_aprox || !quotation.truck_size_type_id || !quotation.packaging_time_aprox || !quotation.packaging_price || !quotation.travel_price || !quotation.total_price || !quotation.final_price || !quotation.profit) {
                 return $q.reject('Verifique que todos los campos estén completos.');
@@ -159,12 +159,7 @@
             return p;
         }
 
-        function listQuotations(leadId) {
-            if (!leadId) {
-                return $q.reject('El lead no existe.');
-            }
-
-            var params = {lead_id: leadId};
+        function listQuotations(params) {
             var p = Api.listQuotations(params);
 
             p = p.then(

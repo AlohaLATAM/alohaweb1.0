@@ -22,7 +22,7 @@
         $stateProvider
             .state('auth', {
                 abstract: true,
-                template: '<ui-view></ui-view>'
+                templateUrl: 'scripts/views/auth/template.html'
             })
             .state('auth.Dashboard', {
                 url: '/',
@@ -82,6 +82,22 @@
                 url: '/choferes/nuevo',
                 templateUrl: 'scripts/views/auth/drivers/newDriver.html',
                 controller: 'NewDriverCtrl',
+                controllerAs: 'vm'
+            })
+            .state('driver', {
+                abstract: true,
+                templateUrl: 'scripts/views/driver/template.html'
+            })
+            .state('driver.Dashboard', {
+                url: '/driver',
+                templateUrl: 'scripts/views/driver/dashboard/dashboard.html',
+                controller: 'DashboardDriverCtrl',
+                controllerAs: 'vm'
+            })
+            .state('driver.Service', {
+                url: '/service/{serviceId}',
+                templateUrl: 'scripts/views/driver/service/service.html',
+                controller: 'ServiceDriverCtrl',
                 controllerAs: 'vm'
             });
     }

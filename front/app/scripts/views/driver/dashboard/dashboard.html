@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="list-leads to-uppercase">
+        <div class="page-header">
+            <h1 class="text-muted">Servicios disponibles</h1>
+        </div>
+        <app-loader ng-if="vm.loading"></app-loader>
+        <div class="list-quotings">
+            <div class="list-services">
+                <app-service ui-sref="driver.Service({serviceId: service.id})" ng-repeat="service in vm.services" service="service"></app-service>
+            </div>
+        </div>
+    </div>
+</div>

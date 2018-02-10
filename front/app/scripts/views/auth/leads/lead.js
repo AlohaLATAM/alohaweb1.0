@@ -36,9 +36,9 @@
                 }
             );
         }
-        
+
         function getLeadQuotations() {
-            var p = Main.listQuotations(vm.leadId);
+            var p = Main.listQuotations({lead_id: vm.leadId});
 
             p.then(
                 function (response) {
