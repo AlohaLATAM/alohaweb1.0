@@ -16,7 +16,8 @@ module.exports = function (grunt) {
     require('jit-grunt')(grunt, {
         useminPrepare: 'grunt-usemin',
         ngtemplates: 'grunt-angular-templates',
-        cdnify: 'grunt-google-cdn'
+        cdnify: 'grunt-google-cdn',
+        replace: 'grunt-text-replace'
     });
 
     // Configurable paths for the application
@@ -452,9 +453,10 @@ module.exports = function (grunt) {
                     dest: '<%= yeoman.dist %>'
                 }, {
                     expand: true,
-                    cwd: 'bower_components/bootstrap-sass/assets',
-                    src: 'fonts/*',
-                    dest: '<%= yeoman.dist %>'
+                    cwd: '.',
+                    flatten: true,
+                    src: 'bower_components/bootstrap-sass/assets/fonts/bootstrap/*',
+                    dest: '<%= yeoman.dist %>/fonts/'
                 }, {
                     expand: true,
                     cwd: 'bower_components/components-font-awesome',
@@ -491,6 +493,17 @@ module.exports = function (grunt) {
                 configFile: 'test/karma.conf.js',
                 singleRun: true
             }
+        },
+
+        replace: {
+            dist: {
+                src: ['<%= yeoman.dist %>/styles//*.css'],
+                overwrite: true,                 // overwrite matched source files
+                replacements: [{
+                    from: '../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/',
+                    to: '../fonts/'
+                }]
+            }
         }
     });
 
@@ -526,6 +539,7 @@ module.exports = function (grunt) {
         'filerev',
         'usemin',
         'string-replace',
-        'htmlmin'
+        'htmlmin',
+        'replace:dist'
     ]);
 };
