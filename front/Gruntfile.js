@@ -497,10 +497,10 @@ module.exports = function (grunt) {
 
         replace: {
             dist: {
-                src: ['<%= yeoman.dist %>/styles//*.css'],
-                overwrite: true,                 // overwrite matched source files
+                src: ['<%= yeoman.dist %>/styles/*.css'],
+                overwrite: true,
                 replacements: [{
-                    from: '../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/',
+                    from: '../bower_components/bootstrap-sass/assets/fonts/bootstrap/',
                     to: '../fonts/'
                 }]
             }
