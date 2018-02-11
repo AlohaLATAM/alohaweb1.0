@@ -18,4 +18,4 @@ class DriverSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Driver
-        fields = ('id'. 'hash_id', 'first_name', 'last_name', 'phone_number', 'dni', 'created', 'license_number', 'score', 'verified', 'work_district')
+        fields = ('id', 'hash_id', 'first_name', 'last_name', 'phone_number', 'dni', 'created', 'license_number', 'score', 'verified', 'work_district')
