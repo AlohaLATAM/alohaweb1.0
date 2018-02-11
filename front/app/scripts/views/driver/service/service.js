@@ -5,7 +5,7 @@
     angular.module('Driver')
         .controller('ServiceDriverCtrl', ServiceDriverCtrl);
 
-    function ServiceDriverCtrl($stateParams, $state, Main) {
+    function ServiceDriverCtrl($stateParams, $state, Main, Persist) {
         var directionsService = new google.maps.DirectionsService;
         var directionsDisplay = new google.maps.DirectionsRenderer;
         var map;
@@ -28,7 +28,7 @@
 
         function assignService() {
             if (confirm('¿Estás seguro de querer asignarte este servicio?')) {
-                var params = {driver_id: 3};
+                var params = {driver_id: Persist.get('driver')};
                 var p = Main.updateQuotation(vm.serviceId, params);
 
                 p.then(

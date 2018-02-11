@@ -5,7 +5,7 @@
     angular.module('Driver')
         .controller('MyServiceDriverCtrl', MyServiceDriverCtrl);
 
-    function MyServiceDriverCtrl(Main) {
+    function MyServiceDriverCtrl(Main, Persist) {
         var vm = this;
 
         init();
@@ -17,7 +17,7 @@
         function getMyServices() {
             vm.empty_list = false;
 
-            var p = Main.listQuotations({driver_id: 3});
+            var p = Main.listQuotations({driver_id: Persist.get('driver')});
 
             p.then(
                 function (response) {

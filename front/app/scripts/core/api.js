@@ -32,9 +32,10 @@
             destroyInventoryItem: destroyInventoryItem,
             createTruck: createTruck,
             listTrucks: listTrucks,
-            updateQuotation: updateQuotation
+            updateQuotation: updateQuotation,
+            driverSignIn: driverSignIn
         };
-        
+
         function signIn(params) {
             return __post('auth', params);
         }
@@ -110,7 +111,11 @@
         function updateQuotation(quotationId, params, token) {
             return __put('quotations/' + quotationId, params, token);
         }
-        
+
+        function driverSignIn(params, token) {
+            return __post('drivers/authorize', params, token);
+        }
+
         function __post(endpoint, params, token) {
             var csrftoken = __getCookie('csrftoken');
 

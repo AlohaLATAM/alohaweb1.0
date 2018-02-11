@@ -5,7 +5,7 @@
     angular.module('Driver')
         .controller('DashboardDriverCtrl', DashboardDriverCtrl);
 
-    function DashboardDriverCtrl($state, $interval, Main) {
+    function DashboardDriverCtrl($state, $interval, Main, Persist) {
         var vm = this;
         var initialInterval = $interval(
             init, 10000
@@ -27,7 +27,7 @@
         function getDriverTrucks() {
             vm.empty_list = false;
 
-            var p = Main.listTrucks({driver_id: 3});
+            var p = Main.listTrucks({driver_id: Persist.get('driver')});
 
             p.then(
                 function (response) {
