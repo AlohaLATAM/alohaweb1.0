@@ -14,8 +14,16 @@
     angular.module('frontApp')
         .run(appRun);
 
-    function appRun($transitions) {
-        $transitions.onBefore({}, function() {
+    function appRun($transitions, Persist) {
+        $transitions.onBefore({to: 'driver.**'}, function(trans) {
+            if (!Persist.get('driver')) {
+                return trans.router.stateService.target('public.DriverSignin');
+            }
+
+            return true;
+        });
+
+        $transitions.onSuccess({}, function() {
             angular.element("html, body").animate({ scrollTop: 0 }, 200);
         });
     }

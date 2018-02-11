@@ -4,6 +4,10 @@ from home_types.models import HomeType
 from truck_size_types.models import TruckSizeType
 from trucks.models import Truck
 from drivers.models import Driver
+from hashids import Hashids
+
+
+hashids = Hashids(salt='aloha-pe', min_length=4)
 
 
 class Quotation(models.Model):
@@ -126,6 +130,7 @@ class Quotation(models.Model):
             quotation.driver_price = driver_price
         elif driver_id:
             try:
+                driver_id = hashids.decode(driver_id)
                 assigned_driver = Driver.objects.get(pk=driver_id)
             except:
                 return None, 'No se encontró el chofer.'

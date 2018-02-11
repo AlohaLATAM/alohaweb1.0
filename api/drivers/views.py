@@ -1,9 +1,21 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets, status
+from rest_framework.views import APIView
 from rest_framework.response import Response
 from . models import Driver
 from . serializer import DriverSerializer, DriverRegisteredSerializer
+
+
+class TokenAuthenticationView(APIView) :
+    def post(self, request):
+        driver = Driver()
+        token, message = driver.authenticate(request.data)
+
+        if token:
+            return Response({'token': token})
+
+        return Response(message, status=status.HTTP_401_UNAUTHORIZED)
 
 
 class DriverViewSet(viewsets.ViewSet):

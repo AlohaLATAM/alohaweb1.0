@@ -20,6 +20,16 @@
         });
 
         $stateProvider
+            .state('public', {
+                abstract: true,
+                templateUrl: 'scripts/views/public/template.html'
+            })
+            .state('public.DriverSignin', {
+                url: '/driver/access',
+                templateUrl: 'scripts/views/public/signinDriver/signin.html',
+                controller: 'SigninDriverCtrl',
+                controllerAs: 'vm'
+            })
             .state('auth', {
                 abstract: true,
                 templateUrl: 'scripts/views/auth/template.html'

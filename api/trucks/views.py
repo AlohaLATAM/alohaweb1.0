@@ -3,6 +3,10 @@ from rest_framework import viewsets, status
 from rest_framework.response import Response
 from . models import Truck
 from . serializer import TruckSerializer
+from hashids import Hashids
+
+
+hashids = Hashids(salt='aloha-pe', min_length=4)
 
 
 class TruckViewSet(viewsets.ViewSet):
@@ -27,6 +31,7 @@ class TruckViewSet(viewsets.ViewSet):
         truck_size_type_id = request.query_params.get('truck_size_type_id')
 
         if driver_id:
+            driver_id = hashids.decode(driver_id)
             trucks = Truck.objects.filter(driver=driver_id)
         elif truck_size_type_id:
             trucks = Truck.objects.filter(truck_type=truck_size_type_id)

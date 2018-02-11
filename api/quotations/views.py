@@ -3,6 +3,10 @@ from rest_framework import viewsets, status
 from rest_framework.response import Response
 from . models import Quotation
 from . serializer import QuotationSerializer
+from hashids import Hashids
+
+
+hashids = Hashids(salt='aloha-pe', min_length=4)
 
 
 class QuotationViewSet(viewsets.ViewSet):
@@ -55,6 +59,7 @@ class QuotationViewSet(viewsets.ViewSet):
         not_assigned = request.query_params.get('not_assigned')
 
         if driver_id:
+            driver_id = hashids.decode(driver_id)
             quotations = Quotation.objects.filter(assigned_driver=driver_id)
         elif truck_size_type_ids:
             truck_size_type_ids = truck_size_type_ids.split(',')
