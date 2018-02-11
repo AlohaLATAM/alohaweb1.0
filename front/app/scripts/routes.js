@@ -100,10 +100,10 @@
                 controller: 'ServiceDriverCtrl',
                 controllerAs: 'vm'
             })
-            .state('driver.DriverServices', {
-                url: '/service/{serviceId}',
-                templateUrl: 'scripts/views/driver/service/service.html',
-                controller: 'ServiceDriverCtrl',
+            .state('driver.MyServices', {
+                url: '/driver/my_services',
+                templateUrl: 'scripts/views/driver/myService/myService.html',
+                controller: 'MyServiceDriverCtrl',
                 controllerAs: 'vm'
             });
     }

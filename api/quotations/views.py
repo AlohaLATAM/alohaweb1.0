@@ -48,11 +48,14 @@ class QuotationViewSet(viewsets.ViewSet):
         return Response(result.data)
 
     def list(self, request):
+        driver_id = request.query_params.get('driver_id')
         truck_id = request.query_params.get('truck_id')
         truck_size_type_ids = request.query_params.get('truck_size_type_ids')
         lead_id = request.query_params.get('lead_id')
         not_assigned = request.query_params.get('not_assigned')
 
+        if driver_id:
+            quotations = Quotation.objects.filter(assigned_driver=driver_id)
         if truck_size_type_ids:
             truck_size_type_ids = truck_size_type_ids.split(',')
             quotations = Quotation.objects.filter(truck_size_type__in=truck_size_type_ids, assigned_driver=None)

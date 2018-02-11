@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="list-leads to-uppercase">
+        <div class="page-header">
+            <h1 class="text-muted">Mis servicios</h1>
+        </div>
+        <app-loader ng-if="vm.loading"></app-loader>
+        <div class="list-quotings">
+            <div class="list-services">
+                <app-service ng-repeat="service in vm.services" service="service"></app-service>
+                <p ng-if="vm.empty_list" class="small text-muted">No tiene servicios asignados.</p>
+            </div>
+        </div>
+    </div>
+</div>
