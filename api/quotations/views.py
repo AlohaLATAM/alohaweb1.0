@@ -58,14 +58,14 @@ class QuotationViewSet(viewsets.ViewSet):
 
         if driver_id:
             quotations = Quotation.objects.filter(assigned_driver=driver_id)
-        if truck_size_type_ids:
+        elif truck_size_type_ids:
             truck_size_type_ids = truck_size_type_ids.split(',')
             quotations = Quotation.objects.filter(truck_size_type__in=truck_size_type_ids, assigned_driver=None)
-        if truck_id:
+        elif truck_id:
             quotations = Quotation.objects.filter(assigned_truck=truck_id)
-        if lead_id:
+        elif lead_id:
             quotations = Quotation.objects.filter(lead=lead_id)
-        if not_assigned:
+        elif not_assigned:
             quotations = Quotation.objects.filter(assigned_truck=None)
         else:
             quotations = Quotation.objects.all()
