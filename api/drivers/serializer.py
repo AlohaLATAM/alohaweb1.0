@@ -14,7 +14,7 @@ class DriverRegisteredSerializer(serializers.ModelSerializer):
 
 class DriverSerializer(serializers.ModelSerializer):
     work_district = DistrictSerializer()
-    id = hashids.encode(id)
+    id = hashids.encode('' + id)
 
     class Meta:
         model = Driver
