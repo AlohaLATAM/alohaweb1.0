@@ -5,6 +5,10 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from . models import Driver
 from . serializer import DriverSerializer, DriverRegisteredSerializer
+from hashids import Hashids
+
+
+hashids = Hashids(salt='aloha-pe', min_length=4)
 
 
 class TokenAuthenticationView(APIView) :
@@ -36,6 +40,7 @@ class DriverViewSet(viewsets.ViewSet):
             return Response(message, status=status.HTTP_400_BAD_REQUEST)
 
     def retrieve(self, request, pk=None):
+        pk = hashids.decode(pk)
         driver = get_object_or_404(Driver, pk=pk)
         result = DriverSerializer(driver)
 
