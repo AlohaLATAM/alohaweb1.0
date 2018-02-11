@@ -15,6 +15,7 @@ class Driver(Person):
     verified = models.BooleanField(default=False)
     username = models.CharField(unique=True, max_length=50, default='')
     password = models.CharField(max_length=250, default='')
+    hash_id = models.CharField(max_length=8, default='')
 
     def __str__(self):
         return self.first_name
@@ -34,7 +35,7 @@ class Driver(Person):
         if not check_password(password, driver.password):
             return None, 'El usuario o la contraseña son incorrectos.'
         
-        return hashids.encode(driver.id), 'ok'
+        return driver.hash_id, 'ok'
 
     def register(self, data):
         first_name = data.get('first_name')
@@ -73,6 +74,10 @@ class Driver(Person):
         if username and password:
             driver.username = username
             driver.password = make_password(password)
+
+        driver.save()
+
+        driver.hash_id = hashids.encode(driver.id)
 
         driver.save()
         
