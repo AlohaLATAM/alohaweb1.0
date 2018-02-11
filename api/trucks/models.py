@@ -11,7 +11,7 @@ class Truck(models.Model):
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
     truck_type = models.ForeignKey(TruckSizeType, on_delete=models.CASCADE)
     registration_number = models.CharField(max_length=20, unique=True)
-    its_furgon = models.BooleanField(default=False)
+    its_furgon = models.BooleanField(default=False, null=True)
 
     def __str__(self):
         return self.truck_type.name
