@@ -55,7 +55,7 @@ class QuotationViewSet(viewsets.ViewSet):
 
         if truck_size_type_ids:
             truck_size_type_ids = truck_size_type_ids.split(',')
-            quotations = Quotation.objects.filter(truck_size_type__in=truck_size_type_ids, assigned_truck=None, assigned_driver=None)
+            quotations = Quotation.objects.filter(truck_size_type__in=truck_size_type_ids, assigned_driver=None)
         if truck_id:
             quotations = Quotation.objects.filter(assigned_truck=truck_id)
         if lead_id:

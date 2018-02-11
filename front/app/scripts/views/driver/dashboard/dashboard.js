@@ -34,11 +34,17 @@
                     vm.trucks = response;
 
                     if (vm.trucks.length) {
+                        var trucks = [];
+
                         for (var i = 0; i < vm.trucks.length; i++) {
-                            console.log(vm.trucks[i]);
+                            trucks.push(vm.trucks[i].truck_type.id);
                         }
 
-                        listServices();
+                        var listIds = trucks.filter(function(item, pos) {
+                            return trucks.indexOf(item) === pos;
+                        });
+
+                        listServices(listIds.join());
                     }
                 }
             );
