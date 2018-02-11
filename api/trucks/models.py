@@ -15,11 +15,11 @@ class Truck(models.Model):
     peso_bruto = models.IntegerField(max_length=5, default=0, null=True)
     peso_neto = models.IntegerField(max_length=5, default=0, null=True)
     carga_util = models.IntegerField(max_length=5, default=0, null=True)
-    alto_total = models.DecimalField(max_length=10, decimal_places=2, default=0, null=True)
-    alto = models.DecimalField(max_length=10, decimal_places=2, default=0, null=True)
-    ancho = models.DecimalField(max_length=10, decimal_places=2, default=0, null=True)
-    largo = models.DecimalField(max_length=10, decimal_places=2, default=0, null=True)
-    mts_cubicos = models.DecimalField(max_length=10, decimal_places=2, default=0, null=True)
+    alto_total = models.DecimalField(max_digits=10, decimal_places=2, default=0, null=True)
+    alto = models.DecimalField(max_digits=10, decimal_places=2, default=0, null=True)
+    ancho = models.DecimalField(max_digits=10, decimal_places=2, default=0, null=True)
+    largo = models.DecimalField(max_digits=10, decimal_places=2, default=0, null=True)
+    mts_cubicos = models.DecimalField(max_digits=10, decimal_places=2, default=0, null=True)
 
     def __str__(self):
         return self.truck_type.name
