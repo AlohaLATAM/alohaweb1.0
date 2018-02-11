@@ -1,6 +1,10 @@
 from django.db import models
 from drivers.models import Driver
 from truck_size_types.models import TruckSizeType
+from hashids import Hashids
+
+
+hashids = Hashids(salt='aloha-pe', min_length=4)
 
 
 class Truck(models.Model):
@@ -28,6 +32,7 @@ class Truck(models.Model):
             return None, 'El número de placa es requerido.'
 
         try:
+            driver_id = hashids.encode(driver_id)
             driver = Driver.objects.get(pk=driver_id)
         except:
             return None, 'No se encontró el conductor asociado.'
