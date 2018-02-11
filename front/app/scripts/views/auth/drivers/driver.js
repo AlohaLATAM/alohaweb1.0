@@ -68,13 +68,14 @@
         }
 
         function registerTruck() {
-            console.log(vm.driverId, vm.truck.truck_size_type_id, vm.truck.registration_number, vm.truck.its_furgon);
+            vm.error = false;
+
             var p = Main.createTruck(vm.driverId, vm.truck.truck_size_type_id, vm.truck.registration_number, vm.truck.its_furgon);
 
             p.then(
-                function (response) {
-                    console.log(response);
+                function () {
                     getDriverTrucks();
+                    vm.truck = {};
                 },
                 function (error) {
                     vm.error = error;
