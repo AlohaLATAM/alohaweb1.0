@@ -5,19 +5,49 @@
     angular.module('Driver')
         .controller('DashboardDriverCtrl', DashboardDriverCtrl);
 
-    function DashboardDriverCtrl(Main) {
+    function DashboardDriverCtrl($state, $interval, Main) {
         var vm = this;
+        var initialInterval = $interval(
+            init, 10000
+        );
 
         init();
 
+        vm.goToService = goToService;
+
         function init() {
-            listServices()
+            getDriverTrucks();
         }
 
-        function listServices() {
+        function goToService(serviceId) {
+            $interval.cancel(initialInterval);
+            $state.go('driver.Service', {serviceId: serviceId});
+        }
+
+        function getDriverTrucks() {
+            vm.empty_list = false;
+
+            var p = Main.listTrucks({driver_id: 3});
+
+            p.then(
+                function (response) {
+                    vm.trucks = response;
+
+                    if (vm.trucks.length) {
+                        for (var i = 0; i < vm.trucks.length; i++) {
+                            console.log(vm.trucks[i]);
+                        }
+
+                        listServices();
+                    }
+                }
+            );
+        }
+
+        function listServices(listTrucksIds) {
             vm.loading = true;
 
-            var p = Main.listQuotations();
+            var p = Main.listQuotations({truck_size_type_ids: listTrucksIds});
 
             p.then(
                 function (response) {

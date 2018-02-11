@@ -6,7 +6,7 @@
         <app-loader ng-if="vm.loading"></app-loader>
         <div class="list-quotings">
             <div class="list-services">
-                <app-service ui-sref="driver.Service({serviceId: service.id})" ng-repeat="service in vm.services" service="service"></app-service>
+                <app-service ng-click="vm.goToService(service.id)" ng-repeat="service in vm.services" service="service"></app-service>
             </div>
         </div>
     </div>

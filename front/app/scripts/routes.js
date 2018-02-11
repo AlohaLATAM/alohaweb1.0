@@ -99,6 +99,12 @@
                 templateUrl: 'scripts/views/driver/service/service.html',
                 controller: 'ServiceDriverCtrl',
                 controllerAs: 'vm'
+            })
+            .state('driver.DriverServices', {
+                url: '/service/{serviceId}',
+                templateUrl: 'scripts/views/driver/service/service.html',
+                controller: 'ServiceDriverCtrl',
+                controllerAs: 'vm'
             });
     }
 

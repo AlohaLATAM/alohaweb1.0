@@ -356,19 +356,11 @@
             return p;
         }
 
-        function updateQuotation(quotationId, truckId, driverPrice) {
+        function updateQuotation(quotationId, params) {
             if (!quotationId) {
                 return $q.reject('No se pudo encontrar la cotización.');
             }
 
-            if (!truckId || !driverPrice) {
-                return $q.reject('Todos los campos son obligatorios.');
-            }
-
-            var params = {
-                truck_id: truckId,
-                driver_price: driverPrice
-            };
             var p = Api.updateQuotation(quotationId, params);
 
             p = p.then(

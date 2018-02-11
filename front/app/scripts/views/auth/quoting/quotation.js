@@ -139,7 +139,11 @@
         function assignTruck() {
             vm.assignation_error = false;
 
-            var p = Main.updateQuotation(vm.quotationId, vm.assignedTruck.truck_id, vm.assignedTruck.driver_price);
+            var params = {
+                truck_id: vm.assignedTruck.truck_id,
+                truck_price: vm.assignedTruck.driver_price
+            };
+            var p = Main.updateQuotation(vm.quotationId, params);
 
             p.then(
                 function () {

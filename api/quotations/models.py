@@ -3,6 +3,7 @@ from leads.models import Lead
 from home_types.models import HomeType
 from truck_size_types.models import TruckSizeType
 from trucks.models import Truck
+from drivers.models import Driver
 
 
 class Quotation(models.Model):
@@ -32,6 +33,7 @@ class Quotation(models.Model):
     state = models.BooleanField(default=False)
     datetime_of_service = models.DateTimeField(null=True, blank=True)
     assigned_truck = models.ForeignKey(Truck, on_delete=models.CASCADE, null=True, blank=True)
+    assigned_driver = models.ForeignKey(Driver, on_delete=models.CASCADE, null=True, blank=True)
     driver_price = models.IntegerField(default=0, null=True)
 
     def __str__(self):
@@ -103,22 +105,32 @@ class Quotation(models.Model):
 
         return quotation.id, 'ok'
 
-    def assign_driver(self, pk, data):
+    def assign_driver_or_truck(self, pk, data):
         try:
             quotation = Quotation.objects.get(pk=pk)
         except:
             return None, 'No pudimos encontrar la cotización.'
 
-        truck_id = data.get('truck_id')
-        driver_price = data.get('driver_price')
+        if truck_id:
+            truck_id = data.get('truck_id')
+            driver_price = data.get('driver_price')
 
-        try:
-            assigned_truck = Truck.objects.get(pk=truck_id)
-        except:
-            return None, 'No se encontró el camión.'
-        
-        quotation.assigned_truck = assigned_truck
-        quotation.driver_price = driver_price
+            try:
+                assigned_truck = Truck.objects.get(pk=truck_id)
+            except:
+                return None, 'No se encontró el camión.'
+            
+            quotation.assigned_truck = assigned_truck
+            quotation.driver_price = driver_price
+        elif driver_id:
+            driver_id = data.get('driver_id')
+
+            try:
+                assigned_driver = Driver.objects.get(pk=driver_id)
+            except:
+                return None, 'No se encontró el chofer.'
+            
+            quotation.assigned_driver = assigned_driver
 
         quotation.save()
 

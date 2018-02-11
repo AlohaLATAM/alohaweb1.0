@@ -27,7 +27,16 @@
         }
 
         function assignService() {
-            confirm('¿Estás seguro de querer asignarte este servicio?');
+            if (confirm('¿Estás seguro de querer asignarte este servicio?')) {
+                var params = {driver_id: 3};
+                var p = Main.updateQuotation(vm.serviceId, params);
+
+                p.then(
+                    function () {
+                        $state.go('driver.Dashboard');
+                    }
+                );
+            }
         }
 
         function getService() {
