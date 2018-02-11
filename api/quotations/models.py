@@ -111,8 +111,10 @@ class Quotation(models.Model):
         except:
             return None, 'No pudimos encontrar la cotización.'
 
+        truck_id = data.get('truck_id')
+        driver_id = data.get('driver_id')
+
         if truck_id:
-            truck_id = data.get('truck_id')
             driver_price = data.get('driver_price')
 
             try:
@@ -123,8 +125,6 @@ class Quotation(models.Model):
             quotation.assigned_truck = assigned_truck
             quotation.driver_price = driver_price
         elif driver_id:
-            driver_id = data.get('driver_id')
-
             try:
                 assigned_driver = Driver.objects.get(pk=driver_id)
             except:
