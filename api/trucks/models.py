@@ -32,7 +32,7 @@ class Truck(models.Model):
             return None, 'El número de placa es requerido.'
 
         try:
-            driver_id = hashids.encode(driver_id)
+            driver_id = hashids.decode(driver_id)
             driver = Driver.objects.get(pk=driver_id)
         except:
             return None, 'No se encontró el conductor asociado.'
