@@ -14,8 +14,8 @@ class DriverRegisteredSerializer(serializers.ModelSerializer):
 
 class DriverSerializer(serializers.ModelSerializer):
     work_district = DistrictSerializer()
-    id = hashids.encode('' + id)
+    hash_id = hashids.encode(id)
 
     class Meta:
         model = Driver
-        fields = ('id', 'first_name', 'last_name', 'phone_number', 'dni', 'created', 'license_number', 'score', 'verified', 'work_district')
+        fields = ('id'. 'hash_id', 'first_name', 'last_name', 'phone_number', 'dni', 'created', 'license_number', 'score', 'verified', 'work_district')
