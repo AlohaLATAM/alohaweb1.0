@@ -12,7 +12,7 @@
     <tr>
         <td><img src="//panel.aloha.pe/static/images/driver.jpg" class="media-photo"></td>
         <td ng-if="price">{{ price }}</td>
-        <td><a ui-sref="auth.DriverTruck({driverId: item.id})">{{ driver.first_name }} {{ driver.last_name }}</a></td>
+        <td><a ui-sref="auth.DriversDetails({driverId: driver.hash_id})">{{ driver.first_name }} {{ driver.last_name }}</a></td>
         <td>{{ driver.work_district.name }}</td>
         <td>{{ driver.phone_number }}</td>
     </tr>
