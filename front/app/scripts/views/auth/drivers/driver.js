@@ -70,7 +70,7 @@
         function registerTruck() {
             vm.error = false;
 
-            var p = Main.createTruck(vm.driverId, vm.truck.truck_size_type_id, vm.truck.registration_number, vm.truck.its_furgon);
+            var p = Main.createTruck(vm.driverId, vm.truck);
 
             p.then(
                 function () {

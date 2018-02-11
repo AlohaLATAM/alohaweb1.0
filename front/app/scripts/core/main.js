@@ -316,21 +316,12 @@
             return p;
         }
 
-        function createTruck(driverId, truck_type_size_id, registration_number, its_furgon) {
+        function createTruck(driverId, params) {
             if (!driverId) {
                 return $q.reject('No se pudo encontrar el chofer.');
             }
 
-            if (!truck_type_size_id || !registration_number) {
-                return $q.reject('Todos los campos son obligatorios.');
-            }
-
-            var params = {
-                driver_id: driverId,
-                truck_size_type_id: truck_type_size_id,
-                registration_number: registration_number,
-                its_furgon: its_furgon
-            };
+            params.driver_id = driverId;
             var p = Api.createTruck(params);
 
             p = p.then(

@@ -50,6 +50,42 @@
                             <label><input ng-model="vm.truck.its_furgon" type="checkbox"> ¿Es camión tipo furgón?</label>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label>Peso Bruto</label>
+                            <input ng-model="vm.truck.peso_bruto" type="number" step=".01" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Peso Neto</label>
+                            <input ng-model="vm.truck.peso_neto" type="number" step=".01" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label>Carga Útil</label>
+                            <input ng-model="vm.truck.carga_util" type="number" step=".01" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Alto Total</label>
+                            <input ng-model="vm.truck.alto_total" type="number" step=".01" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label>Alto</label>
+                            <input ng-model="vm.truck.alto" type="number" step=".01" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Ancho</label>
+                            <input ng-model="vm.truck.ancho" type="number" step=".01" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label>Largo</label>
+                            <input ng-model="vm.truck.largo" type="number" step=".01" class="form-control" required>
+                        </div>
+                    </div>
                     <div class="alert alert-danger small" ng-if="vm.error">{{ vm.error }}</div>
                     <div class="form-group">
                         <div class="col-md-12">
