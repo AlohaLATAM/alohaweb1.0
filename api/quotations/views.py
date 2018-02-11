@@ -54,8 +54,6 @@ class QuotationViewSet(viewsets.ViewSet):
         lead_id = request.query_params.get('lead_id')
         not_assigned = request.query_params.get('not_assigned')
 
-        print(driver_id)
-
         if driver_id:
             quotations = Quotation.objects.filter(assigned_driver=driver_id)
         elif truck_size_type_ids:
