@@ -1,6 +1,10 @@
 from rest_framework import serializers
 from . models import Driver
 from districts.serializer import DistrictSerializer
+from hashids import Hashids
+
+
+hashids = Hashids(salt='aloha-pe', min_length=4)
 
 
 class DriverRegisteredSerializer(serializers.ModelSerializer):
@@ -10,6 +14,7 @@ class DriverRegisteredSerializer(serializers.ModelSerializer):
 
 class DriverSerializer(serializers.ModelSerializer):
     work_district = DistrictSerializer()
+    id = hashids.encode(id)
 
     class Meta:
         model = Driver
