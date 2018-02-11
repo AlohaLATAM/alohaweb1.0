@@ -11,7 +11,7 @@ class Truck(models.Model):
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE)
     truck_type = models.ForeignKey(TruckSizeType, on_delete=models.CASCADE)
     registration_number = models.CharField(max_length=20, unique=True)
-    its_furgon = models.BooleanField(default=False, null=True)
+    its_furgon = models.BooleanField(default=False)
 
     def __str__(self):
         return self.truck_type.name
@@ -30,6 +30,9 @@ class Truck(models.Model):
 
         if not registration_number:
             return None, 'El número de placa es requerido.'
+        
+        if not its_furgon:
+            its_furgon = False
 
         try:
             driver_id = hashids.decode(driver_id)
