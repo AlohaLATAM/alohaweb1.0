@@ -19,7 +19,7 @@ class TokenAuthenticationView(APIView) :
         if token:
             return Response({'token': token})
 
-        return Response(message, status=status.HTTP_401_UNAUTHORIZED)
+        return Response({'error': message}, status=status.HTTP_401_UNAUTHORIZED)
 
 
 class DriverViewSet(viewsets.ViewSet):
