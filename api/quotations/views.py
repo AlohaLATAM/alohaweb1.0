@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import datetime
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from . models import Quotation
@@ -60,18 +61,20 @@ class QuotationViewSet(viewsets.ViewSet):
 
         if driver_id:
             driver_id = hashids.decode(driver_id)
-            quotations = Quotation.objects.filter(assigned_driver=driver_id)
+            quotations = Quotation.objects.filter(assigned_driver=driver_id).order_by('created')
         elif truck_size_type_ids:
+            startdate = datetime.today()
+            enddate = startdate + datetime.timedelta(days=30)
             truck_size_type_ids = truck_size_type_ids.split(',')
-            quotations = Quotation.objects.filter(truck_size_type__in=truck_size_type_ids, assigned_driver=None)
+            quotations = Quotation.objects.filter(truck_size_type__in=truck_size_type_ids, assigned_driver=None, date__range=[startdate, enddate]).order_by('created')
         elif truck_id:
-            quotations = Quotation.objects.filter(assigned_truck=truck_id)
+            quotations = Quotation.objects.filter(assigned_truck=truck_id).order_by('created')
         elif lead_id:
-            quotations = Quotation.objects.filter(lead=lead_id)
+            quotations = Quotation.objects.filter(lead=lead_id).order_by('created')
         elif not_assigned:
-            quotations = Quotation.objects.filter(assigned_truck=None)
+            quotations = Quotation.objects.filter(assigned_truck=None).order_by('created')
         else:
-            quotations = Quotation.objects.all()
+            quotations = Quotation.objects.all().order_by('created')
         
         results = QuotationSerializer(quotations, many=True)
 

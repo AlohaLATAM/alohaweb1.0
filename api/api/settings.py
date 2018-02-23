@@ -25,7 +25,7 @@ SECRET_KEY = '0c&=ob)m_gh%$%ok-o03%yg(aelt4#7%e!t8s9ks#1=%b4((li'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'panel.aloha.pe']
+ALLOWED_HOSTS = ['*', 'localhost', 'panel.aloha.pe']
 
 
 # Application definition
@@ -69,12 +69,14 @@ MIDDLEWARE = [
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = (
-   'localhost:9090',
-   'panel.aloha.pe'
+    '192.168.1.9'
+   #'localhost:9090',
+   #'panel.aloha.pe'
 )
 CORS_ORIGIN_REGEX_WHITELIST = (
-   'localhost:9090',
-   'panel.aloha.pe'
+    '192.168.1.9',
+    #'localhost:9090',
+    #'panel.aloha.pe'
 )
 
 ROOT_URLCONF = 'api.urls'
@@ -109,10 +111,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'alohadb',
-        #'USER': 'alohauser',
-        #'PASSWORD': 'NosemiCLAVE1001',
-        'USER': 'root',
-        'PASSWORD': 'miclave1',
+        'USER': 'alohauser',
+        'PASSWORD': 'NosemiCLAVE1001',
         'HOST': 'localhost',
         'POST': ''
     }
