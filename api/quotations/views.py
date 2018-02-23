@@ -66,7 +66,7 @@ class QuotationViewSet(viewsets.ViewSet):
             startdate = datetime.date.today()
             enddate = startdate + datetime.timedelta(days=30)
             truck_size_type_ids = truck_size_type_ids.split(',')
-            quotations = Quotation.objects.filter(truck_size_type__in=truck_size_type_ids, assigned_driver=None, date__range=[startdate, enddate]).order_by('created')
+            quotations = Quotation.objects.filter(truck_size_type__in=truck_size_type_ids, assigned_driver=None, created__range=[startdate, enddate]).order_by('created')
         elif truck_id:
             quotations = Quotation.objects.filter(assigned_truck=truck_id).order_by('created')
         elif lead_id:
