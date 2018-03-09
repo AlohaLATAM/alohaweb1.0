@@ -21,20 +21,20 @@ class Driver(Person):
         return self.first_name
 
     def authenticate(self, data):
-        username = data.get('username')
+        dni = data.get('dni')
         password = data.get('password')
 
-        if not username or not password:
+        if not dni or not password:
             return None, 'Todos los campos son requeridos.'
 
         try:
-            driver = Driver.objects.get(username=username)
+            driver = Driver.objects.get(dni=dni)
         except:
-            return None, 'El usuario o la contraseña son incorrectos.'
+            return None, 'El dni o la contraseña son incorrectos.'
 
         if not check_password(password, driver.password):
-            return None, 'El usuario o la contraseña son incorrectos.'
-        
+            return None, 'El dni o la contraseña son incorrectos.'
+
         return driver.hash_id, 'ok'
 
     def register(self, data):
@@ -57,7 +57,7 @@ class Driver(Person):
 
         try:
             registeredLicense = Driver.objects.get(license_number=license_number)
-            
+
             return None, 'El número de licencia ya está siendo usado por otro chofer.'
         except:
             pass
@@ -80,5 +80,5 @@ class Driver(Person):
         driver.hash_id = hashids.encode(driver.id)
 
         driver.save()
-        
+
         return driver.id, 'ok'
