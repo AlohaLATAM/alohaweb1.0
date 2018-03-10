@@ -5,6 +5,7 @@ from home_types.serializer import HomeTypeSerializer
 from truck_size_types.serializer import TruckSizeTypeSerializer
 from trucks.serializer import TruckSerializer
 from drivers.serializer import DriverSerializer
+from inventory_stuff.serializer import InventoryStuffSerializer
 
 
 class QuotationSerializer(serializers.ModelSerializer):
@@ -14,6 +15,7 @@ class QuotationSerializer(serializers.ModelSerializer):
     truck_size_type = TruckSizeTypeSerializer('truck_size_type')
     assigned_truck = TruckSerializer('assigned_truck')
     assigned_driver = DriverSerializer('assigned_driver')
+    inventory = InventoryStuffSerializer(source='inventorystuff_set', many=True)
 
     class Meta:
         model = Quotation
