@@ -12,7 +12,7 @@
     angular.module('Auth')
         .controller('InventoryCtrl', InventoryCtrl);
 
-    function InventoryCtrl($stateParams, Main, QuotationId, Lead) {
+    function InventoryCtrl($stateParams, Main, QuotationId, Lead, $uibModalInstance) {
         var vm = this;
         vm.quotationId = QuotationId;
         vm.lead = Lead;
@@ -23,6 +23,7 @@
 
         vm.addItem = addItem;
         vm.deleteItem = deleteItem;
+        vm.close = function () {$uibModalInstance.close();};
 
         function init() {
             getInventory();
