@@ -37,13 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
 
     'core',
-    
+
     'districts',
     'drivers',
     'home_types',
@@ -52,7 +52,8 @@ INSTALLED_APPS = [
     'quotations',
     'truck_size_types',
     'trucks',
-    'zones'
+    'zones',
+    'accounts'
 ]
 
 MIDDLEWARE = [

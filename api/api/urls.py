@@ -20,7 +20,8 @@ from . views import index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    
+
+    path('api/accounts/', include('accounts.urls')),
     path('api/districts/', include('districts.urls')),
     path('api/truck_size_types/', include('truck_size_types.urls')),
     path('api/leads/', include('leads.urls')),

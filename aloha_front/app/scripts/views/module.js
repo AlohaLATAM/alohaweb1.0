@@ -11,8 +11,7 @@
 
     angular.module('Views', [
         'Public',
-        'Auth',
-        'Driver'
+        'Auth'
     ]);
 
 
