@@ -12,8 +12,21 @@
     angular.module('Auth')
         .controller('DashboardCtrl', DashboardCtrl);
 
-    function DashboardCtrl() {
+    function DashboardCtrl(Main) {
         var vm = this;
+
+        init();
+
+        function init() {
+            var p = Main.listQuotations({from_now: true});
+
+            p.then(
+                function (response) {
+                    console.log(response);
+                    vm.quotations = response;
+                }
+            );
+        }
     }
 
 }());
