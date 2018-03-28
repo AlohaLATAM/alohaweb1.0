@@ -58,7 +58,7 @@ class QuotationViewSet(viewsets.ViewSet):
         truck_size_type_ids = request.query_params.get('truck_size_type_ids')
         lead_id = request.query_params.get('lead_id')
         not_assigned = request.query_params.get('not_assigned')
-        from_now = request.query.params.get('from_now')
+        from_now = request.query_params.get('from_now')
 
         if driver_id:
             driver_id = hashids.decode(driver_id)
