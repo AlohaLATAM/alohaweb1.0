@@ -25,7 +25,7 @@
                 templateUrl: 'scripts/views/public/template.html'
             })
             .state('public.Signin', {
-                url: '/driver/access',
+                url: '/access',
                 templateUrl: 'scripts/views/public/signin/signin.html',
                 controller: 'SigninCtrl',
                 controllerAs: 'vm'

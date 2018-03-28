@@ -11,4 +11,4 @@ class AccountLoginSerializer(serializers.ModelSerializer):
 class AccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
-        fields = '__all__'
+        fields = ('id', 'username', 'token')

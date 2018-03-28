@@ -8,7 +8,7 @@ from accounts.serializer import AccountSerializer, AccountLoginSerializer
 class TokenAuthenticationView(APIView):
     def post(self, request):
         a = Account()
-        account, msg = a.getMe(request.data)
+        account, msg = a.authenticateUser(request.data)
 
         if account and account.token:
             result = AccountLoginSerializer(account)

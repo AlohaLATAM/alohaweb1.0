@@ -1,4 +1,4 @@
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import make_password, check_password
 from django.db import models
 from hashids import Hashids
 
@@ -31,3 +31,20 @@ class Account(models.Model):
         account.save()
 
         return account.id, 'ok'
+
+    def authenticateUser(self, data):
+        username = data.get('username')
+        password = data.get('password')
+
+        if not username or not password:
+            return None, 'Todos los campos son requeridos.'
+
+        try:
+            account = Account.objects.get(username=username)
+        except:
+            return None, 'Not found'
+
+        if not check_password(password, account.password):
+            return None, 'Not found'
+
+        return account, 'ok'
