@@ -67,19 +67,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOW_CREDENTIALS = True
-CORS_ORIGIN_WHITELIST = (
-    '192.168.1.9'
-   #'localhost:9090',
-   #'panel.aloha.pe'
-)
-CORS_ORIGIN_REGEX_WHITELIST = (
-    '192.168.1.9',
-    #'localhost:9090',
-    #'panel.aloha.pe'
-)
-
 ROOT_URLCONF = 'api.urls'
 
 TEMPLATES = [
@@ -98,11 +85,30 @@ TEMPLATES = [
     },
 ]
 
-STATICFILES_DIRS = (
-  os.path.join(BASE_DIR, 'static/'),
-)
-
 WSGI_APPLICATION = 'api.wsgi.application'
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_METHODS = (
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+)
+CORS_ALLOW_HEADERS = (
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+    'authentication',
+)
 
 
 # Database
@@ -164,3 +170,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static/'),)
