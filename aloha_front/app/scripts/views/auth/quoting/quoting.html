@@ -110,9 +110,14 @@
                         <label>Precio recomendado</label>
                         <input value="{{ vm.quoting.total_price + 50 }}" type="text" class="form-control" disabled>
                     </div>
+                    <hr class="clear">
                     <div class="col-md-6">
-                        <label>Precio final</label>
+                        <label>Precio final acordado (Cliente)</label>
                         <input ng-model="vm.quoting.final_price" type="text" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Precio final acordado (Chofer)</label>
+                        <input ng-model="vm.quoting.total_price" type="text" class="form-control">
                     </div>
                 </div>
             </div>

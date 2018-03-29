@@ -3,32 +3,6 @@
         <app-lead lead="vm.lead"></app-lead>
         <app-loader ng-if="vm.loading"></app-loader>
     </div>
-    <div class="page-header">
-        <h1 class="text-center text-muted">Chofer asignado</h1>
-    </div>
-    <div class="lead leads-container">
-        <form ng-if="!vm.quotation.assigned_truck" ng-submit="vm.assignTruck()" class="form">
-            <div class="form-group">
-                <div class="col-md-6">
-                    <select ng-model="vm.assignedTruck.truck_id" class="form-control" required>
-                        <option value="">-- Elige un tipo de chofer --</option>
-                        <option ng-repeat="truck in vm.trucks" value="{{ truck.id }}">{{ truck.driver.first_name }} {{ truck.driver.last_name }} - {{ truck.driver.phone_number }}</option>
-                    </select>
-                </div>
-                <div class="col-md-4">
-                    <input ng-model="vm.assignedTruck.driver_price" type="text" class="form-control" placeholder="Precio acordado" required>
-                </div>
-                <div class="col-md-2">
-                    <input value="{{ vm.quotation.total_price }}" type="text" class="form-control">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-12">
-                    <button class="btn btn-primary btn-block">ASIGNAR CHOFER <i class="fa fa-long-arrow-right"></i></button>
-                </div>
-            </div>
-        </form>
-    </div>
     <div class="list-leads to-uppercase">
         <app-driver ng-if="vm.quotation.assigned_truck" driver="vm.quotation.assigned_truck.driver" price="vm.quotation.driver_price"></app-driver>
     </div>
@@ -139,9 +113,14 @@
                         <label>Precio recomendado</label>
                         <input ng-disabled="!vm.editable" value="{{ vm.quotation.total_price + 50 }}" type="text" class="form-control" disabled>
                     </div>
+                    <hr>
                     <div class="col-md-6">
-                        <label>Precio final</label>
+                        <label>Precio final acordado (Cliente)</label>
                         <input ng-disabled="!vm.editable" ng-model="vm.quotation.final_price" type="text" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label>Precio final acordado (Chofer)</label>
+                        <input ng-disabled="!vm.editable" ng-model="vm.quotation.total_price" type="text" class="form-control">
                     </div>
                 </div>
             </div>

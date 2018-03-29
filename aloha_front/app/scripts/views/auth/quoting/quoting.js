@@ -154,7 +154,7 @@
                 vm.quoting.travel_price = ((timeAprox * truckPrice) / 60).toFixed(2);
                 vm.quoting.total_price = parseFloat(vm.quoting.packaging_price) + parseFloat(vm.quoting.travel_price);
 
-                vm.quoting.final_price = (vm.quoting.total_price + 50).toFixed(2);
+                    vm.quoting.final_price = (vm.quoting.total_price + 50).toFixed(2);
             }
         }
 
