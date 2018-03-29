@@ -32,21 +32,16 @@
             destroyInventoryItem: destroyInventoryItem,
             createTruck: createTruck,
             listTrucks: listTrucks,
-            updateQuotation: updateQuotation,
-            driverSignIn: driverSignIn
+            updateQuotation: updateQuotation
         };
 
-        function signIn(email, password) {
-            if (!email || !password) {
+        function signIn(username, password) {
+            if (!username || !password) {
                 return $q.reject(Message.all_required);
             }
 
-            if (!Utils.validateEmail(email)) {
-                return $q.reject(Message.invalid_email_format);
-            }
-
             var params = {
-                email: email,
+                username: username,
                 password: password
             };
             var p = Api.signIn(params);
@@ -358,33 +353,6 @@
             p = p.then(
                 function (response) {
                     return response;
-                },
-                function (error) {
-                    return $q.reject(error.data);
-                }
-            );
-
-            return p;
-        }
-
-        function driverSignIn(username, password) {
-            if (!username || !password) {
-                return $q.reject('Todos los campos son requeridos.');
-            }
-
-            var params = {
-                username: username,
-                password: password
-            };
-            var p = Api.driverSignIn(params);
-
-            p = p.then(
-                function (response) {
-                    if (response.token) {
-                        return Persist.set('driver', response.token);
-                    }
-
-                    return $q.reject('No se pudo completar la operación.');
                 },
                 function (error) {
                     return $q.reject(error.data);

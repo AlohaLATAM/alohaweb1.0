@@ -12,7 +12,7 @@
     angular.module('Public')
         .controller('SigninCtrl', signinCtrl);
 
-    function signinCtrl(Main) {
+    function signinCtrl($state, Main) {
         var vm = this;
         vm.user = {};
 
@@ -21,11 +21,11 @@
         function signIn() {
             vm.error = false;
 
-            var p = Main.signIn(vm.user.email, vm.user.password);
+            var p = Main.signIn(vm.user.username, vm.user.password);
 
             p.then(
                 function () {
-
+                    $state.go('auth.Leads');
                 },
                 function (error) {
                     vm.error = error;

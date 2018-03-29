@@ -24,10 +24,10 @@
                 abstract: true,
                 templateUrl: 'scripts/views/public/template.html'
             })
-            .state('public.DriverSignin', {
-                url: '/driver/access',
-                templateUrl: 'scripts/views/public/signinDriver/signin.html',
-                controller: 'SigninDriverCtrl',
+            .state('public.Signin', {
+                url: '/access',
+                templateUrl: 'scripts/views/public/signin/signin.html',
+                controller: 'SigninCtrl',
                 controllerAs: 'vm'
             })
             .state('auth', {
@@ -92,28 +92,6 @@
                 url: '/choferes/nuevo',
                 templateUrl: 'scripts/views/auth/drivers/newDriver.html',
                 controller: 'NewDriverCtrl',
-                controllerAs: 'vm'
-            })
-            .state('driver', {
-                abstract: true,
-                templateUrl: 'scripts/views/driver/template.html'
-            })
-            .state('driver.Dashboard', {
-                url: '/driver',
-                templateUrl: 'scripts/views/driver/dashboard/dashboard.html',
-                controller: 'DashboardDriverCtrl',
-                controllerAs: 'vm'
-            })
-            .state('driver.Service', {
-                url: '/service/{serviceId}',
-                templateUrl: 'scripts/views/driver/service/service.html',
-                controller: 'ServiceDriverCtrl',
-                controllerAs: 'vm'
-            })
-            .state('driver.MyServices', {
-                url: '/driver/my_services',
-                templateUrl: 'scripts/views/driver/myService/myService.html',
-                controller: 'MyServiceDriverCtrl',
                 controllerAs: 'vm'
             });
     }

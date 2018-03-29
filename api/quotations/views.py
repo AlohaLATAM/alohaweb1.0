@@ -58,6 +58,7 @@ class QuotationViewSet(viewsets.ViewSet):
         truck_size_type_ids = request.query_params.get('truck_size_type_ids')
         lead_id = request.query_params.get('lead_id')
         not_assigned = request.query_params.get('not_assigned')
+        from_now = request.query_params.get('from_now')
 
         if driver_id:
             driver_id = hashids.decode(driver_id)
@@ -73,9 +74,13 @@ class QuotationViewSet(viewsets.ViewSet):
             quotations = Quotation.objects.filter(lead=lead_id).order_by('created')
         elif not_assigned:
             quotations = Quotation.objects.filter(assigned_truck=None).order_by('created')
+        elif from_now:
+            startdate = datetime.date.today()
+            enddate = startdate + datetime.timedelta(days=30)
+            quotations = Quotation.objects.filter(created__range=[startdate, enddate]).order_by('-created')
         else:
             quotations = Quotation.objects.all().order_by('created')
-        
+
         results = QuotationSerializer(quotations, many=True)
 
         return Response(results.data)

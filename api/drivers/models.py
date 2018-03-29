@@ -56,9 +56,10 @@ class Driver(Person):
             return None, 'El distrito ingresado no es válido.'
 
         try:
-            registeredLicense = Driver.objects.get(license_number=license_number)
+            registered_license = Driver.objects.get(license_number=license_number)
 
-            return None, 'El número de licencia ya está siendo usado por otro chofer.'
+            if registered_license:
+                return None, 'El número de licencia ya está siendo usado por otro chofer.'
         except:
             pass
 

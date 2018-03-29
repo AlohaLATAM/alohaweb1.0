@@ -125,7 +125,7 @@ class Quotation(models.Model):
                 assigned_truck = Truck.objects.get(pk=truck_id)
             except:
                 return None, 'No se encontró el camión.'
-            
+
             quotation.assigned_truck = assigned_truck
             quotation.driver_price = driver_price
         elif driver_id:
@@ -134,7 +134,7 @@ class Quotation(models.Model):
                 assigned_driver = Driver.objects.get(pk=driver_id)
             except:
                 return None, 'No se encontró el chofer.'
-            
+
             quotation.assigned_driver = assigned_driver
 
         quotation.save()

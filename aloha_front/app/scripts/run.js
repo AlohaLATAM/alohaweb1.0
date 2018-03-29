@@ -15,16 +15,16 @@
         .run(appRun);
 
     function appRun($transitions, Persist) {
-        $transitions.onBefore({to: 'driver.**'}, function(trans) {
-            if (!Persist.get('driver')) {
-                return trans.router.stateService.target('public.DriverSignin');
+        $transitions.onBefore({to: 'auth.**'}, function(trans) {
+            if (!Persist.get('token')) {
+                return trans.router.stateService.target('public.Signin');
             }
 
             return true;
         });
 
         $transitions.onSuccess({}, function() {
-            angular.element("html, body").animate({ scrollTop: 0 }, 200);
+            angular.element('html, body').animate({ scrollTop: 0 }, 200);
         });
     }
 
