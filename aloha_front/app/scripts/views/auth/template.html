@@ -1,4 +1,4 @@
-<div class="header">
+<div ng-controller="templateCtrl as vm" class="header">
     <div class="navbar navbar-default" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -19,6 +19,9 @@
                     </li>
                     <li>
                         <a ui-sref="auth.Drivers()">Choferes</a>
+                    </li>
+                    <li>
+                        <a ng-click="vm.signOut()">Salir</a>
                     </li>
                 </ul>
             </div>

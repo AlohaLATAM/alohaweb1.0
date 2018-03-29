@@ -12,9 +12,10 @@
     angular.module('Core')
         .factory('Main', Main);
 
-    function Main($q, Api, Utils, Persist, Message) {
+    function Main($q, $state, Api, Utils, Persist, Message) {
         return {
             signIn: signIn,
+            signOut: signOut,
             createLead: createLead,
             listLeads: listLeads,
             getLead: getLead,
@@ -57,6 +58,12 @@
             );
 
             return p;
+        }
+
+        function signOut() {
+            Persist.clear();
+
+            $state.go('public.Signin');
         }
 
         function createLead(first_name, last_name, phone_number, dni) {
