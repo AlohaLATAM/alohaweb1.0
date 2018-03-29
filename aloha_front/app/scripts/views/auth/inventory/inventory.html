@@ -6,13 +6,13 @@
             </div>
             <form ng-submit="vm.addItem()">
                 <div class="form-group">
-                    <div class="col-xs-3">
+                    <div class="col-md-3">
                         <input ng-focus="vm.startNewItem" ng-model="vm.newItem.quantity" min="1" type="number" placeholder="Cantidad" class="form-control">
                     </div>
                     <div class="col-md-6">
                         <input ng-model="vm.newItem.item_name" type="text" placeholder="Nombre" class="form-control">
                     </div>
-                    <div class="col-xs-3">
+                    <div class="col-md-3">
                         <button ladda="vm.addingItem" class="btn btn-success btn-block">Agregar <i class="fa fa-plus"></i></button>
                     </div>
                 </div>
