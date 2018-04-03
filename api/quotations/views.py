@@ -5,9 +5,12 @@ from rest_framework.response import Response
 from . models import Quotation
 from . serializer import QuotationSerializer
 from hashids import Hashids
+from pyfcm import FCMNotification
 
 
 hashids = Hashids(salt='aloha-pe', min_length=4)
+proxy_dict = {"http": "http://127.0.0.1",}
+push_service = FCMNotification(api_key="AAAAYsOsDaw:APA91bF2fEGCJhnV9WkPfvaumPRH4b9DQj1IoZunLsunk7vbjR2BxdFnsCReTMCrhmJDld_HxDb9t2-oPNwKV4YKrkgfPGkL1RPi7tdymKV2oeD6FZefkbLQOInGBhxQuNlYXh5yn3E5", proxy_dict=proxy_dict)
 
 
 class QuotationViewSet(viewsets.ViewSet):
@@ -22,6 +25,7 @@ class QuotationViewSet(viewsets.ViewSet):
                 return Response('No se pudo encontrar la cotización registrada.', status=status.HTTP_404_NOT_FOUND)
 
             result = QuotationSerializer(quotation)
+            notification = push_service.notify_topic_subscribers(topic_name="drivers_channel", message_title='Aloha,', message_body='Un nuevo servicio fue registrado.')
 
             return Response(result.data)
 

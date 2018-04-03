@@ -118,10 +118,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'alohadb',
-        #'USER': 'alohauser',
-        #'PASSWORD': 'NosemiCLAVE1001',
-	'USER': 'root',
-	'PASSWORD': 'miclave1',
+        'USER': 'alohauser',
+        'PASSWORD': 'NosemiCLAVE1001',
+        #'USER': 'root',
+        #'PASSWORD': 'miclave1',
         'HOST': 'localhost',
         'POST': ''
     }
