@@ -25,7 +25,7 @@ class QuotationViewSet(viewsets.ViewSet):
                 return Response('No se pudo encontrar la cotización registrada.', status=status.HTTP_404_NOT_FOUND)
 
             result = QuotationSerializer(quotation)
-            notification = push_service.notify_topic_subscribers(topic_name="drivers_channel", message_title='Aloha,', message_body='Un nuevo servicio fue registrado.', sound='default')
+            notification = push_service.notify_topic_subscribers(topic_name="drivers_channel", message_title='¡Aloha!', message_body='Se ha ingresado un nuevo servicio. Revísalo ahora', sound='default')
 
             return Response(result.data)
 
