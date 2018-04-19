@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="modal-container text-center">
+        <h3>Aloha!</h3>
+        <div ng-if="vm.calculating" class="calculation-box">
+            <h4>Estamos buscando el mejor precio para tu mudanza</h4>
+            <app-loader></app-loader>
+            <i class="fa fa-truck lg"></i>
+        </div>
+
+        <div ng-if="vm.calculated" class="calculated-box">
+            <h4>El precio de tu mudanza es de</h4>
+            <h1>{{ vm.quoting.final_price }}</h1>
+            <button ng-click="vm.calculateAmount()" class="btn btn-success">Programa tu mudanza ahora</button>
+        </div>
+    </div>
+</div>

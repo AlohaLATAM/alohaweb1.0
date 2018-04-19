@@ -16,6 +16,9 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+
+    <!-- CLIENGO installation code for aloha.pe -->
+    <script>(function(){var ldk=document.createElement('script'); ldk.type='text/javascript'; ldk.async=true; ldk.src='https://s.cliengo.com/weboptimizer/5accf7fce4b0166d8f26cd84/5accf807e4b0c0cc9d0088bd.js' ; var s=document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ldk, s);})();</script>
 </head>
 <body ng-app="frontApp">
 <!--[if lte IE 8]>
@@ -43,9 +46,39 @@
             r = n.getElementsByTagName(g)[0], a.src = u, r.parentNode.insertBefore(a, r)
     }(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-    ga('create', 'UA-XXXXX-X');
+    ga('create', 'UA-113877072-1');
     ga('send', 'pageview');
 </script>
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter48431114 = new Ya.Metrika({
+                    id:48431114,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/48431114" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 
 <!-- build:remove -->
 <script src="scripts/env/__env__.js"></script>
@@ -86,6 +119,7 @@
 <script src="scripts/views/public/module.js"></script>
 <script src="scripts/views/public/home/home.js"></script>
 <script src="scripts/views/public/signin/signin.js"></script>
+<script src="scripts/views/public/calculating/calculating.js"></script>
 
 <script src="scripts/views/auth/module.js"></script>
 <script src="scripts/views/auth/dashboard/dashboard.js"></script>

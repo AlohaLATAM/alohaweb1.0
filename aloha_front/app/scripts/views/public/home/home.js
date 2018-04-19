@@ -5,9 +5,13 @@
     angular.module('Public')
         .controller('HomeCtrl', HomeCtrl);
 
-    function HomeCtrl(Main) {
+    function HomeCtrl($scope, $uibModal, Main) {
         var vm = this;
-        vm.quoting = {};
+        vm.quoting = {
+            floor_from: 1,
+            floor_to: 1,
+        };
+        vm.steps = 1;
 
         var directionsService = new google.maps.DirectionsService;
         var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -18,6 +22,7 @@
 
         vm.makeSelection = makeSelection;
         vm.calculateRoute = calculateRoute;
+        vm.calculateAmount = calculateAmount;
 
         function init() {
             generateMap();
@@ -43,7 +48,7 @@
             p.then(
                 function (response) {
                     vm.typeTrucks = response;
-                    vm.typeTrucks[0].active = true;
+                    makeSelection('truck_type', vm.typeTrucks[0], true);
                 }
             );
         }
@@ -56,8 +61,8 @@
                     vm.homeTypesFrom = angular.copy(response);
                     vm.homeTypesTo = angular.copy(response);
 
-                    vm.homeTypesFrom[0].active = true;
-                    vm.homeTypesTo[0].active = true;
+                    makeSelection('home_type_from', vm.homeTypesFrom[0]);
+                    makeSelection('home_type_to', vm.homeTypesTo[0]);
                 }
             );
         }
@@ -74,7 +79,9 @@
                             return item;
                         }
                     );
+                    vm.homeTypesFromSelected = value;
                     break;
+
                 case 'home_type_to':
                     vm.homeTypesTo = vm.homeTypesTo.map(
                         function (item) {
@@ -85,7 +92,9 @@
                             return item;
                         }
                     );
+                    vm.homeTypesToSelected = value;
                     break;
+
                 case 'truck_type':
                     vm.typeTrucks = vm.typeTrucks.map(
                         function (item) {
@@ -96,9 +105,13 @@
                             return item;
                         }
                     );
+                    vm.typeTrucksSelected = value;
+                    vm.quoting.packaging_time_aprox = vm.typeTrucksSelected.time_per_service;
+                    calculateTruckPrice();
                     break;
             }
 
+            vm.steps ++;
             value.active = true;
         }
 
@@ -114,35 +127,64 @@
                 language: 'es'
             };
 
+            getRoute(request);
+        }
+        
+        function calculateAmount() {
+            if (!vm.quoting.final_price) {
+                return;
+            }
+
+            $uibModal.open({
+                templateUrl: 'scripts/views/public/calculating/calculating.html',
+                controller: 'CalculatingCtrl',
+                controllerAs: 'vm',
+                resolve: {
+                    Quoting: function () {
+                        return vm.quoting;
+                    }
+                }
+            });
+        }
+
+        function getRoute(request) {
             directionsService.route(request, function(response, status) {
                 if (status === google.maps.DirectionsStatus.OK) {
                     directionsDisplay.setDirections(response);
 
-                    vm.quoting.travel_distance_aprox_label = vm.distance_aprox = response.routes[0].legs[0].distance.text;
+                    vm.quoting.travel_distance_aprox_label = response.routes[0].legs[0].distance.text;
                     vm.quoting.travel_distance_aprox = response.routes[0].legs[0].distance.value;
-                    vm.quoting.travel_time_aprox_label = vm.time_travel_aprox = response.routes[0].legs[0].duration.text;
+                    vm.quoting.travel_time_aprox_label = response.routes[0].legs[0].duration.text;
                     vm.quoting.travel_time_aprox = 2 * response.routes[0].legs[0].duration.value;
 
                     calculateTruckPrice();
 
                     $scope.$apply();
+                } else {
+                    getRoute(request);
                 }
             });
         }
 
         function calculateTruckPrice() {
-            if (vm.quoting.travel_time_aprox && vm.quoting.truck_size_type_id) {
+            if (vm.quoting.travel_time_aprox) {
                 var timeAprox = vm.quoting.travel_time_aprox / 60;
-                var truckPrice = vm.truckSizeTypes[vm.quoting.truck_size_type_id - 1].hour_price;
+                var truckPrice = vm.typeTrucksSelected.hour_price;
 
                 vm.quoting.packaging_price = ((vm.quoting.packaging_time_aprox * truckPrice) / 60).toFixed(2);
                 vm.quoting.travel_price = ((timeAprox * truckPrice) / 60).toFixed(2);
                 vm.quoting.total_price = parseFloat(vm.quoting.packaging_price) + parseFloat(vm.quoting.travel_price);
 
-                vm.quoting.final_price = (vm.quoting.total_price + 50).toFixed(2);
+                vm.quoting.final_price = roundToEndZero(Math.round(vm.quoting.total_price + 50));
+            }
+        }
+
+        function roundToEndZero(price) {
+            while (price % 10 !== 0) {
+                price ++;
             }
 
-            console.log(vm.quoting);
+            return price;
         }
     }
 

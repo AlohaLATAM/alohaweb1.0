@@ -5,6 +5,7 @@ $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 
 $primary-color: #7fc31b;
 $header-links-color: #ffffff;
+$selection-color: #ffffff;
 
 @import "signin";
 @import "lead";
@@ -171,7 +172,7 @@ $header-links-color: #ffffff;
 }
 
 .page-heading {
-    margin: 50px 0;
+    margin: 100px 0;
 
     h2,
     h3,
@@ -206,7 +207,6 @@ $header-links-color: #ffffff;
 
 .form-group {
     .form-control {
-        border: 0;
         box-shadow: none;
         border: 1px solid #ddd;
         border-radius: 0;
@@ -231,8 +231,9 @@ $header-links-color: #ffffff;
         margin-bottom: 10px;
 
         &.selected {
+            background-color: $primary-color;
             border-color: $primary-color;
-            color: $primary-color;
+            color: $selection-color;
             opacity: 1;
         }
 
@@ -243,6 +244,7 @@ $header-links-color: #ffffff;
 
         p {
             line-height: 1em;
+            font-size: 12px;
         }
     }
 }
@@ -259,4 +261,20 @@ $header-links-color: #ffffff;
     &.lg {
         font-size: 35px!important;
     }
+}
+
+.home-map {
+    visibility: hidden;
+}
+
+.small {
+    font-size: 11px;
+}
+
+.calculate-moving {
+    margin-top: 50px;
+}
+
+.modal-container {
+    padding: 50px;
 }
