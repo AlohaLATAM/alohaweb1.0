@@ -24,6 +24,12 @@
                 abstract: true,
                 templateUrl: 'scripts/views/public/template.html'
             })
+            .state('public.Home', {
+                url: '/',
+                templateUrl: 'scripts/views/public/home/home.html',
+                controller: 'HomeCtrl',
+                controllerAs: 'vm'
+            })
             .state('public.Signin', {
                 url: '/access',
                 templateUrl: 'scripts/views/public/signin/signin.html',
@@ -35,7 +41,7 @@
                 templateUrl: 'scripts/views/auth/template.html'
             })
             .state('auth.Dashboard', {
-                url: '/',
+                url: '/panel',
                 templateUrl: 'scripts/views/auth/dashboard/dashboard.html',
                 controller: 'DashboardCtrl',
                 controllerAs: 'vm'

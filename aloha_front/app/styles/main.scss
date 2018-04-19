@@ -3,9 +3,16 @@ $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 @import "bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 // endbower
 
+$primary-color: #7fc31b;
+$header-links-color: #ffffff;
+
 @import "signin";
 @import "lead";
 @import "loader";
+
+[ng-click] {
+    cursor: pointer;
+}
 
 .container {
     max-width: 750px;
@@ -151,4 +158,105 @@ $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 .clear {
     display: inline-block;
     width: 100%;
+}
+
+.navbar-primary {
+    background-color: $primary-color;
+    border: 0;
+    border-radius: 0;
+
+    .navbar-nav > li > a {
+        color: $header-links-color;
+    }
+}
+
+.page-heading {
+    margin: 50px 0;
+
+    h2,
+    h3,
+    h4 {
+        margin: 0;
+        font-weight: 300;
+    }
+
+    h3 {
+        line-height: 1.3;
+        letter-spacing: 1px;
+    }
+
+    .heading-image {
+        margin: 30px 0;
+        padding: 0 50px;
+        clear: both;
+
+        img {
+            max-width: 100%;
+        }
+    }
+
+    .alert-info {
+        margin: 40px 0;
+    }
+}
+
+.text-muted {
+    color: #637381;
+}
+
+.form-group {
+    .form-control {
+        border: 0;
+        box-shadow: none;
+        border: 1px solid #ddd;
+        border-radius: 0;
+        font-size: 15px;
+        text-align: center;
+    }
+}
+
+.option-list {
+    margin-top: 20px;
+
+    &:after {
+        clear: both;
+        content: ' ';
+        display: table;
+    }
+
+    .selection-box {
+        border: 5px solid transparent;
+        opacity: 0.6;
+        border-radius: 10px;
+        margin-bottom: 10px;
+
+        &.selected {
+            border-color: $primary-color;
+            color: $primary-color;
+            opacity: 1;
+        }
+
+        i {
+            font-size: 30px;
+            line-height: 50px;
+        }
+
+        p {
+            line-height: 1em;
+        }
+    }
+}
+
+.fa {
+    &.xs {
+        font-size: 20px!important;
+    }
+
+    &.md {
+        font-size: 25px!important;
+    }
+
+    &.lg {
+        font-size: 35px!important;
+    }
 }
