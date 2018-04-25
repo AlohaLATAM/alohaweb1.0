@@ -53,7 +53,8 @@ INSTALLED_APPS = [
     'truck_size_types',
     'trucks',
     'zones',
-    'accounts'
+    'accounts',
+    'client_quotations'
 ]
 
 MIDDLEWARE = [

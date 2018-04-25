@@ -33,7 +33,8 @@
             destroyInventoryItem: destroyInventoryItem,
             createTruck: createTruck,
             listTrucks: listTrucks,
-            updateQuotation: updateQuotation
+            updateQuotation: updateQuotation,
+            createWebQuotation: createWebQuotation
         };
 
         function signIn(username, password) {
@@ -356,6 +357,25 @@
             }
 
             var p = Api.updateQuotation(quotationId, params);
+
+            p = p.then(
+                function (response) {
+                    return response;
+                },
+                function (error) {
+                    return $q.reject(error.data);
+                }
+            );
+
+            return p;
+        }
+
+        function createWebQuotation(quotation) {
+            if (quotation.payment_method === 'others') {
+                delete quotation.card;
+            }
+
+            var p = Api.createWebQuotation(quotation);
 
             p = p.then(
                 function (response) {

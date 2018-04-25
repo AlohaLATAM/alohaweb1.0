@@ -9,8 +9,81 @@
 
         <div ng-if="vm.calculated" class="calculated-box">
             <h4>El precio de tu mudanza es de</h4>
-            <h1>{{ vm.quoting.final_price }}</h1>
-            <button ng-click="vm.calculateAmount()" class="btn btn-success">Programa tu mudanza ahora</button>
+            <h1>{{ vm.quoting.final_price | currency:'S/ ' }}</h1>
+            <button ng-if="!vm.registration" ng-click="vm.acceptAmount()" class="btn btn-success">Programa tu mudanza ahora</button>
+        </div>
+        
+        <div ng-if="vm.registration" class="text-left">
+            <hr>
+            <form ng-submit="vm.registerService()" class="form">
+                <div class="form-group">
+                    <label for="name">Nombre</label>
+                    <input ng-model="vm.quoting.customer.first_name" type="text" class="form-control" id="name" placeholder="Tus nombres" required>
+                </div>
+                <div class="form-group">
+                    <label for="last_name">Apellidos</label>
+                    <input ng-model="vm.quoting.customer.last_name" type="text" class="form-control" id="last_name" placeholder="Tus apellidos" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone_number">Teléfono</label>
+                    <input ng-model="vm.quoting.customer.phone_number" type="text" class="form-control" id="phone_number" placeholder="Tu número de teléfono" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo</label>
+                    <input ng-model="vm.quoting.customer.email" type="text" class="form-control" id="email" placeholder="Tu dirección de correo electrónico" required>
+                </div>
+                <div class="form-group">
+                    <label>Fecha del servicio</label>
+                    <div>{{ vm.quoting.service_date }}</div>
+                    <div class="text-center col-md-8 col-md-offset-2">
+                        <datetimepicker ng-model="vm.quoting.service_date" data-datetimepicker-config="{ startView:'day', minView:'hour' }"></datetimepicker>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="observations">Observaciones</label>
+                    <textarea ng-model="vm.quoting.observations" class="form-control" id="observations" placeholder="Detalles del servicio"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Forma de Pago</label>
+                    <br>
+                    <label><input ng-model="vm.quoting.payment_method" type="radio" value="card"> Tarjeta de Crédito o Débito</label>
+                    <br>
+                    <label><input ng-model="vm.quoting.payment_method" type="radio" value="others"> Otro método de pago</label>
+                </div>
+                <div ng-if="vm.quoting.payment_method === 'card'" class="jumbotron">
+                    <label>Datos de la tarjeta</label>
+                    <hr>
+                    <div class="form-group">
+                        <label for="card_number">Número de Tarjeta</label>
+                        <input ng-model="vm.quoting.card.card_number" class="form-control" id="card_number" placeholder="XXXX ...">
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <label for="exp_month">Mes de Exp.</label>
+                            <select ng-model="vm.quoting.card.card_exp_month" class="form-control" id="exp_month" required>
+                                <option ng-repeat="month in vm.months" value="{{ month }}">{{ month }}</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-6">
+                            <label for="exp_year">Año de Exp.</label>
+                            <select ng-model="vm.quoting.card.card_exp_year" class="form-control" id="exp_year" required>
+                                <option ng-repeat="year in vm.years" value="{{ year }}">{{ year }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="clear" for="cvv">CVV</label>
+                        <div class="col-xs-4">
+                            <input ng-model="vm.quoting.card.card_cvv" type="text" class="form-control" id="cvv" placeholder="XXX">
+                        </div>
+                        <div class="col-xs-8">
+                            <span class="small no-padding">Número de 3-4 dígitos en la parte posterior de la tarjeta</span>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <button class="btn btn-success btn-block">Programar mudanza ahora!</button>
+            </form>
         </div>
     </div>
 </div>

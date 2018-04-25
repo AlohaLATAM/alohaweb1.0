@@ -278,3 +278,20 @@ $selection-color: #ffffff;
 .modal-container {
     padding: 50px;
 }
+
+.datetimepicker {
+    clear: both;
+    margin: auto;
+    border: 1px solid #ddd;
+}
+
+.text-left {
+    input,
+    textarea {
+        text-align: left!important;
+    }
+}
+
+.no-padding {
+    padding: 0;
+}

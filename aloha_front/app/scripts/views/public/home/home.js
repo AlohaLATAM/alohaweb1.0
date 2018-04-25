@@ -5,11 +5,11 @@
     angular.module('Public')
         .controller('HomeCtrl', HomeCtrl);
 
-    function HomeCtrl($scope, $uibModal, Main) {
+    function HomeCtrl($timeout, $scope, $uibModal, Main) {
         var vm = this;
         vm.quoting = {
             floor_from: 1,
-            floor_to: 1,
+            floor_to: 1
         };
         vm.steps = 1;
 
@@ -23,6 +23,7 @@
         vm.makeSelection = makeSelection;
         vm.calculateRoute = calculateRoute;
         vm.calculateAmount = calculateAmount;
+        vm.nextStep = function () { vm.steps ++; };
 
         function init() {
             generateMap();
@@ -38,8 +39,6 @@
 
             map = new google.maps.Map(document.getElementById('map'), mapOptions);
             directionsDisplay.setMap(map);
-
-            calculateRoute();
         }
 
         function listTrucks() {
@@ -48,7 +47,7 @@
             p.then(
                 function (response) {
                     vm.typeTrucks = response;
-                    makeSelection('truck_type', vm.typeTrucks[0], true);
+                    // makeSelection('truck_type', vm.typeTrucks[0], true);
                 }
             );
         }
@@ -61,8 +60,8 @@
                     vm.homeTypesFrom = angular.copy(response);
                     vm.homeTypesTo = angular.copy(response);
 
-                    makeSelection('home_type_from', vm.homeTypesFrom[0]);
-                    makeSelection('home_type_to', vm.homeTypesTo[0]);
+                    // makeSelection('home_type_from', vm.homeTypesFrom[0]);
+                    // makeSelection('home_type_to', vm.homeTypesTo[0]);
                 }
             );
         }
@@ -70,6 +69,7 @@
         function makeSelection(type, value) {
             switch (type) {
                 case 'home_type_from':
+                    vm.steps = (vm.steps === 1) ? vm.steps + 1 : vm.steps;
                     vm.homeTypesFrom = vm.homeTypesFrom.map(
                         function (item) {
                             if (item.active) {
@@ -80,9 +80,11 @@
                         }
                     );
                     vm.homeTypesFromSelected = value;
+                    vm.quoting.home_type_from_id = vm.homeTypesFromSelected.id;
                     break;
 
                 case 'home_type_to':
+                    vm.steps = (vm.steps === 2) ? vm.steps + 1 : vm.steps;
                     vm.homeTypesTo = vm.homeTypesTo.map(
                         function (item) {
                             if (item.active) {
@@ -93,6 +95,7 @@
                         }
                     );
                     vm.homeTypesToSelected = value;
+                    vm.quoting.home_type_to_id = vm.homeTypesToSelected.id;
                     break;
 
                 case 'truck_type':
@@ -106,6 +109,7 @@
                         }
                     );
                     vm.typeTrucksSelected = value;
+                    vm.quoting.truck_size_type_id = vm.typeTrucksSelected.id;
                     vm.quoting.packaging_time_aprox = vm.typeTrucksSelected.time_per_service;
                     calculateTruckPrice();
                     break;
@@ -127,12 +131,16 @@
                 language: 'es'
             };
 
-            getRoute(request);
+            $timeout(
+                function () {
+                    getRoute(request);
+                }, 500
+            );
         }
         
         function calculateAmount() {
             if (!vm.quoting.final_price) {
-                return;
+                calculateRoute();
             }
 
             $uibModal.open({
@@ -160,14 +168,12 @@
                     calculateTruckPrice();
 
                     $scope.$apply();
-                } else {
-                    getRoute(request);
                 }
             });
         }
 
         function calculateTruckPrice() {
-            if (vm.quoting.travel_time_aprox) {
+            if (vm.quoting.travel_time_aprox && vm.typeTrucksSelected) {
                 var timeAprox = vm.quoting.travel_time_aprox / 60;
                 var truckPrice = vm.typeTrucksSelected.hour_price;
 

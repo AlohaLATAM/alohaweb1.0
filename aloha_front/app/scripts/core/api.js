@@ -32,7 +32,8 @@
             destroyInventoryItem: destroyInventoryItem,
             createTruck: createTruck,
             listTrucks: listTrucks,
-            updateQuotation: updateQuotation
+            updateQuotation: updateQuotation,
+            createWebQuotation: createWebQuotation
         };
 
         function signIn(params) {
@@ -109,6 +110,10 @@
 
         function updateQuotation(quotationId, params, token) {
             return __put('quotations/' + quotationId, params, token);
+        }
+
+        function createWebQuotation(quotation) {
+            return __post('client_quotations', quotation);
         }
 
         function __post(endpoint, params, token) {

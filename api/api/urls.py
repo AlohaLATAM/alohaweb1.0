@@ -27,6 +27,7 @@ urlpatterns = [
     path('api/leads/', include('leads.urls')),
     path('api/home_types/', include('home_types.urls')),
     path('api/quotations/', include('quotations.urls')),
+    path('api/client_quotations/', include('client_quotations.urls')),
     path('api/drivers/', include('drivers.urls')),
     path('api/inventory/', include('inventory_stuff.urls')),
     path('api/trucks/', include('trucks.urls')),
