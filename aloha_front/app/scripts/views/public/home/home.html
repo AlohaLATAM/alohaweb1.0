@@ -1,69 +1,181 @@
 <public-header></public-header>
-<div class="container">
+<div class="container-fluid primary-degradent">
+    <div class="container">
 
-    <div class="page-heading text-center">
-        <h1>¿Listo para mudarte?</h1>
-        <h3 class="text-muted">Empieza ahora, tu mudanza en Lima a 3 clics.</h3>
+        <div class="page-heading text-center">
+            <h1>¿Listo para mudarte?</h1>
+            <h3>Empieza ahora, tu mudanza en Lima a 3 clics.</h3>
+        </div>
+
+        <div class="steps-container">
+            <form class="col-md-8 col-md-offset-2">
+                <div class="form-group">
+
+                    <label>Escribe aquí desde donde te mudas:</label>
+                    <input ng-model="vm.quoting.address_from" ng-blur="vm.calculateRoute()" google-place type="text" class="form-control" placeholder="¿Desde dónde te mudas?" autofocus required>
+
+                    <div class="option-list">
+                        <div ng-click="vm.makeSelection('home_type_from', type)" ng-repeat="type in vm.homeTypesFrom" class="col-xs-4">
+                            <div ng-class="{'selected' : type.active}" class="selection-box text-center">
+                                <i ng-class="type.icon" class="fa"></i>
+                                <p>{{ type.name }}</p>
+                            </div>
+                        </div>
+                        <div ng-if="vm.homeTypesFromSelected.value === 'building'" class="text-center">
+                            <label>¿Desde que piso de mudas?</label>
+                            <div class="col-xs-6 col-xs-offset-3">
+                                <input ng-model="vm.quoting.floor_from" type="number" class="form-control" placeholder="Piso" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-show="vm.steps > 2" class="form-group">
+                    <hr>
+
+                    <input ng-model="vm.quoting.address_to" ng-blur="vm.calculateRoute()" google-place type="text" class="form-control" placeholder="¿Hacia dónde te mudas?">
+
+                    <div class="option-list">
+                        <div ng-click="vm.makeSelection('home_type_to', type)" ng-repeat="type in vm.homeTypesTo" class="col-xs-4">
+                            <div ng-class="{'selected' : type.active}" class="selection-box text-center">
+                                <i ng-class="type.icon" class="fa"></i>
+                                <p>{{ type.name }}</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-xs-offset-3">
+                            <input ng-model="vm.quoting.floor_to" ng-if="vm.homeTypesToSelected.value === 'building'" type="number" class="form-control" placeholder="Piso">
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-show="vm.steps > 3" class="form-group">
+                    <hr>
+
+                    <div class="text-center">
+                        <label>¿Qué tipo de camión necesitas?</label>
+                    </div>
+
+                    <div class="option-list">
+                        <div ng-click="vm.makeSelection('truck_type', type)" ng-repeat="type in vm.typeTrucks" class="col-xs-4">
+                            <div ng-class="{'selected': type.active}" class="selection-box text-center">
+                                <i ng-class="type.value" class="fa fa-truck"></i>
+                                <p>{{ type.name }}</p>
+                            </div>
+                            <p class="small text-muted text-center">{{ type.description }}</p>
+                        </div>
+                    </div>
+
+                    <div class="calculate-moving text-center">
+                        <button ng-click="vm.calculateAmount()" class="btn btn-success">Empieza a mudarte</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div id="map" class="hidden"></div>
     </div>
+</div>
 
-    <div class="steps-container">
-        <form class="col-md-8 col-md-offset-2">
-            <div class="form-group">
-                <input ng-model="vm.quoting.address_from" ng-blur="vm.calculateRoute()" google-place type="text" class="form-control" placeholder="¿Desde dónde te mudas?" autofocus required>
-
-                <div class="option-list">
-                    <div ng-click="vm.makeSelection('home_type_from', type)" ng-repeat="type in vm.homeTypesFrom" class="col-xs-4">
-                        <div ng-class="{'selected' : type.active}" class="selection-box text-center">
-                            <i ng-class="type.icon" class="fa"></i>
-                            <p>{{ type.name }}</p>
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-xs-offset-3">
-                        <input ng-model="vm.quoting.floor_from" ng-if="vm.homeTypesFromSelected.value === 'building'" type="number" class="form-control" placeholder="Piso" required>
-                    </div>
+<div class="container-fluid">
+    <div class="container">
+        <div class="content-box">
+            <div class="col-md-6">
+                <iframe width="100%" height="200" src="https://www.youtube.com/embed/SRmCEGHt-Qk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+            <div class="col-md-6">
+                <div class="what-we-do-content">
+                    <span>La manera más rápida, fácil y segura para tu mudanza en solo tres clicks. Mira el video y descubre como programar tu mudanza ahora.</span>
                 </div>
             </div>
-
-            <div ng-show="vm.steps > 2" class="form-group">
-                <hr>
-
-                <input ng-model="vm.quoting.address_to" ng-blur="vm.calculateRoute()" google-place type="text" class="form-control" placeholder="¿Hacia dónde te mudas?">
-
-                <div class="option-list">
-                    <div ng-click="vm.makeSelection('home_type_to', type)" ng-repeat="type in vm.homeTypesTo" class="col-xs-4">
-                        <div ng-class="{'selected' : type.active}" class="selection-box text-center">
-                            <i ng-class="type.icon" class="fa"></i>
-                            <p>{{ type.name }}</p>
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-xs-offset-3">
-                        <input ng-model="vm.quoting.floor_to" ng-if="vm.homeTypesToSelected.value === 'building'" type="number" class="form-control" placeholder="Piso">
-                    </div>
-                </div>
-            </div>
-
-            <div ng-show="vm.steps > 3" class="form-group">
-                <hr>
-
-                <div class="text-center">
-                    <label>¿Qué tipo de camión necesitas?</label>
-                </div>
-
-                <div class="option-list">
-                    <div ng-click="vm.makeSelection('truck_type', type)" ng-repeat="type in vm.typeTrucks" class="col-xs-4">
-                        <div ng-class="{'selected': type.active}" class="selection-box text-center">
-                            <i ng-class="type.value" class="fa fa-truck"></i>
-                            <p>{{ type.name }}</p>
-                        </div>
-                        <p class="small text-muted text-center">{{ type.description }}</p>
-                    </div>
-                </div>
-
-                <div class="calculate-moving text-center">
-                    <button ng-click="vm.calculateAmount()" class="btn btn-success">Empieza a mudarte</button>
-                </div>
-            </div>
-        </form>
+        </div>
     </div>
-    <div id="map" class="hidden"></div>
+</div>
+
+<div class="container-fluid light-grey">
+    <div class="container">
+        <div class="content-box">
+            <h1 class="text-center">Haz tu mudanza más fácil</h1>
+            <div class="col-md-4">
+                <div class="item-image rounded">
+                    <img class="full-width" src="images/truck.png">
+                </div>
+                <div class="item-content text-center">
+                    <h3>Consigue un camión para tu mudanza</h3>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="item-image rounded">
+                    <img class="full-width" src="images/map.png">
+                </div>
+                <div class="item-content text-center">
+                    <h3>Donde sea,<br>cuando sea</h3>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="item-image rounded">
+                    <img class="full-width" src="images/time.png">
+                </div>
+                <div class="item-content text-center">
+                    <h3>Ahorra tiempo <br>en buscar</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="container">
+        <div class="content-box">
+            <div class="col-md-6">
+                <div class="what-we-do-content">
+                    <span>Contamos con más de 70 camiones y ayudantes certificados cerca a tu casa para tu mudanza.</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img class="full-width" src="images/map_pc.jpg">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid light-grey">
+    <div class="container">
+        <div class="content-box">
+            <h1 class="text-center">+ de 300 clientes felices</h1>
+            <div class="col-md-4">
+                <div class="item-image rounded">
+                    <img class="full-width" src="images/comment-1.png">
+                </div>
+                <div class="item-content text-center">
+                    <h3>"El servicio muy rápido y cumplido."</h3>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="item-image rounded">
+                    <img class="full-width" src="images/comment-2.png">
+                </div>
+                <div class="item-content text-center">
+                    <h3>"Los mejores en mudanzas."</h3>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="item-image rounded">
+                    <img class="full-width" src="images/comment-3.png">
+                </div>
+                <div class="item-content text-center">
+                    <h3>"Todo muy bueno. Excelente."</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid text-center">
+    <div class="container">
+        <div class="content-box">
+            <h1><b>¿Listo para mudarte?</b></h1>
+            <div class="col-md-8 col-md-offset-2 quoting-link">
+                <button class="btn btn-default btn-block btn-aloha btn-lg">¿Desde dónde te mudas?</button>
+            </div>
+        </div>
+    </div>
 </div>

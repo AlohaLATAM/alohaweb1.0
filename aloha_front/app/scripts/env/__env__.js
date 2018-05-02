@@ -11,8 +11,8 @@
 
     window.__env__ = {
         // API_ROOT: 'http://localhost:8000',
-        // API_ROOT: 'https://panel.aloha.pe',
-        API_ROOT: '',
+        API_ROOT: 'https://panel.aloha.pe',
+        // API_ROOT: '',
         HTML5MODE: false
     };
 

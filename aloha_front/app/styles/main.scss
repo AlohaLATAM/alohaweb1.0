@@ -3,13 +3,55 @@ $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 @import "bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 // endbower
 
-$primary-color: #7fc31b;
+$primary-color: rgb(127, 195, 27);
 $header-links-color: #ffffff;
 $selection-color: #ffffff;
+$light-grey: rgb(230, 230, 230);
+$test-grey: rgb(106, 104, 104);
 
 @import "signin";
 @import "lead";
 @import "loader";
+
+body {
+    font-family: 'Muli', sans-serif;
+    color: rgb(106, 104, 104);
+}
+
+.primary-degradent {
+    background: rgba(128,195,27,1);
+    background: -moz-linear-gradient(top, rgba(128,195,27,1) 0%, rgba(177,255,61,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(128,195,27,1)), color-stop(100%, rgba(177,255,61,1)));
+    background: -webkit-linear-gradient(top, rgba(128,195,27,1) 0%, rgba(177,255,61,1) 100%);
+    background: -o-linear-gradient(top, rgba(128,195,27,1) 0%, rgba(177,255,61,1) 100%);
+    background: -ms-linear-gradient(top, rgba(128,195,27,1) 0%, rgba(177,255,61,1) 100%);
+    background: linear-gradient(to bottom, rgba(128,195,27,1) 0%, rgba(177,255,61,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80c31b', endColorstr='#b1ff3d', GradientType=0 );
+
+    color: #fff;
+}
+
+.navbar {
+    margin-top: 20px;
+}
+
+h1,
+h2,
+h3 {
+    font-weight: bold;
+}
+
+/*h1 {
+    font-size: 20px;
+}
+
+h2 {
+    font-size: 15px;
+}
+
+h3 {
+    font-size: 12px;
+}*/
 
 [ng-click] {
     cursor: pointer;
@@ -18,14 +60,6 @@ $selection-color: #ffffff;
 .container {
     max-width: 750px;
     width: 100%;
-}
-
-.fa-heart-o {
-    color: red;
-}
-
-.fa-code {
-    color: green;
 }
 
 .footer {
@@ -162,17 +196,23 @@ $selection-color: #ffffff;
 }
 
 .navbar-primary {
-    background-color: $primary-color;
+    background-color: $selection-color;
     border: 0;
     border-radius: 0;
 
     .navbar-nav > li > a {
-        color: $header-links-color;
+        color: $primary-color;
+        font-size: 20px;
+        font-weight: 300;
     }
 }
 
 .page-heading {
-    margin: 100px 0;
+    margin: 100px 0 40px;
+
+    h1 {
+        font-size: 50px;
+    }
 
     h2,
     h3,
@@ -184,6 +224,8 @@ $selection-color: #ffffff;
     h3 {
         line-height: 1.3;
         letter-spacing: 1px;
+        font-size: 30px;
+        margin-top: 30px;
     }
 
     .heading-image {
@@ -208,10 +250,11 @@ $selection-color: #ffffff;
 .form-group {
     .form-control {
         box-shadow: none;
-        border: 1px solid #ddd;
-        border-radius: 0;
-        font-size: 15px;
+        border: 1px solid #ccc;
         text-align: center;
+        font-size: 25px;
+        height: inherit;
+        border-radius: 5px;
     }
 }
 
@@ -226,9 +269,9 @@ $selection-color: #ffffff;
 
     .selection-box {
         border: 5px solid transparent;
-        opacity: 0.6;
         border-radius: 10px;
         margin-bottom: 10px;
+        opacity: .6;
 
         &.selected {
             background-color: $primary-color;
@@ -294,4 +337,139 @@ $selection-color: #ffffff;
 
 .no-padding {
     padding: 0;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.content-box {
+    padding: 100px 0;
+
+    &:after {
+        clear: both;
+        content: ' ';
+        display: table;
+    }
+
+    h1 {
+        margin-top: 0;
+        font-weight: 300;
+    }
+
+    .what-we-do-content {
+        font-size: 22px;
+        display: table-cell;
+        height: 200px;
+        vertical-align: middle;
+
+        span {
+            line-height: 1.5em;
+            display: inline-block;
+        }
+    }
+
+    .item-image {
+        padding: 30px 30px 0 30px;
+    }
+
+    .item-content {
+        font-size: 14px;
+        line-height: 1em;
+
+        h3 {
+            font-size: 20px;
+            color: #000;
+            font-weight: normal;
+        }
+    }
+}
+
+.rounded {
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.light-grey {
+    background-color: $light-grey;
+    color: #000;
+}
+
+.footer {
+    background-color: $primary-color;
+}
+
+.dark {
+    background-color: #212240;
+}
+
+.subfooter {
+    p {
+        color: #fff;
+        margin: 20px 0;
+    }
+}
+
+.footer {
+    color: #fff;
+
+    a {
+        color: #fff;
+    }
+
+    .container {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+}
+
+.steps-container {
+    label {
+        font-size: 20px;
+        color: $test-grey;
+        font-weight: 300;
+    }
+}
+
+.btn-aloha {
+    border: 1px solid $primary-color;
+    font-size: 25px;
+    font-weight: bold;
+    border-radius: 5px;
+    color: $test-grey;
+}
+
+.quoting-link {
+    margin-top: 30px;
+}
+
+.option-list {
+    color: #333;
+}
+
+.footer {
+    h3 {
+        font-weight: 300;
+        margin-bottom: 30px;
+    }
+
+    .social-links {
+        li {
+            a {
+                max-width: 30px;
+                display: inline-block;
+            }
+        }
+    }
+
+    ul {
+        li {
+            margin-bottom: 10px;
+
+            a {
+                font-weight: 300;
+                font-size: 15px;
+            }
+        }
+    }
 }
