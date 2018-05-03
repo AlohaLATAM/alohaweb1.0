@@ -24,6 +24,9 @@
         vm.calculateRoute = calculateRoute;
         vm.calculateAmount = calculateAmount;
         vm.nextStep = function () { vm.steps ++; };
+        vm.scrollUp = function () {
+            angular.element('html, body').animate({ scrollTop: 0 }, 300);
+        };
 
         function init() {
             generateMap();
@@ -137,7 +140,7 @@
                 }, 500
             );
         }
-        
+
         function calculateAmount() {
             if (!vm.quoting.final_price) {
                 calculateRoute();

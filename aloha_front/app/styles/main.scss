@@ -320,6 +320,11 @@ h3 {
 
 .modal-container {
     padding: 50px;
+
+    h1,
+    h3 {
+        color: #000;
+    }
 }
 
 .datetimepicker {
@@ -436,7 +441,19 @@ h3 {
     font-size: 25px;
     font-weight: bold;
     border-radius: 5px;
-    color: $test-grey;
+}
+
+.btn-default {
+    &.btn-aloha {
+        color: $test-grey;
+    }
+}
+
+.btn-success {
+    &.btn-aloha {
+        font-weight: 300;
+        color: #fff;
+    }
 }
 
 .quoting-link {
