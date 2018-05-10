@@ -18,7 +18,7 @@
         };
         vm.quoting.service_date = '';
         vm.quoting.observations = '';
-        vm.quoting.payment_method = 'card';
+        vm.quoting.payment_method = 'transf';
         vm.quoting.card = {
             card_amount: 0,
             card_number: '',
@@ -31,6 +31,7 @@
 
         vm.acceptAmount = acceptAmount;
         vm.registerService = registerService;
+        vm.showServiceDate = showServiceDate;
 
         init();
 
@@ -44,7 +45,11 @@
 
             populateDates();
         }
-        
+
+        function showServiceDate() {
+            return window.moment(vm.quoting.datetime_of_service).format('LLLL')
+        }
+
         function acceptAmount() {
             vm.registration = true;
         }

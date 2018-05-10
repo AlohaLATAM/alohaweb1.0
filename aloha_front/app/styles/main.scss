@@ -19,20 +19,19 @@ body {
 }
 
 .primary-degradent {
-    background: rgba(128,195,27,1);
-    background: -moz-linear-gradient(top, rgba(128,195,27,1) 0%, rgba(177,255,61,1) 100%);
-    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(128,195,27,1)), color-stop(100%, rgba(177,255,61,1)));
-    background: -webkit-linear-gradient(top, rgba(128,195,27,1) 0%, rgba(177,255,61,1) 100%);
-    background: -o-linear-gradient(top, rgba(128,195,27,1) 0%, rgba(177,255,61,1) 100%);
-    background: -ms-linear-gradient(top, rgba(128,195,27,1) 0%, rgba(177,255,61,1) 100%);
-    background: linear-gradient(to bottom, rgba(128,195,27,1) 0%, rgba(177,255,61,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80c31b', endColorstr='#b1ff3d', GradientType=0 );
+    background: #80c31b;
+    background: -moz-linear-gradient(-45deg, #80c31b 0%, #b1ff3d 100%);
+    background: -webkit-linear-gradient(-45deg, #80c31b 0%,#b1ff3d 100%);
+    background: linear-gradient(135deg, #80c31b 0%,#b1ff3d 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80c31b', endColorstr='#b1ff3d',GradientType=1 );
 
     color: #fff;
 }
 
 .navbar {
-    margin-top: 20px;
+    padding-top: 20px;
+    margin: 0;
+    padding-bottom: 20px;
 }
 
 h1,
@@ -208,7 +207,7 @@ h3 {
 }
 
 .page-heading {
-    margin: 100px 0 40px;
+    margin: 25vh 0 15vh;
 
     h1 {
         font-size: 50px;
@@ -489,4 +488,8 @@ h3 {
             }
         }
     }
+}
+
+.above-the-fold {
+    min-height: 100vh;
 }

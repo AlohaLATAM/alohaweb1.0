@@ -9,7 +9,8 @@
 
         <div ng-if="vm.calculated" class="calculated-box">
             <h4>El precio de tu mudanza es de</h4>
-            <h1>{{ vm.quoting.final_price | currency:'S/ ' }}</h1>
+            <h3><span class="small">Precio:</span> <s>{{ vm.quoting.final_price + 50 | currency:'S/ ' }}</s></h3>
+            <h1><span class="small">Precio promocional:</span> {{ vm.quoting.final_price | currency:'S/ ' }}</h1>
             <button ng-if="!vm.registration" ng-click="vm.acceptAmount()" class="btn btn-success">Programa tu mudanza ahora</button>
         </div>
 
@@ -34,52 +35,46 @@
                 </div>
                 <div class="form-group">
                     <label>Fecha del servicio</label>
-                    <div>{{ vm.quoting.service_date }}</div>
+                    <div>{{ vm.showServiceDate() }}</div>
                     <div class="text-center col-md-8 col-md-offset-2">
                         <datetimepicker ng-model="vm.quoting.service_date" data-datetimepicker-config="{ startView:'day', minView:'hour' }"></datetimepicker>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="observations">Observaciones</label>
-                    <textarea ng-model="vm.quoting.observations" class="form-control" id="observations" placeholder="Detalles del servicio"></textarea>
+                    <label for="observations">Detalla las cosas que deseas mudar <span class="text-muted">(Opcional)</span></label>
+                    <textarea ng-model="vm.quoting.observations" class="form-control" id="observations" placeholder="Detalla aquí"></textarea>
                 </div>
                 <div class="form-group">
                     <label>Forma de Pago</label>
                     <br>
-                    <label><input ng-model="vm.quoting.payment_method" type="radio" value="card"> Tarjeta de Crédito o Débito</label>
-                    <br>
-                    <label><input ng-model="vm.quoting.payment_method" type="radio" value="others"> Otro método de pago</label>
+                    <label><input ng-model="vm.quoting.payment_method" type="radio" value="transf"> Transferencia bancaria</label>
                 </div>
-                <div ng-if="vm.quoting.payment_method === 'card'" class="jumbotron">
-                    <label>Datos de la tarjeta</label>
-                    <hr>
-                    <div class="form-group">
-                        <label for="card_number">Número de Tarjeta</label>
-                        <input ng-model="vm.quoting.card.card_number" class="form-control" id="card_number" placeholder="XXXX ...">
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-6">
-                            <label for="exp_month">Mes de Exp.</label>
-                            <select ng-model="vm.quoting.card.card_exp_month" class="form-control" id="exp_month" required>
-                                <option ng-repeat="month in vm.months" value="{{ month }}">{{ month }}</option>
-                            </select>
-                        </div>
-                        <div class="col-xs-6">
-                            <label for="exp_year">Año de Exp.</label>
-                            <select ng-model="vm.quoting.card.card_exp_year" class="form-control" id="exp_year" required>
-                                <option ng-repeat="year in vm.years" value="{{ year }}">{{ year }}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="clear" for="cvv">CVV</label>
-                        <div class="col-xs-4">
-                            <input ng-model="vm.quoting.card.card_cvv" type="text" class="form-control" id="cvv" placeholder="XXX">
-                        </div>
-                        <div class="col-xs-8">
-                            <span class="small no-padding">Número de 3-4 dígitos en la parte posterior de la tarjeta</span>
-                        </div>
-                    </div>
+                <div class="alert alert-info">
+                    <i class="fa fa-info-circle"></i> Para separar el servicio y programar la unidad más cerca de usted es necesario que se haga un <b>depósito del 50%</b> del monto total del servicio.
+                    <br>
+                    <br>
+                    Una vez hecho el depósito deberá enviarnos el voucher por correo electrónico o whatsapp
+                    <br>
+                    <br>
+                    <ul class="list-unstyled">
+                        <li>
+                            Correo: <b>Jeymy@aloha.pe</b> / <b>Karim@aloha.pe</b>
+                        </li>
+                        <li>
+                            Whatsapp: <b>999 999 999</b>
+                        </li>
+                    </ul>
+                    <br>
+                    <ul class="list-unstyled">
+                        <li>
+                            <img src="https://panel.aloha.pe/static/images/bcp.jpg" style="max-width: 80px">
+                            <p>Cuenta corriente a nombre de <b>Aloha S.A.C</b></p>
+                            <p><b>Banco BCP</b> <br><b>191-2451785-0-03</b></p>
+                            <p><b>CCI: <br>00219100245178500358</b></p>
+                        </li>
+                    </ul>
+                    <br>
+                    Si tiene alguna duda o sugerencia no dude en contactarnos.
                 </div>
                 <hr>
                 <button class="btn btn-success btn-block">Programar mudanza ahora!</button>
