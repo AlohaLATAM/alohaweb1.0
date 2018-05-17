@@ -30,6 +30,10 @@
                 controller: 'HomeCtrl',
                 controllerAs: 'vm'
             })
+            .state('public.Thanks', {
+                url: '/gracias',
+                templateUrl: 'scripts/views/public/thanks/thanks.html'
+            })
             .state('public.Signin', {
                 url: '/access',
                 templateUrl: 'scripts/views/public/signin/signin.html',

@@ -77,7 +77,11 @@
                     Si tiene alguna duda o sugerencia no dude en contactarnos.
                 </div>
                 <hr>
-                <button class="btn btn-success btn-block">Programar mudanza ahora!</button>
+                <div ng-if="vm.error">
+                    <div class="alert alert-error">Ocurrió un problema, porfavor inténtalo nuevamente o comunícate con nosotros.</div>
+                    <hr>
+                </div>
+                <button ladda="vm.loading" class="btn btn-success btn-block">Programar mudanza ahora!</button>
             </form>
         </div>
     </div>

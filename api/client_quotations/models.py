@@ -58,7 +58,7 @@ class ClientQuotation(models.Model):
         packaging_price = data.get('packaging_price')
         packaging_time_aprox = data.get('packaging_time_aprox')
         payment_method = data.get('payment_method')
-        service_date = data.get('service_date')
+        service_date = data.get('datetime_of_service')
         total_price = data.get('total_price')
         travel_distance_aprox = data.get('travel_distance_aprox')
         travel_distance_aprox_label = data.get('travel_distance_aprox_label')
@@ -157,3 +157,5 @@ class ClientQuotation(models.Model):
                 quotation.delete()
 
                 return None, str(e)
+
+        return quotation.id, 'ok'

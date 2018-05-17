@@ -5,7 +5,7 @@
     angular.module('Public')
         .controller('CalculatingCtrl', CalculatingCtrl);
 
-    function CalculatingCtrl($timeout, Quoting, Main) {
+    function CalculatingCtrl($state, $timeout, $uibModalInstance, Quoting, Main) {
         var vm = this;
         vm.quoting = Quoting;
         console.log(Quoting);
@@ -59,13 +59,20 @@
 
             var p = Main.createWebQuotation(vm.quoting);
 
+            vm.loading = true;
+            vm.error = false;
+
             p.then(
-                function (response) {
-                    console.log(response);
-                    return response;
+                function () {
+                    $uibModalInstance.close();
+                    $state.go('public.Thanks');
                 },
                 function (error) {
-                    console.log(error);
+                    vm.error = error;
+                }
+            ).finally(
+                function () {
+                    vm.loading = false;
                 }
             );
         }
