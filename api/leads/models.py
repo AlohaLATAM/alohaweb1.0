@@ -15,14 +15,6 @@ class Lead(Person):
         if not first_name or not last_name or not phone_number:
             return None, 'Todos los campos son requeridos.'
 
-        if dni:
-            try:
-                registeredLead = Lead.objects.get(dni=dni)
-
-                return None, 'El DNI ya fue registrado anteriormente.'
-            except:
-                pass
-
         lead = Lead.objects.create(
             first_name=first_name,
             last_name=last_name,

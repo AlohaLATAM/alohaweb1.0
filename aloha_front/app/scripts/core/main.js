@@ -34,7 +34,8 @@
             createTruck: createTruck,
             listTrucks: listTrucks,
             updateQuotation: updateQuotation,
-            createWebQuotation: createWebQuotation
+            createWebQuotation: createWebQuotation,
+            updateWebQuotation: updateWebQuotation
         };
 
         function signIn(username, password) {
@@ -376,6 +377,21 @@
             }
 
             var p = Api.createWebQuotation(quotation);
+
+            p = p.then(
+                function (response) {
+                    return response;
+                },
+                function (error) {
+                    return $q.reject(error.data);
+                }
+            );
+
+            return p;
+        }
+
+        function updateWebQuotation(quotation) {
+            var p = Api.updateWebQuotation(quotation);
 
             p = p.then(
                 function (response) {

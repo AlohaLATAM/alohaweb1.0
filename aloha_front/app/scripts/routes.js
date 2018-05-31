@@ -40,6 +40,14 @@
                 controller: 'SigninCtrl',
                 controllerAs: 'vm'
             })
+            .state('public.About', {
+                url: '/nosotros',
+                templateUrl: 'scripts/views/public/single/about-us.html'
+            })
+            .state('public.Contact', {
+                url: '/contacto',
+                templateUrl: 'scripts/views/public/single/contact-us.html'
+            })
             .state('auth', {
                 abstract: true,
                 templateUrl: 'scripts/views/auth/template.html'

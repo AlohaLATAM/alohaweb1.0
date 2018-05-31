@@ -33,7 +33,8 @@
             createTruck: createTruck,
             listTrucks: listTrucks,
             updateQuotation: updateQuotation,
-            createWebQuotation: createWebQuotation
+            createWebQuotation: createWebQuotation,
+            updateWebQuotation: updateWebQuotation
         };
 
         function signIn(params) {
@@ -114,6 +115,10 @@
 
         function createWebQuotation(quotation) {
             return __post('client_quotations', quotation);
+        }
+
+        function updateWebQuotation(quotation) {
+            return __put('client_quotations/' + quotation.id, quotation);
         }
 
         function __post(endpoint, params, token) {

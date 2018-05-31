@@ -69,7 +69,7 @@ class ClientQuotation(models.Model):
         home_type_to_id = data.get('home_type_to_id')
         truck_size_type_id = data.get('truck_size_type_id')
 
-        if not address_from or not home_type_from_id or not floor_from or not address_to or not home_type_to_id or not floor_to or not travel_distance_aprox or not travel_time_aprox or not truck_size_type_id or not packaging_time_aprox or not packaging_price or not travel_price or not total_price or not final_price or not payment_method or not service_date:
+        if not address_from or not home_type_from_id or not floor_from or not address_to or not home_type_to_id or not floor_to or not travel_distance_aprox or not travel_time_aprox or not truck_size_type_id or not packaging_time_aprox or not packaging_price or not travel_price or not total_price or not final_price or not payment_method:
             return None, 'Revise que todos los campos estén completos.'
 
         try:
@@ -82,10 +82,6 @@ class ClientQuotation(models.Model):
             truck_size_type = TruckSizeType.objects.get(pk=truck_size_type_id)
         except:
             return None, 'El tipo de camión no es válido.'
-
-        print('HERE')
-        print(truck_size_type)
-        print(payment_method == 'card')
 
         quotation = ClientQuotation.objects.create(
             lead=lead,
@@ -157,5 +153,24 @@ class ClientQuotation(models.Model):
                 quotation.delete()
 
                 return None, str(e)
+
+        return quotation.id, 'ok'
+
+    def update(self, data, pk=None):
+        observations = data.get('observations')
+        service_date = data.get('datetime_of_service')
+
+        if not observations or not service_date:
+            return None, 'Revise que todos los campos estén completos.'
+
+        try:
+            quotation = ClientQuotation.objects.get(pk=pk)
+        except:
+            return None, 'Cotización no encontrada.'
+
+        quotation.observations = observations
+        quotation.service_date = service_date
+
+        quotation.save()
 
         return quotation.id, 'ok'

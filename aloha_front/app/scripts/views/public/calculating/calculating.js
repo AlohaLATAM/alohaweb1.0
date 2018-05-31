@@ -9,7 +9,6 @@
         var vm = this;
         vm.quoting = Quoting;
         console.log(Quoting);
-        vm.calculating = true;
         vm.quoting.customer = {
             first_name: '',
             last_name: '',
@@ -32,22 +31,10 @@
         vm.acceptAmount = acceptAmount;
         vm.registerService = registerService;
         vm.showServiceDate = showServiceDate;
-
-        init();
-
-        function init() {
-            $timeout(
-                function () {
-                    vm.calculating = false;
-                    vm.calculated = true;
-                }, 3000
-            );
-
-            populateDates();
-        }
+        vm.updateService = updateService;
 
         function showServiceDate() {
-            return window.moment(vm.quoting.datetime_of_service).format('LLLL')
+            return window.moment(vm.quoting.datetime_of_service).format('LLLL');
         }
 
         function acceptAmount() {
@@ -58,6 +45,37 @@
             vm.quoting.card.amount = vm.quoting.final_price * 100;
 
             var p = Main.createWebQuotation(vm.quoting);
+
+            vm.loading = true;
+            vm.error = false;
+
+            p.then(
+                function (response) {
+                    /* $uibModalInstance.close();
+                    $state.go('public.Thanks'); */
+                    vm.showPriceCalculation = true;
+                    vm.calculating = true;
+                    vm.quoting = response;
+
+                    $timeout(
+                        function () {
+                            vm.calculating = false;
+                            vm.calculated = true;
+                        }, 3000
+                    );
+                },
+                function (error) {
+                    vm.error = error;
+                }
+            ).finally(
+                function () {
+                    vm.loading = false;
+                }
+            );
+        }
+
+        function updateService() {
+            var p = Main.updateWebQuotation(vm.quoting);
 
             vm.loading = true;
             vm.error = false;
@@ -75,26 +93,6 @@
                     vm.loading = false;
                 }
             );
-        }
-
-        function populateDates() {
-            var year = new Date().getFullYear();
-            var month = '';
-
-            for (var i = 0; i <= 10; i ++) {
-                vm.years.push(year + i);
-            }
-
-            for (var j = 1; j <= 12; j ++) {
-                month = '';
-
-                if (j < 10) {
-                    month = '0';
-
-                }
-
-                vm.months.push(month + j);
-            }
         }
     }
 

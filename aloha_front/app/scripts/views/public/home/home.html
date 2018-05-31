@@ -51,9 +51,20 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div id="map" class="public-map" ng-class="{'show': vm.showMap}"></div>
+
+                        <div ng-hide="vm.showTruckType">
+                            <div ng-if="vm.showMap" class="alert alert-info">Si los puntos mostrados en el mapa no concuerdan con los puntos que usted desea entonces deberá cambiar las direcciones antes ingresadas.</div>
+
+                            <div class="calculate-moving text-center">
+                                <a class="btn btn-success btn-aloha" ng-click="vm.calculateRoute(); vm.showMap = true;">Verificar direcciones</a>
+                                <a ng-if="vm.showMap" ng-click="vm.showMap = false; vm.showTruckType = true;" class="btn btn-default btn-aloha">Confirmar direcciones</a>
+                            </div>
+                        </div>
                     </div>
 
-                    <div ng-show="vm.steps > 3" class="form-group">
+                    <div ng-show="vm.showTruckType" class="form-group">
                         <hr>
 
                         <div class="text-center">
@@ -76,7 +87,6 @@
                     </div>
                 </form>
             </div>
-            <div id="map" class="hidden"></div>
         </div>
     </div>
 </div>
