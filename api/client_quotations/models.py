@@ -33,6 +33,7 @@ class ClientQuotation(models.Model):
     truck_size_type = models.ForeignKey(TruckSizeType, on_delete=models.CASCADE, default=None)
     culqui_token = models.CharField(max_length=200, null=True)
     culqui_charge = models.CharField(max_length=200, null=True)
+    created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
     def register(self, data):
         customer = data.get('customer')

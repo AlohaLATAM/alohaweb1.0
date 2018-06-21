@@ -53,6 +53,8 @@
             p.then(
                 function (driver) {
                     vm.driver = driver;
+
+                    generateMap();
                 }
             );
         }
@@ -81,6 +83,24 @@
                     vm.error = error;
                 }
             );
+        }
+
+        function generateMap() {
+            var map;
+            var lima = new google.maps.LatLng(-12.0266032,-77.1282069);
+            var mapOptions = {
+                zoom: 15,
+                center: lima
+            };
+
+            map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+            var marker = new google.maps.Marker({
+                position: lima,
+                map: map
+            });
+
+            marker.setMap(map);
         }
     }
 

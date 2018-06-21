@@ -3,7 +3,7 @@ from .models import ClientQuotation
 
 
 class ClientQuotationAdmin(admin.ModelAdmin):
-    list_display = ('get_account', 'get_account_phone', 'address_from', 'address_to', 'service_date', 'get_truck', 'final_price')
+    list_display = ('get_account', 'get_account_phone', 'address_from', 'address_to', 'service_date', 'get_truck', 'final_price', 'created')
 
     def get_account(self, obj):
         return obj.lead.first_name + ' ' + obj.lead.last_name
