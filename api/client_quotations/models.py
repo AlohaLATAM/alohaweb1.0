@@ -79,7 +79,7 @@ class ClientQuotation(models.Model):
         if not floor_from or not floor_to:
             return None, 'Revise que haya ingresado el número de piso.'
 
-        if not travel_distance_aprox or not travel_time_aprox:
+        if travel_distance_aprox is None or travel_time_aprox is None:
             return None, 'El mapa no está mostrando la distancia correcta.'
 
         if not truck_size_type_id:
