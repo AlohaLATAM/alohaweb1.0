@@ -1,0 +1,153 @@
+@font-face {
+    font-family: Poppins Light;
+    src: url(../fonts/Poppins-Light.ttf);
+}
+
+@font-face {
+    font-family: Poppins Regular;
+    src: url(../fonts/Poppins-Regular.ttf);
+}
+
+@font-face {
+    font-family: Poppins Medium;
+    src: url(../fonts/Poppins-Medium.ttf);
+}
+
+@font-face {
+    font-family: Poppins Bold;
+    src: url(../fonts/Poppins-Bold.ttf);
+}
+
+@font-face {
+    font-family: Poppins Black;
+    src: url(../fonts/Poppins-Black.ttf);
+}
+
+body,
+a {
+    color: #767676;
+    font-family: "Poppins Regular", sans-serif;
+    font-size: 16px;
+    position: relative;
+    font-weight: normal;
+}
+
+a {
+    display: inline-block;
+}
+
+a:hover,
+a.active {
+    color: #7fc31b;
+}
+
+.main-logo img {
+    max-height: 72px;
+}
+
+.navbar-nav {
+    padding: 11px 0;
+}
+
+.navbar-nav a {
+    border-bottom: 3px solid transparent;
+    background-color: transparent!important;
+}
+
+.navbar-nav a.active:before,
+.navbar-nav a:hover:before {
+    content: ' ';
+    display: inline-block;
+    position: absolute;
+    border-bottom: 3px solid #7fc31b;
+    bottom: 0;
+    width: 30px;
+    left: 30px;
+}
+
+.btn {
+    border: 2px solid #7fc31b!important;
+}
+
+.btn-primary {
+    background-color: #7fc31b!important;
+}
+
+.btn-default {
+    color: #7fc31b!important;
+}
+
+.above-content h1 {
+    color: #595b57;
+    font-size: 72px;
+    font-family: "Poppins Bold", sans-serif;
+}
+
+.above-content p {
+    line-height: 1.6em;
+    font-size: 18px;
+    font-family: "Poppins Light", sans-serif;
+    margin: 35px 0;
+}
+
+.call-to-action .btn {
+    font-size: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.add-padding {
+    padding-left: 60px!important;
+    padding-right: 60px!important;
+}
+
+.margin-less {
+    margin: 0!important;
+}
+
+.padding-less {
+    padding: 0!important;
+}
+
+.section {
+    padding: 110px 0 135px;
+}
+
+.section:after {
+    clear: both;
+    content: ' ';
+    display: table;
+}
+
+img {
+    max-width: 100%;
+}
+
+.above-image-content {
+    padding-top: 80px;
+}
+
+.green {
+    background-color: #f7fff2;
+}
+
+b {
+    font-family: "Poppins Bold", sans-serif;
+}
+
+.section h2.main-section-title {
+    font-size: 55px;
+    font-family: "Poppins Bold", sans-serif;
+    margin: 0 auto 40px;
+    color: #535151;
+}
+
+.why-us h2 {
+    margin: 40px auto 35px;
+    font-family: "Poppins Regular", sans-serif;
+    font-size: 25px;
+}
+
+.why-us p {
+    font-family: "Poppins Light", sans-serif;
+}
