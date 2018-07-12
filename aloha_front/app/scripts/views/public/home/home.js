@@ -27,6 +27,18 @@
         vm.scrollUp = function () {
             angular.element('html, body').animate({ scrollTop: 0 }, 300);
         };
+        vm.showVerification = showVerification;
+        vm.resetAddress = resetAddress;
+
+        function showVerification() {
+            vm.showMapVerification = vm.quoting.address_to && vm.quoting.address_from && vm.quoting.home_type_from_id && vm.quoting.home_type_to_id;
+        }
+
+        function resetAddress() {
+            vm.showMap = false;
+            vm.showTruckType = false;
+            vm.showCTA = false;
+        }
 
         function init() {
             generateMap();
@@ -84,6 +96,7 @@
                     );
                     vm.homeTypesFromSelected = value;
                     vm.quoting.home_type_from_id = vm.homeTypesFromSelected.id;
+                    showVerification();
                     break;
 
                 case 'home_type_to':
@@ -99,6 +112,7 @@
                     );
                     vm.homeTypesToSelected = value;
                     vm.quoting.home_type_to_id = vm.homeTypesToSelected.id;
+                    showVerification();
                     break;
 
                 case 'truck_type':
@@ -115,6 +129,7 @@
                     vm.quoting.truck_size_type_id = vm.typeTrucksSelected.id;
                     vm.quoting.packaging_time_aprox = vm.typeTrucksSelected.time_per_service;
                     calculateTruckPrice();
+                    vm.showCTA = true;
                     break;
             }
 
@@ -123,9 +138,7 @@
         }
 
         function calculateRoute() {
-            if (!vm.quoting.address_from || !vm.quoting.address_to) {
-                return;
-            }
+            vm.showMap = false;
 
             var request = {
                 origin: vm.quoting.address_from,
@@ -137,25 +150,34 @@
             $timeout(
                 function () {
                     getRoute(request);
+                    vm.showMap = true;
                 }, 500
             );
         }
 
         function calculateAmount() {
+            vm.calculatingAmout = true;
+
             if (!vm.quoting.final_price) {
                 calculateRoute();
             }
 
-            $uibModal.open({
-                templateUrl: 'scripts/views/public/calculating/calculating.html',
-                controller: 'CalculatingCtrl',
-                controllerAs: 'vm',
-                resolve: {
-                    Quoting: function () {
-                        return vm.quoting;
-                    }
-                }
-            });
+            $timeout(
+                function () {
+                    $uibModal.open({
+                        templateUrl: 'scripts/views/public/calculating/calculating.html',
+                        controller: 'CalculatingCtrl',
+                        controllerAs: 'vm',
+                        resolve: {
+                            Quoting: function () {
+                                return vm.quoting;
+                            }
+                        }
+                    });
+
+                    vm.calculatingAmout = false;
+                }, 900
+            );
         }
 
         function getRoute(request) {

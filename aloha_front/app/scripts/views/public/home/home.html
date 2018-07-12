@@ -13,19 +13,32 @@
                     <div class="form-group">
 
                         <label>¿Desde dónde te mudas?</label>
-                        <input ng-model="vm.quoting.address_from" ng-blur="vm.calculateRoute()" google-place type="text" class="form-control" placeholder="Escribe tu dirección" autofocus required>
+                        <input
+                            ng-model="vm.quoting.address_from"
+                            ng-change="vm.resetAddress()"
+                            google-place
+                            type="text" class="form-control" placeholder="Escribe tu dirección" autofocus required>
 
                         <div class="option-list">
-                            <div ng-click="vm.makeSelection('home_type_from', type)" ng-repeat="type in vm.homeTypesFrom" class="col-xs-4">
-                                <div ng-class="{'selected' : type.active}" class="selection-box text-center">
+                            <div
+                                ng-click="vm.makeSelection('home_type_from', type)"
+                                ng-repeat="type in vm.homeTypesFrom"
+                                class="col-xs-4">
+                                <div
+                                    ng-class="{'selected' : type.active}"
+                                    class="selection-box text-center">
                                     <i ng-class="type.icon" class="fa"></i>
                                     <p>{{ type.name }}</p>
                                 </div>
                             </div>
-                            <div ng-if="vm.homeTypesFromSelected.value === 'building'" class="text-center">
+                            <div
+                                ng-if="vm.homeTypesFromSelected.value === 'building'"
+                                class="text-center">
                                 <label>¿Desde que piso de mudas?</label>
                                 <div class="col-xs-6 col-xs-offset-3">
-                                    <input ng-model="vm.quoting.floor_from" type="number" class="form-control" placeholder="Piso" required>
+                                    <input
+                                        ng-model="vm.quoting.floor_from"
+                                        type="number" class="form-control" placeholder="Piso" required>
                                 </div>
                             </div>
                         </div>
@@ -35,36 +48,65 @@
                         <hr>
 
                         <label>¿Hacia dónde te mudas?</label>
-                        <input ng-model="vm.quoting.address_to" ng-blur="vm.calculateRoute()" google-place type="text" class="form-control" placeholder="Escribe la dirección de destino" required>
+                        <input
+                            ng-model="vm.quoting.address_to"
+                            ng-change="vm.resetAddress()"
+                            google-place
+                            type="text" class="form-control" placeholder="Escribe la dirección de destino" required>
 
                         <div class="option-list">
-                            <div ng-click="vm.makeSelection('home_type_to', type)" ng-repeat="type in vm.homeTypesTo" class="col-xs-4">
-                                <div ng-class="{'selected' : type.active}" class="selection-box text-center">
+                            <div
+                                ng-click="vm.makeSelection('home_type_to', type)"
+                                ng-repeat="type in vm.homeTypesTo"
+                                class="col-xs-4">
+                                <div
+                                    ng-class="{'selected' : type.active}"
+                                    class="selection-box text-center">
                                     <i ng-class="type.icon" class="fa"></i>
                                     <p>{{ type.name }}</p>
                                 </div>
                             </div>
-                            <div ng-if="vm.homeTypesToSelected.value === 'building'" class="text-center">
+                            <div
+                                ng-if="vm.homeTypesToSelected.value === 'building'"
+                                class="text-center">
                                 <label>¿Hasta que piso de mudas?</label>
                                 <div class="col-xs-6 col-xs-offset-3">
-                                    <input ng-model="vm.quoting.floor_to" type="number" class="form-control" placeholder="Piso">
+                                    <input
+                                        ng-model="vm.quoting.floor_to"
+                                        type="number" class="form-control" placeholder="Piso">
                                 </div>
-                            </div>
-                        </div>
-
-                        <div id="map" class="public-map" ng-class="{'show': vm.showMap}"></div>
-
-                        <div ng-hide="vm.showTruckType">
-                            <div ng-if="vm.showMap" class="alert alert-info">Si los puntos mostrados en el mapa no concuerdan con los puntos que usted desea entonces deberá cambiar las direcciones antes ingresadas.</div>
-
-                            <div class="calculate-moving text-center">
-                                <a class="btn btn-success btn-aloha" ng-click="vm.calculateRoute(); vm.showMap = true;">Verificar direcciones</a>
-                                <a ng-if="vm.showMap" ng-click="vm.showMap = false; vm.showTruckType = true;" class="btn btn-default btn-aloha">Confirmar direcciones</a>
                             </div>
                         </div>
                     </div>
 
-                    <div ng-show="vm.showTruckType" class="form-group">
+                    <div
+                        ng-show="vm.showMapVerification"
+                        class="form-group">
+
+                        <div
+                            ng-class="{'show': vm.showMap}"
+                            id="map" class="public-map"></div>
+
+                        <div ng-hide="vm.showTruckType">
+                            <div
+                                ng-if="vm.showMap"
+                                class="alert alert-info">Si los puntos mostrados en el mapa no concuerdan con los puntos que usted desea entonces deberá cambiar las direcciones antes ingresadas.</div>
+
+                            <div class="calculate-moving text-center">
+                                <a
+                                    ng-click="vm.calculateRoute();"
+                                    class="btn btn-success btn-aloha">Verificar direcciones</a>
+                                <a
+                                    ng-if="vm.showMap"
+                                    ng-click="vm.showMap = false; vm.showTruckType = true;"
+                                    class="btn btn-default btn-aloha">Confirmar direcciones</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        ng-show="vm.showTruckType"
+                        class="form-group">
                         <hr>
 
                         <div class="text-center">
@@ -72,17 +114,28 @@
                         </div>
 
                         <div class="option-list">
-                            <div ng-click="vm.makeSelection('truck_type', type)" ng-repeat="type in vm.typeTrucks" class="col-xs-4">
-                                <div ng-class="{'selected': type.active}" class="selection-box text-center">
-                                    <i ng-class="type.value" class="fa fa-truck"></i>
+                            <div
+                                ng-click="vm.makeSelection('truck_type', type)"
+                                ng-repeat="type in vm.typeTrucks"
+                                class="col-xs-4">
+                                <div
+                                    ng-class="{'selected': type.active}"
+                                    class="selection-box text-center">
+                                    <i
+                                        ng-class="type.value"
+                                        class="fa fa-truck"></i>
                                     <p>{{ type.name }}</p>
                                 </div>
                                 <p class="small text-muted text-center">{{ type.description }}</p>
                             </div>
                         </div>
 
-                        <div class="calculate-moving text-center">
-                            <button class="btn btn-success btn-aloha">Empieza a mudarte</button>
+                        <div
+                            ng-if="vm.showCTA"
+                            class="calculate-moving text-center">
+                            <button
+                                ladda="vm.calculatingAmout"
+                                class="btn btn-success btn-aloha">Empieza a mudarte</button>
                         </div>
                     </div>
                 </form>
@@ -190,7 +243,9 @@
         <div class="content-box">
             <h1><b>¿Listo para mudarte?</b></h1>
             <div class="col-md-8 col-md-offset-2 quoting-link">
-                <button ng-click="vm.scrollUp()" class="btn btn-default btn-block btn-aloha btn-lg">¿Desde dónde te mudas?</button>
+                <button
+                    ng-click="vm.scrollUp()"
+                    class="btn btn-default btn-block btn-aloha btn-lg">¿Desde dónde te mudas?</button>
             </div>
         </div>
     </div>

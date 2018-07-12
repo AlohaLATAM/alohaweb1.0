@@ -1,55 +1,81 @@
 <div class="container">
     <div class="modal-container text-center">
         <h1>Aloha!</h1>
-        <div ng-if="!vm.showPriceCalculation" class="text-left">
+        <div
+            ng-if="!vm.showPriceCalculation"
+            class="text-left">
             <p>Queremos conocerte un poco más antes de ofrecerte nuestro mejor precio.</p>
             <form ng-submit="vm.registerService()">
                 <div class="form-group">
                     <label for="name">Nombre</label>
-                    <input ng-model="vm.quoting.customer.first_name" type="text" class="form-control" id="name" placeholder="Tus nombres" required>
+                    <input
+                        ng-model="vm.quoting.customer.first_name"
+                        type="text" class="form-control" id="name" placeholder="Tus nombres" required>
                 </div>
                 <div class="form-group">
                     <label for="last_name">Apellidos</label>
-                    <input ng-model="vm.quoting.customer.last_name" type="text" class="form-control" id="last_name" placeholder="Tus apellidos" required>
+                    <input
+                        ng-model="vm.quoting.customer.last_name"
+                        type="text" class="form-control" id="last_name" placeholder="Tus apellidos" required>
                 </div>
                 <div class="form-group">
                     <label for="phone_number">Teléfono</label>
-                    <input ng-model="vm.quoting.customer.phone_number" type="text" class="form-control" id="phone_number" placeholder="Tu número de teléfono" required>
+                    <input
+                        ng-model="vm.quoting.customer.phone_number"
+                        type="text" class="form-control" id="phone_number" placeholder="Tu número de teléfono" required>
                 </div>
                 <button ladda="vm.loading" class="btn btn-success btn-block btn-aloha">Calcular mejor precio</button>
             </form>
         </div>
 
-        <div ng-if="vm.calculating" class="calculation-box">
+        <div
+            ng-if="vm.calculating"
+            class="calculation-box">
             <h3><span class="to-upp">{{ vm.quoting.lead.first_name }}</span>, estamos buscando el mejor precio para tu mudanza</h3>
             <app-loader></app-loader>
             <i class="fa fa-truck lg"></i>
         </div>
 
-        <div ng-if="vm.calculated" class="calculated-box">
+        <div
+            ng-if="vm.calculated"
+            class="calculated-box">
             <h4><span class="to-upp">{{ vm.quoting.lead.first_name }}</span>, el precio de tu mudanza es de</h4>
             <h3><span class="small">Precio:</span> <s>{{ vm.quoting.final_price + 50 | currency:'S/ ' }}</s></h3>
             <h1><span class="small">Precio promocional:</span> {{ vm.quoting.final_price | currency:'S/ ' }}</h1>
-            <button ng-if="!vm.registration" ng-click="vm.acceptAmount()" class="btn btn-success btn-aloha">Programa tu mudanza ahora</button>
+
+            <button
+                ng-if="!vm.registration"
+                ng-click="vm.acceptAmount()"
+                class="btn btn-success btn-aloha">Programa tu mudanza ahora</button>
         </div>
 
-        <div ng-if="vm.registration" class="text-left">
+        <div
+            ng-if="vm.registration"
+            class="text-left">
             <hr>
-            <form ng-submit="vm.updateService()" class="form">
+            <form
+                ng-submit="vm.updateService()"
+                class="form">
                 <div class="form-group">
                     <label>Fecha del servicio</label>
                     <div>{{ vm.showServiceDate() }}</div>
                     <div class="text-center col-md-8 col-md-offset-2">
-                        <datetimepicker ng-model="vm.quoting.datetime_of_service" data-datetimepicker-config="{ startView:'day', minView:'hour' }"></datetimepicker>
+                        <datetimepicker
+                            ng-model="vm.quoting.datetime_of_service"
+                            data-datetimepicker-config="{ startView:'day', minView:'hour' }"></datetimepicker>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="email">Correo</label>
-                    <input ng-model="vm.quoting.customer.email" type="text" class="form-control" id="email" placeholder="Tu dirección de correo electrónico" required>
+                    <input
+                        ng-model="vm.quoting.customer.email"
+                        type="text" class="form-control" id="email" placeholder="Tu dirección de correo electrónico" required>
                 </div>
                 <div class="form-group">
-                    <label for="observations">Detalla las cosas que deseas mudar <span class="text-muted">(Opcional)</span></label>
-                    <textarea ng-model="vm.quoting.observations" class="form-control" id="observations" placeholder="Detalla aquí"></textarea>
+                    <label for="observations">Detalla las cosas que deseas mudar</label>
+                    <textarea
+                        ng-model="vm.quoting.observations"
+                        class="form-control" id="observations" placeholder="Detalla aquí" required=""></textarea>
                 </div>
                 <hr>
                 <div ng-if="vm.error">

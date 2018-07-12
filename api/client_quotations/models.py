@@ -70,7 +70,22 @@ class ClientQuotation(models.Model):
         home_type_to_id = data.get('home_type_to_id')
         truck_size_type_id = data.get('truck_size_type_id')
 
-        if not address_from or not home_type_from_id or not floor_from or not address_to or not home_type_to_id or not floor_to or not travel_distance_aprox or not travel_time_aprox or not truck_size_type_id or not packaging_time_aprox or not packaging_price or not travel_price or not total_price or not final_price or not payment_method:
+        if not address_from or not address_to:
+            return None, 'Revise que haya ingresado direcciones válidas.'
+
+        if not home_type_from_id or not home_type_to_id:
+            return None, 'Revise que haya seleccionado un tipo de vivienda.'
+
+        if not floor_from or not floor_to:
+            return None, 'Revise que haya ingresado el número de piso.'
+
+        if not travel_distance_aprox or not travel_time_aprox:
+            return None, 'El mapa no está mostrando la distancia correcta.'
+
+        if not truck_size_type_id:
+            return None, 'Selecciona un tipo de camión.'
+
+        if not packaging_time_aprox or not packaging_price or not travel_price or not total_price or not final_price:
             return None, 'Revise que todos los campos estén completos.'
 
         try:
@@ -161,8 +176,11 @@ class ClientQuotation(models.Model):
         observations = data.get('observations')
         service_date = data.get('datetime_of_service')
 
-        if not observations or not service_date:
-            return None, 'Revise que todos los campos estén completos.'
+        if not observations:
+            return None, 'Debes indicar lo que deseas mudar.'
+
+        if not service_date:
+            return None, 'Debes indicar la fecha de tu servicio..'
 
         try:
             quotation = ClientQuotation.objects.get(pk=pk)
