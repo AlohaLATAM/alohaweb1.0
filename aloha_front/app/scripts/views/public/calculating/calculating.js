@@ -8,7 +8,6 @@
     function CalculatingCtrl($state, $timeout, $uibModalInstance, Quoting, Main) {
         var vm = this;
         vm.quoting = Quoting;
-        console.log(Quoting);
         vm.quoting.customer = {
             first_name: '',
             last_name: '',

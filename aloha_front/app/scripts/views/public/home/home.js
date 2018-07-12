@@ -9,7 +9,8 @@
         var vm = this;
         vm.quoting = {
             floor_from: 1,
-            floor_to: 1
+            floor_to: 1,
+            packaging_time_aprox: 60
         };
         vm.steps = 1;
 
@@ -198,16 +199,22 @@
         }
 
         function calculateTruckPrice() {
-            if (vm.quoting.travel_time_aprox && vm.typeTrucksSelected) {
-                var timeAprox = vm.quoting.travel_time_aprox / 60;
-                var truckPrice = vm.typeTrucksSelected.hour_price;
+            var timeAprox = 1;
+            var truckPrice = 1;
 
-                vm.quoting.packaging_price = ((vm.quoting.packaging_time_aprox * truckPrice) / 60).toFixed(2);
-                vm.quoting.travel_price = ((timeAprox * truckPrice) / 60).toFixed(2);
-                vm.quoting.total_price = parseFloat(vm.quoting.packaging_price) + parseFloat(vm.quoting.travel_price);
-
-                vm.quoting.final_price = roundToEndZero(Math.round(vm.quoting.total_price + 50));
+            if (vm.quoting.travel_time_aprox > 0) {
+                timeAprox = vm.quoting.travel_time_aprox / 60;
             }
+
+            if (vm.typeTrucksSelected) {
+                truckPrice = vm.typeTrucksSelected.hour_price;
+            }
+
+            vm.quoting.packaging_price = ((vm.quoting.packaging_time_aprox * truckPrice) / 60).toFixed(2);
+            vm.quoting.travel_price = ((timeAprox * truckPrice) / 60).toFixed(2);
+            vm.quoting.total_price = parseFloat(vm.quoting.packaging_price) + parseFloat(vm.quoting.travel_price);
+
+            vm.quoting.final_price = roundToEndZero(Math.round(vm.quoting.total_price + 50));
         }
 
         function roundToEndZero(price) {
