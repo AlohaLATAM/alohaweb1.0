@@ -151,3 +151,75 @@ b {
 .why-us p {
     font-family: "Poppins Light", sans-serif;
 }
+
+.overflowed {
+    overflow: hidden;
+}
+
+.mudanza-image,
+.carga-image {
+    position: absolute;
+    height: 500px;
+    max-width: inherit;
+    width: calc(100vw - 50vw);
+}
+
+.mudanza-image {
+    left: 0;
+    background-image: url("/static/images/landing-mudanza-large.png");
+    background-position: right;
+}
+
+.carga-image {
+    right: 0;
+    background-image: url("/static/images/mudanza-carga-large.png");
+    background-position: left;
+}
+
+.drive-with-us {
+    background-image: url('/static/images/landing-conductor.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.dark-green {
+    color: #fff;
+    background-color: #7fc31b;
+    padding: 55px 50px;
+}
+
+.dark-green h4 {
+    font-size: 15px;
+    font-family: "Poppins Bold", sans-serif;
+    letter-spacing: 3px;
+    padding-bottom: 15px;
+    position: relative;
+}
+
+.dark-green h4:after {
+    content: ' ';
+    position: absolute;
+    bottom: 0;
+    border: 1px solid #fff;
+    width: 18px;
+    left: 0;
+}
+
+.dark-green h4 span {
+    font-family: "Poppins Light", sans-serif;
+}
+
+.dark-green h2 {
+    margin-top: 55px;
+    font-family: Poppins Bold, sans-serif;
+    font-size: 40px;
+    margin-bottom: 35px;
+}
+
+.dark-green p {
+    line-height: 1.7em;
+}
+
+.dark-green a {
+    margin-top: 45px;
+}
