@@ -13,7 +13,7 @@
         .config(appRoutes);
 
     function appRoutes($stateProvider, $urlRouterProvider, $locationProvider) {
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/mudanza');
         $locationProvider.html5Mode({
             enabled: (window.__env__.HTML5MODE !== false),
             requireBase: false
@@ -25,13 +25,13 @@
                 templateUrl: 'scripts/views/public/template.html'
             })
             .state('public.Home', {
-                url: '/',
+                url: '/mudanza',
                 templateUrl: 'scripts/views/public/home/home.html',
                 controller: 'HomeCtrl',
                 controllerAs: 'vm'
             })
             .state('public.Thanks', {
-                url: '/gracias',
+                url: '/mudanza/gracias',
                 templateUrl: 'scripts/views/public/thanks/thanks.html'
             })
             .state('public.Signin', {
@@ -41,11 +41,11 @@
                 controllerAs: 'vm'
             })
             .state('public.About', {
-                url: '/nosotros',
+                url: '/mudanza/nosotros',
                 templateUrl: 'scripts/views/public/single/about-us.html'
             })
             .state('public.Contact', {
-                url: '/contacto',
+                url: '/mudanza/contacto',
                 templateUrl: 'scripts/views/public/single/contact-us.html'
             })
             .state('auth', {

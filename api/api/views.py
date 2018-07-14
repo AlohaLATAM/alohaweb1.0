@@ -15,5 +15,5 @@ def landing(request):
     })
 
 
-def index(request):
+def aloha(request):
     return render_to_response('index.html')
