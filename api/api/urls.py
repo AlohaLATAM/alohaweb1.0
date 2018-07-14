@@ -32,6 +32,6 @@ urlpatterns = [
     path('api/inventory/', include('inventory_stuff.urls')),
     path('api/trucks/', include('trucks.urls')),
 
-    url('app', aloha, name='app'),
+    url('mudanza', aloha, name='app'),
     url(r'^.*$', landing, name='index')
 ]
