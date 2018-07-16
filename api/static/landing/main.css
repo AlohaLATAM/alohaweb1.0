@@ -172,7 +172,7 @@ b {
 
 .carga-image {
     right: 0;
-    background-image: url("/static/images/mudanza-carga-large.png");
+    background-image: url('/static/images/mudanza-carga-large.png');
     background-position: left;
 }
 
@@ -222,4 +222,133 @@ b {
 
 .dark-green a {
     margin-top: 45px;
+}
+
+.padding-min {
+    padding: 35px 0!important;
+}
+
+.testimonios {
+    background-image: url('/static/images/landing-testimonios-background.png');
+    background-position: center;
+    background-size: cover;
+    color: #343434;
+}
+
+.slider {
+    background-color: #fff;
+    padding: 100px 0;
+}
+
+.slider h2 {
+    font-size: 50px;
+    font-family: 'Poppins Bold', sans-serif;
+    display: inline-block;
+    margin: 0;
+}
+
+.slider h2:after {
+    position: absolute;
+    content: ' ';
+    background-image: url('/static/images/landing-quotes.png');
+    width: 65px;
+    height: 55px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    top: -25px;
+    right: -90px;
+}
+
+.relative {
+    position: relative;
+}
+
+.slider-author-text {
+    display: table-cell;
+    height: 109px;
+    vertical-align: middle;
+    text-align: left;
+    padding-left: 30px;
+}
+
+.slider-author-text p {
+    font-size: 28px;
+    margin: 0;
+    line-height: 1em;
+    font-family: "Poppins Light", sans-serif;
+}
+
+.slider-author-text p.small {
+    font-size: 22px;
+    color: #979797;
+    margin-top: 20px;
+}
+
+.card-header p {
+    margin: 0;
+    font-size: 30px;
+    font-family: "Poppins Light", sans-serif;
+}
+
+.card-header {
+    margin: 40px 0 60px;
+}
+
+.slider-items {
+    overflow: hidden;
+}
+
+.slider-items ul {
+    margin: auto!important;
+    padding: 0!important;
+    position: absolute;
+}
+
+.slider-items ul:after {
+    clear: both;
+    content: ' ';
+    display: table;
+}
+
+.slider-items li {
+    padding: 0;
+    width: 100%;
+}
+
+.card-author {
+    display: inline-block;
+}
+
+.slider-dots span {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin: 0 9px;
+    background-color: #cccccc;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.slider-dots span.active {
+    background-color: #7fc31b;
+}
+
+.slider-arrows span {
+    background-image: url('/static/images/landing-arrow.png');
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    bottom: 150px;
+    left: 80px;
+    cursor: pointer;
+}
+
+.slider-arrows .next-slider {
+    left: inherit;
+    right: 80px;
+    transform: rotate(180deg);
 }
