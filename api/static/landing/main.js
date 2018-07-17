@@ -5,6 +5,24 @@
     $('document').ready(startApp);
 
     function startApp() {
+        // HEADER
+        var linksScroll = $('.link-scroll');
+
+        linksScroll.on('click', scrollTo);
+
+        function scrollTo(e) {
+            e.preventDefault();
+
+            var target = $(this);
+            var destination = target.data('to');
+
+            if (!destination) { return; }
+
+            $('html, body').animate({
+                scrollTop: $('#' + destination).position().top + 'px'
+            }, 400);
+        }
+
         // SLIDER
         var sliderContainer = $('.slider-items');
         var dotsContainer = $('.slider-dots');

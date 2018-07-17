@@ -102,7 +102,8 @@ a.active {
 }
 
 .margin-less {
-    margin: 0!important;
+    margin-bottom: 0!important;
+    margin-top: 0!important;
 }
 
 .padding-less {
@@ -381,8 +382,58 @@ b {
 .footer {
     background-color: #212528;
     color: #fff;
+    font-size: 16px;
+    font-family: "Poppins Light", sans-serif;
 }
 
 .footer a {
     color: #fff;
+}
+
+.socials {
+    margin: 35px 0;
+}
+
+.socials a {
+    display: inline-block;
+    line-height: 48px;
+    width: 48px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 30px;
+}
+
+.facebook-link {
+    background-color: #405992;
+}
+
+.youtube-link {
+    background-color: #e33758;
+}
+
+.instagram-link {
+    background-color: #8a4d12;
+}
+
+.footer .copyright {
+    font-size: 15px;
+    color: #f4f4f4;
+}
+
+.table-cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.table-cell p {
+    margin: 0;
+}
+
+.contact-information li {
+    display: table;
+    height: 60px;
+}
+
+.contact-info-description {
+    padding-left: 25px;
 }
