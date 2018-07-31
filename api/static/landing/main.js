@@ -6,7 +6,7 @@
 
     function startApp() {
         // HEADER
-        var linksScroll = $('.link-scroll');
+        /* var linksScroll = $('.link-scroll');
 
         linksScroll.on('click', scrollTo);
 
@@ -21,7 +21,7 @@
             $('html, body').animate({
                 scrollTop: $('#' + destination).position().top + 'px'
             }, 400);
-        }
+        } */
 
         // SLIDER
         var sliderContainer = $('.slider-items');

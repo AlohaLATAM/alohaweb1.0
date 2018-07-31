@@ -437,3 +437,7 @@ b {
 .contact-info-description {
     padding-left: 25px;
 }
+
+.container-min {
+    max-width: 860px!important;
+}
