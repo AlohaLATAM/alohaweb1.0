@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include, url
-from .views import aloha, landing, drivers
+from .views import aloha, landing, carga
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,5 +34,6 @@ urlpatterns = [
 
     url('mudanza', aloha, name='app'),
     url('conductores', drivers, name='drivers'),
+    url('carga', carga, name='carga'),
     url(r'^.*$', landing, name='index')
 ]

@@ -83,6 +83,13 @@ a.active {
     font-family: "Poppins Bold", sans-serif;
 }
 
+.above-content h2 {
+    line-height: 1.6em;
+    font-size: 18px;
+    font-family: "Poppins Light", sans-serif;
+    margin: 35px 0;
+}
+
 .above-content p {
     line-height: 1.6em;
     font-size: 18px;
@@ -136,7 +143,7 @@ b {
     font-family: "Poppins Bold", sans-serif;
 }
 
-.section h2.main-section-title {
+.section .main-section-title {
     font-size: 55px;
     font-family: "Poppins Bold", sans-serif;
     margin: 0 auto 40px;
@@ -149,12 +156,27 @@ b {
     font-size: 25px;
 }
 
-.why-us p {
+.why-us h3 {
     font-family: "Poppins Light", sans-serif;
+    font-size: 16px;
+    line-height: 1.42857143;
 }
 
 .overflowed {
     overflow: hidden;
+}
+
+.like-p {
+    color: #767676;
+    font-family: "Poppins Regular", sans-serif;
+    font-size: 16px;
+    position: relative;
+    font-weight: normal;
+    line-height: 1.42857143;
+}
+
+.section-padded-small {
+    padding: 80px 0 60px;
 }
 
 .mudanza-image,
@@ -210,15 +232,16 @@ b {
     font-family: "Poppins Light", sans-serif;
 }
 
-.dark-green h2 {
+.dark-green h1 {
     margin-top: 55px;
     font-family: Poppins Bold, sans-serif;
     font-size: 40px;
     margin-bottom: 35px;
 }
 
-.dark-green p {
+.dark-green h2 {
     line-height: 1.7em;
+    color: #fff;
 }
 
 .dark-green a {
@@ -241,7 +264,7 @@ b {
     padding: 100px 0;
 }
 
-.slider h2 {
+.slider h1 {
     font-size: 50px;
     font-family: 'Poppins Bold', sans-serif;
     display: inline-block;
@@ -286,10 +309,11 @@ b {
     margin-top: 20px;
 }
 
-.card-header p {
+.card-header h2 {
     margin: 0;
     font-size: 30px;
     font-family: "Poppins Light", sans-serif;
+    color: #343434;
 }
 
 .card-header {
@@ -358,7 +382,7 @@ b {
     color: #343434;
 }
 
-.awards h2 {
+.awards h1 {
     font-size: 50px;
     font-family: 'Poppins Bold', sans-serif;
     display: inline-block;
@@ -436,4 +460,8 @@ b {
 
 .contact-info-description {
     padding-left: 25px;
+}
+
+.container-min {
+    max-width: 860px!important;
 }

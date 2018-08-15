@@ -1,13 +1,8 @@
-import culqipy
 from django.db import models
 
 from home_types.models import HomeType
 from leads.models import Lead
 from truck_size_types.models import TruckSizeType
-
-
-culqipy.public_key = 'pk_test_U7HFCSBwpSTysW9m'
-culqipy.secret_key = 'sk_test_nEXUMcxY0nC9fqDR'
 
 
 class ClientQuotation(models.Model):
@@ -123,52 +118,6 @@ class ClientQuotation(models.Model):
         )
 
         quotation.save()
-
-        if payment_method == 'card':
-            try:
-                card = data.get('card')
-
-                card_info = {
-                    'card_number': card.get('card_number'),
-                    'currency_code': 'PEN',
-                    'cvv': card.get('card_cvv'),
-                    'exp_month': card.get('exp_month'),
-                    'exp_year': card.get('card_year'),
-                    'last_name': 'Muro',
-                    'email': lead.email,
-                    'first_name': 'William'
-                }
-
-                token = culqipy.Token.create(card_info)
-                culqui_token = token["id"]
-
-                charge_info = {
-                    'address': 'Avenida Lima 1232',
-                    'address_city': 'LIMA',
-                    'amount': card.get('card_amount'),
-                    'country_code': 'PE',
-                    'currency_code': 'PEN',
-                    'email': lead.email,
-                    'first_name': 'William',
-                    'last_name': 'Muro',
-                    'phone_number': lead.phone_number,
-                    'product_description': 'Servicio de Mudanza',
-                    'token_id': culqui_token
-                }
-
-                culqui_charge = culqipy.Charge.create(charge_info)
-
-                quotation.culqui_token = culqui_token
-                quotation.culqui_charge = culqui_charge
-
-                quotation.save()
-
-                return quotation.id, 'ok'
-            except Exception as e:
-                lead.delete()
-                quotation.delete()
-
-                return None, str(e)
 
         return quotation.id, 'ok'
 
