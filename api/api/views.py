@@ -15,5 +15,14 @@ def landing(request):
     })
 
 
+def drivers(request):
+    return render_to_response('base.html', {
+        'page': 'views/drivers.html',
+        'title': 'Aloha',
+        'description': 'Description',
+        'current_year': now.year,
+    })
+
+
 def aloha(request):
     return render_to_response('index.html')
