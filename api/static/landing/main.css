@@ -45,6 +45,11 @@ a.active {
     max-height: 72px;
 }
 
+.navbar {
+    margin-bottom: 0;
+    border: 0;
+}
+
 .navbar-nav {
     padding: 11px 0;
 }
@@ -75,6 +80,10 @@ a.active {
 
 .btn-default {
     color: #7fc31b!important;
+}
+
+.above-content {
+    padding-top: 200px!important;
 }
 
 .above-content h1 {
@@ -269,6 +278,7 @@ b {
     font-family: 'Poppins Bold', sans-serif;
     display: inline-block;
     margin: 0;
+    max-width: 600px;
 }
 
 .slider h2:after {
@@ -296,6 +306,13 @@ b {
     padding-left: 30px;
 }
 
+.slider-author-text.no-tabled {
+    display: block;
+    height: inherit;
+    text-align: center;
+    padding: 15px 0 40px;
+}
+
 .slider-author-text p {
     font-size: 28px;
     margin: 0;
@@ -310,10 +327,11 @@ b {
 }
 
 .card-header h2 {
-    margin: 0;
     font-size: 30px;
     font-family: "Poppins Light", sans-serif;
     color: #343434;
+    max-width: 600px;
+    margin: auto;
 }
 
 .card-header {
@@ -393,6 +411,10 @@ b {
     max-height: 60px;
 }
 
+.awards.awards-no-min img {
+    max-height: inherit;
+}
+
 .awards ul:after {
     clear: both;
     content: ' ';
@@ -464,4 +486,58 @@ b {
 
 .container-min {
     max-width: 860px!important;
+}
+
+.header.light {
+    background-color: #fff;
+}
+
+.header.dark {
+    background-color: #0D0D0D;
+}
+
+.header.dark a {
+    color: #fff;
+}
+
+.header.dark a:hover {
+    color: #2FCA00;
+}
+
+.header.dark .navbar-nav a.active:before,
+.header.dark .navbar-nav a:hover:before {
+    border-bottom: 3px solid #2FCA00;
+}
+
+.drivers-above {
+    background-image: url('/static/images/landing-conductor-bw.png');
+    color: #fff;
+}
+
+.drivers-above h1,
+.drivers-above h2,
+.drivers-above a {
+    color: #fff;
+}
+
+.drivers-form {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.drivers-form .form-header {
+    background-color: #29323B;
+    color: #fff;
+    padding: 25px 30px;
+}
+
+.drivers-form .form-body {
+    padding: 25px 30px;
+    background-color: #F7F7F7;
+    color: #535151;
+}
+
+.drivers-form .form-control {
+    height: 65px;
+    border-radius: 10px;
 }

@@ -28,7 +28,10 @@
         var dotsContainer = $('.slider-dots');
         var arrowsContainer = $('.slider-arrows');
 
-        initSlider();
+        setTimeout(
+            initSlider,
+            500
+        );
 
         function initSlider() {
             var currentIndexTarget = 0;

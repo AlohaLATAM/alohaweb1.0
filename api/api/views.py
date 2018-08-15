@@ -12,6 +12,7 @@ def landing(request):
         'title': 'Aloha',
         'description': 'Description',
         'current_year': now.year,
+        'header_class': 'light'
     })
 
 
@@ -21,6 +22,7 @@ def drivers(request):
         'title': 'Aloha',
         'description': 'Description',
         'current_year': now.year,
+        'header': 'dark'
     })
 
 
@@ -30,6 +32,7 @@ def carga(request):
         'title': 'Aloha',
         'description': 'Description',
         'current_year': now.year,
+        'header_class': 'dark'
     })
 
 

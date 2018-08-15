@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include, url
-from .views import aloha, landing, carga
+from .views import aloha, landing, carga, drivers
 
 urlpatterns = [
     path('admin/', admin.site.urls),
