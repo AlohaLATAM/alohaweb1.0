@@ -12,7 +12,7 @@ def landing(request):
         'title': 'Aloha',
         'description': 'Description',
         'current_year': now.year,
-        'header_class': 'light'
+        'header': 'light'
     })
 
 
@@ -32,7 +32,7 @@ def carga(request):
         'title': 'Aloha',
         'description': 'Description',
         'current_year': now.year,
-        'header_class': 'dark'
+        'header': 'dark'
     })
 
 

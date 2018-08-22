@@ -514,9 +514,17 @@ b {
     color: #fff;
 }
 
+.carga-above {
+    background-image: url('/static/images/landing_carga.png');
+    color: #fff;
+}
+
 .drivers-above h1,
 .drivers-above h2,
-.drivers-above a {
+.drivers-above a,
+.carga-above a,
+.carga-above h1,
+.carga-above h2 {
     color: #fff;
 }
 
@@ -540,4 +548,24 @@ b {
 .drivers-form .form-control {
     height: 65px;
     border-radius: 10px;
+}
+
+.carga-items-ventajas {
+    margin-bottom: 80px;
+}
+
+.carga-items-ventajas h3 {
+    font-size: 32px;
+    margin: 0;
+    padding: 70px 0;
+    color: #595b57;
+}
+
+.carga-items-ventajas h3 span {
+    font-size: 40px;
+    font-family: Poppins Bold, sans-serif;
+}
+
+.block {
+    display: block!important;
 }
