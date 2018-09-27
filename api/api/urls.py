@@ -33,6 +33,7 @@ urlpatterns = [
     path('api/trucks/', include('trucks.urls')),
 
     url('mudanza', aloha, name='app'),
+    url('panel', aloha, name='app'),
     url('conductores', drivers, name='drivers'),
     url('carga', carga, name='carga'),
     url(r'^.*$', landing, name='index')

@@ -59,55 +59,55 @@
                 controllerAs: 'vm'
             })
             .state('auth.Leads', {
-                url: '/leads',
+                url: '/panel/leads',
                 templateUrl: 'scripts/views/auth/leads/leads.html',
                 controller: 'LeadsCtrl',
                 controllerAs: 'vm'
             })
             .state('auth.LeadDetails', {
-                url: '/leads/{leadId}',
+                url: '/panel/leads/{leadId}',
                 templateUrl: 'scripts/views/auth/leads/lead.html',
                 controller: 'LeadCtrl',
                 controllerAs: 'vm'
             })
             .state('auth.NewLead', {
-                url: '/leads/nuevo',
+                url: '/panel/leads/nuevo',
                 templateUrl: 'scripts/views/auth/leads/newLead.html',
                 controller: 'NewLeadCtrl',
                 controllerAs: 'vm'
             })
             .state('auth.Quotation', {
-                url: '/cotizador/{leadId}',
+                url: '/panel/cotizador/{leadId}',
                 templateUrl: 'scripts/views/auth/quoting/quoting.html',
                 controller: 'QuotingCtrl',
                 controllerAs: 'vm'
             })
             .state('auth.QuotationDetails', {
-                url: '/cotizacion/{quotationId}',
+                url: '/panel/cotizacion/{quotationId}',
                 templateUrl: 'scripts/views/auth/quoting/quotation.html',
                 controller: 'QuotationCtrl',
                 controllerAs: 'vm'
             })
             .state('auth.Inventory', {
-                url: '/cotizacion/{quotationId}/inventario',
+                url: '/panel/cotizacion/{quotationId}/inventario',
                 templateUrl: 'scripts/views/auth/inventory/inventory.html',
                 controller: 'InventoryCtrl',
                 controllerAs: 'vm'
             })
             .state('auth.Drivers', {
-                url: '/choferes',
+                url: '/panel/choferes',
                 templateUrl: 'scripts/views/auth/drivers/drivers.html',
                 controller: 'DriversCtrl',
                 controllerAs: 'vm'
             })
             .state('auth.DriversDetails', {
-                url: '/choferes/{driverId}',
+                url: '/panel/choferes/{driverId}',
                 templateUrl: 'scripts/views/auth/drivers/driver.html',
                 controller: 'DriverCtrl',
                 controllerAs: 'vm'
             })
             .state('auth.NewDriver', {
-                url: '/choferes/nuevo',
+                url: '/panel/choferes/nuevo',
                 templateUrl: 'scripts/views/auth/drivers/newDriver.html',
                 controller: 'NewDriverCtrl',
                 controllerAs: 'vm'
