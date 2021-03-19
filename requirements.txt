@@ -7,7 +7,7 @@ cryptography==2.2.2
 Django==2.0.1
 django-cors-headers==2.1.0
 django-push-notifications==1.6.0
-djangorestframework==3.7.7
+djangorestframework==3.11.2
 h2==2.6.2
 hashids==1.2.0
 hpack==3.0.0
